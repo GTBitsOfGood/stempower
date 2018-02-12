@@ -1,7 +1,7 @@
 var express = require('express');
-var router = express.Router();
 var mongoose = require('mongoose');
-var Book = require('../models/Book.js');
+var router = express.Router();
+var User = require('../models/user.js');
 
 /* Get the list of all users */
 router.get('/', (req, res, next) => {

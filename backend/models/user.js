@@ -1,14 +1,20 @@
 const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var UserSchema = new mongoose.Schema({
-    username: {
+    email: {
         type: String,
-        index: true,
-        required
+        required: true
     },
+
     password: {
         type: String,
-        index: true,
         required: true
     }
 });
+
+UserSchema.methods.verifyPassword = (password) => {
+    return password == this.password
+};
+
+module.exports = mongoose.model('user', UserSchema);
