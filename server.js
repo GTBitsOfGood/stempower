@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const api = require('./backend/routes');
+const api = require('./backend/routes/user.js');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
