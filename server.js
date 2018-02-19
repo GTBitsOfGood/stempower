@@ -1,8 +1,20 @@
+"use strict"
+
 const path = require('path');
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const api = require('./backend/routes');
+const dbclient = require('mongodb').MongoClient;
+
+let url = "mongodb://localhost:27017/stempower";
+dbclient.connect(url, (err, db) => {
+    if(err){
+        console.log("Error: ", err);
+    } else {
+        console.log("Connected to MongoDB!");
+    }
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
