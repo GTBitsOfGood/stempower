@@ -1,13 +1,19 @@
+//NPM imports
 const path = require('path');
 const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3000;
-const api = require('./backend/routes/user.js');
+const bodyParser = require('body-parser');
 
+//Local imports
+const api = require('./backend/routes');
+
+const app = express();
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const PORT = process.env.PORT || 3000;
+
 app.get('/', (request, response) => {
-    response.sendFile(__dirname + '/public/index.html'); // For React/Redux
+    response.sendFile('/public/index.html'); // For React/Redux
 });
 
 app.use('/api', api);
