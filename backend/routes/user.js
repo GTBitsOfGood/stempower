@@ -1,19 +1,49 @@
 //npm Packages
 const express = require('express');;
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const router = express.Router();
-
-//User Model Import
-const User = require('../models/user');
 
 //Passport configuration
 const passport = require('passport');
 const expressSession = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
 const { check, oneOf, validationResult } = require('express-validator');
-router.use(expressSession({secret: 'mySecretKey'}));
+
+//Local imports (currently just User)
+const User = require('../models/user');
+
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: true}));
 router.use(passport.initialize());
 router.use(passport.session());
+router.use(expressSession({secret: 'mySecretKey'}));
+
+//Main login strategy
+passport.use(new LocalStrategy(
+    function(username, password, done) { 
+    //Checks if user exists or not based on username
+    User.findOne({ 'username' :  username }, 
+        function(err, user) {
+        if (err) {
+            console.log("Error finding username");
+            return done(err);
+        }
+        // Username does not exist, log error & redirect back
+        if (!user) {
+            console.log('User ${username} not found');
+            return done(null, false);                
+        }
+        // User exists due to wrong password
+        if (!user.verifyPassword(password)) {
+            console.log('Invalid Password');
+            return done(null, false);
+        }
+        // User and password both match, return user from 
+        // done method which will be treated like success
+        return done(null, user);
+    });
+}));
 
 //Serialize and deserializing user instances/ session management
 passport.serializeUser(function(user, done) {
@@ -26,139 +56,65 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-//Main login strategy
-passport.use('login', new LocalStrategy({
-        passReqToCallback : true
-    },
-    function(req, username, password, done) { 
-    //Checks if user exists or not based on username
-    User.findOne({ 'username' :  username }, 
-        function(err, user) {
-        if (err)
-            return done(err);
-        // Username does not exist, log error & redirect back
-        if (!user){
-            console.log('User ${username} not found');
-            return done(null, false, 
-                req.flash('message', 'User Not found.'));                 
-        }
-        // User exists due to wrong password
-        if (!isValidPassword(user, password)){
-            console.log('Invalid Password');
-            return done(null, false, 
-              req.flash('message', 'Invalid Password'));
-        }
-        // User and password both match, return user from 
-        // done method which will be treated like success
-        return done(null, user);
-    });
-}));
-
-//Main signup strategy
-passport.use('signup', new LocalStrategy({
-        passReqToCallback : true
-    },
-    function(req, username, password, done) {
-        findOrCreateUser = function(){
-            //Looks for a user based on username
-            User.findOne({'username':username},function(err, user) {
-                if (err){
-                    console.log('Error in SignUp: '+err);
-                    return done(err);
-                }
-            //Checks for if a user already exists
-            if (user) {
-                console.log('User already exists');
-                return done(null, false, 
-                req.flash('message','User Already Exists'));
-            } else {
-                //Creates user if email doesn't exist
-                var newUser = new User();
-                newUser.username = username;
-                newUser.password = createHash(password);
-                newUser.email = req.param('email');
-                newUser.firstName = req.param('firstName');
-                newUser.lastName = req.param('lastName');
+//All of the main routs for logging in/ out, etc
  
-             //Saves user
-            newUser.save(function(err) {
-                if (err){
-                    console.log('Error in Saving user: '+err);  
-                    throw err;  
-                }
-                console.log('User Registration succesful');    
-                return done(null, newUser);
-                });
-            }
-        });
-    };
-     
-    // Delay the execution of findOrCreateUser and execute 
-    // the method in the next tick of the event loop
-    //** ASK about using 'tick' on process later */
-    process.nextTick(findOrCreateUser);
-  })
-);
-
-//Checks for a valid password
-let isValidPassword = function(user, password){
-    return bCrypt.compareSync(password, user.password);
-}
-
-//Creates a password hash
-var createHash = function(password){
-    return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-}
-
-//All of the main routs for logging in/ out, etc.
-module.exports = function(passport){
- 
-    // GET login page
-    router.get('/', function(req, res) {
-        // Display the Login page with any flash message, if any
-        res.render('index', { message: req.flash('message') });
-    });
+// GET '/' route
+ router.route('/').get((req, res) => {
+     console.log("Reached '/' in user routes");
+ });
    
-    // Handle Login POST
-    router.post('/login', passport.authenticate('login', {
-        successRedirect: '/home',
-        failureRedirect: '/',
-        failureFlash : true 
-    }));
-   
-    // GET Registration Page
-    router.get('/signup', function(req, res){
-        res.render('register',{message: req.flash('message')});
-    });
-   
-    // Handle Registration POST
-    router.post('/signup', passport.authenticate('signup', {
-        successRedirect: '/home',
-        failureRedirect: '/signup',
-        failureFlash : true 
-    }));
-   
-    return router;
-}
-
-//Route for logging out
-router.get('/signout', function(req, res) {
-    console.log("Signout reached");
-    req.logout();
-    res.redirect('/');
+// Handle Login POST
+router.post('/login', (req, res) => {
+    passport.authenticate('local', (errors, user) => {
+      req.logIn(user, () => {
+        if (errors) {
+            return res.status(500).json({ errors });
+        }
+        return res.status(user ? 200 : 400).json(user ? { user } : { errors: "Login Failed" });
+      });
+    })(req, res);
 });
 
-//Will call 'dashboard' that Sophia/ Devany are designing
-//**Note dashboard doesn't exist yet and will fail if called
-// router.get('/dashboard', isAuthenticated, function(req, res){
-//     res.render('dashboard', { user: req.user });
-// });
-   
-//Final authentication check
-var isAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) {}
-        return next();
-    res.redirect('/');
-}
+// GET for list of all users
+router.get('/getUsers', (req, res) => {
+    User.find({})
+    .exec()
+    .then((user) => res.send(user))
+    .catch((err) => {
+      res.send("" + err);
+    });
+});
+
+// POST that handles user logout given a specific ID
+router.post('/user/logout/:id', (req, res) => {
+    User.findByIdAndUpdate({
+        _id: req.params._id
+    }, {
+        login: false
+    }, function(err, docs) {
+        if (err) {
+            res.json(err);
+        } else {
+            console.log("successful");
+            res.json("logged out!")
+        }
+    })
+});
+
+// POST that updates a specific password
+router.post('/updatePassword/:_id', (req, res) => {
+  User.findByIdAndUpdate({
+    _id: req.params._id
+}, {
+    password: req.body.password
+}, function(err, docs) {
+    if (err) {
+        res.json(err);
+    } else {
+        console.log("successful");
+        res.json("password updated!")
+    }
+})
+});
 
 module.exports = router; 
