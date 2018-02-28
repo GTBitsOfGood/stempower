@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 const Title = ( { name } ) => {
     return (
-        <h1>{name}</h1>
+        <form>
+		<input type="button" value="Member Page" onclick="window.location.href='http://localhost:3000/api/memberpage'" />
+		</form>
     );
 };
 

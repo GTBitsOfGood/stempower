@@ -35,4 +35,9 @@ router.put('/mentors', (req, res) => {
 
     });
 });
+
+router.use('/memberpage',(req, res) => {
+	res.json({success: true});
+});
+
 module.exports = router;
