@@ -1,0 +1,16 @@
+webpackHotUpdate(0,{
+
+/***/ 335:
+/* no static exports found */
+/* all exports used */
+/*!*****************************************!*\
+  !*** ./frontend/containers/Root.dev.js ***!
+  \*****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.default = Root;\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 6);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nvar _react = __webpack_require__(/*! react */ 4);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ 68);\n\nvar _AppContainer = __webpack_require__(/*! ./AppContainer.js */ 149);\n\nvar _AppContainer2 = _interopRequireDefault(_AppContainer);\n\nvar _DevTools = __webpack_require__(/*! ./DevTools */ 150);\n\nvar _DevTools2 = _interopRequireDefault(_DevTools);\n\nvar _upload = __webpack_require__(/*! ./upload.js */ 338);\n\nvar _upload2 = _interopRequireDefault(_upload);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction Root(_ref) {\n    var store = _ref.store;\n\n    return _react2.default.createElement(\n        _reactRedux.Provider,\n        { store: store },\n        _react2.default.createElement(\n            'div',\n            null,\n            _react2.default.createElement(_AppContainer2.default, null),\n            _react2.default.createElement(_upload2.default, null)\n        )\n    );\n}\n\nRoot.propTypes = {\n    store: _propTypes2.default.object.isRequired\n};//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMzM1LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2Zyb250ZW5kL2NvbnRhaW5lcnMvUm9vdC5kZXYuanM/ZjM5MSJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xuaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7UHJvdmlkZXJ9IGZyb20gJ3JlYWN0LXJlZHV4JztcbmltcG9ydCBBcHBDb250YWluZXIgZnJvbSAnLi9BcHBDb250YWluZXIuanMnO1xuaW1wb3J0IERldlRvb2xzIGZyb20gJy4vRGV2VG9vbHMnO1xuaW1wb3J0IEltYWdlVXBsb2FkIGZyb20gJy4vdXBsb2FkLmpzJztcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gUm9vdCh7IHN0b3JlIH0pIHtcbiAgICByZXR1cm4gKFxuICAgICAgICA8UHJvdmlkZXIgc3RvcmU9e3N0b3JlfT5cbiAgICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICAgICAgPEFwcENvbnRhaW5lciAvPlxuICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgIDxJbWFnZVVwbG9hZCAvPlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvUHJvdmlkZXI+XG4gICAgKTtcbn1cblxuUm9vdC5wcm9wVHlwZXMgPSB7XG4gICAgc3RvcmU6IFByb3BUeXBlcy5vYmplY3QuaXNSZXF1aXJlZFxufTtcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBmcm9udGVuZC9jb250YWluZXJzL1Jvb3QuZGV2LmpzIl0sIm1hcHBpbmdzIjoiOzs7OztBQU9BO0FBQ0E7QUFSQTtBQUNBOzs7QUFBQTtBQUNBOzs7QUFBQTtBQUNBO0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7Ozs7QUFDQTtBQUFBO0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUVBO0FBSEE7QUFEQTtBQVFBO0FBQ0E7QUFDQTtBQUNBO0FBREEiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///335\n");
+
+/***/ })
+
+})
