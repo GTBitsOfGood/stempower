@@ -73,3 +73,23 @@ const Topic = ({ match }) => (
 );
 
 export default BasicExample;
+
+
+
+
+
+<Router>
+            <div>
+                <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/memberpage">MemberPage</Link>
+                </li>
+                </ul>
+                <hr />
+                <Route exact path="/" component={Title} />
+                <Route path="/memberpage" component={MemberPage}/>
+            </div>
+        </Router>
