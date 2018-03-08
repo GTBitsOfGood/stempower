@@ -2,12 +2,16 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const Login = () => {
-    return(
-        <Router>
+    return (
         <div>
-            <h>Login Screen</h>
+            <b>Login Screen</b><br/>
+            <form>
+                Email:<br/>
+                <input type="text" name="email"/><br/>
+                Password:<br/>
+                <input type="text" name="password"/><br/>
+            </form>
         </div>
-    </Router>
     );
 };
 
