@@ -14,4 +14,4 @@ Title.propTypes = {
 };
 
 
-export default Title;
+export default LoginTitle;
