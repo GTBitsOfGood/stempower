@@ -13,10 +13,15 @@ router.post('/upload', (req, res) => {
         size: req.body.size,
         type: req.body.type,
         lastModified : req.body.lastModified
-    }
+    };
+
+    var mentor = {
+        image: image
+    };
+
     mongo.connect(url, function(err, db) {
        assert.equal(null, err);
-        db.collection('mentor').insertOne(image, function(err, result) {
+        db.collection('mentor').insertOne(mentor, function(err, result) {
             assert.equal(null, err);
             console.log("Image inserted");
             db.close();
