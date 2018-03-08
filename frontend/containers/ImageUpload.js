@@ -9,12 +9,20 @@ export default class ImageUpload extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let file = this.state.file;
-        axios.post('api/upload', {
+        let formData = new FormData();
+        formData.append('file', file);
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+        let metadata = {
             name: file.name,
             size: file.size,
             type: file.type,
             lastModified: file.lastModifiedDate
-        })
+        };
+        axios.post('api/upload',formData, config)
             .then(function (response) {
                 console.log("Your picture was uploaded");
             })
