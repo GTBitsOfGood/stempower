@@ -20,8 +20,9 @@ export default class ImageUpload extends React.Component {
             name: file.name,
             size: file.size,
             type: file.type,
-            lastModified: file.lastModifiedDate
+            lastModified: file.lastModifiedDate,
         };
+        formData.append('metadata', JSON.stringify(metadata));
         axios.post('api/upload',formData, config)
             .then(function (response) {
                 console.log("Your picture was uploaded");
@@ -53,7 +54,7 @@ export default class ImageUpload extends React.Component {
         return (
             <div className="previewComponent">
                 <form onSubmit={(e) => this.handleSubmit(e)}>
-                    <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
+                    <input name="profile" className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
                     <button className="submitButton" type="submit" onClick={(e) => this.handleSubmit(e)}>Upload Image</button>
                 </form>
                 <div className="imgPreview">{$imagePreview}</div>
