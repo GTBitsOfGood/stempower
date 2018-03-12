@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Title = ( { name } ) => {
     return (
         <form>
-		<input type="button" value="Member Page" onclick="window.location.href='http://localhost:3000/api/memberpage'" />
+		<input type="button" value="Login" onclick="window.location.href='http://localhost:3000/api/login'" />
 		</form>
     );
 };
@@ -14,4 +14,4 @@ Title.propTypes = {
 };
 
 
-export default Title;
+export default LoginTitle;

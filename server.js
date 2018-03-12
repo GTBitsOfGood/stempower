@@ -1,12 +1,22 @@
 //NPM imports
 const path = require('path');
 const express = require('express');
+const api = require('./backend/routes');
+const dbclient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 
-//Local imports
-const api = require('./backend/routes');
-
 const app = express();
+
+let url = "mongodb://localhost:27017/stempower";
+dbclient.connect(url, (err, db) => {
+    if(err){
+        console.log("Error: ", err);
+    } else {
+        console.log("Connected to MongoDB!");
+    }
+});
+
+
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 

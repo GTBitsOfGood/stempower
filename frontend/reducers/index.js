@@ -1,14 +1,4 @@
-import { combineReducers } from 'redux';
-import {
-    LOGIN,
-    LOGOUT,
-    SIGNUP,
-    DELETE_USER,
-    FIND_USER,
-    FIND_ALL
-} from '../actions'
-
-function rootReducer(state = {name: 'Horizons'}, action) {
+function rootReducer(state = {name: 'Devany'}, action) {
     switch (action.type) {
         default:
             return state;
