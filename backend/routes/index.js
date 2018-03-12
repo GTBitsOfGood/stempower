@@ -25,5 +25,6 @@ router.route('/').get((req, res) => {
 
 //RESTful endpoints (currently just user)
 router.use('./user', User);
+router.use('./mentor', Mentor);
 
 module.exports = router;
