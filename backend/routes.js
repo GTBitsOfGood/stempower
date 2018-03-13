@@ -9,6 +9,18 @@ const fileUpload = require('express-fileupload');
 router.use(fileUpload());
 
 // YOUR API ROUTES HERE
+router.get('/upload', (req, res) => {
+    console.log(req.query.name);
+    mongo.connect(url, function(err, db) {
+       assert.equal(null, err);
+       db.collection('mentor').findOne({name: req.query.name}, function(err, result) {
+           if (err) throw err;
+           res.send(result.raw);
+           db.close();
+       });
+    });
+});
+
 router.post('/upload', (req, res) => {
     let metadata = JSON.parse(req.body.metadata);
     var image = {
