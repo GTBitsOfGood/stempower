@@ -3,10 +3,6 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { createHashHistory } from 'history';
 
 const Signup = () => {
-    
-};
-
-const SignupPage = (props) => {
     return (
         <div>
             <b>Signup for Stempower</b><br/>
@@ -24,6 +20,6 @@ const SignupPage = (props) => {
             </form>
         </div>
     );
-}
+};
 
 export default Signup;
