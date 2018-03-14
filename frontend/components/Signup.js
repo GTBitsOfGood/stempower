@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-const Login = () => {
+const Signup = () => {
     return (
         <div>
             <b>Signup for Stempower</b><br/>
