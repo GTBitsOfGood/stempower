@@ -18,23 +18,23 @@ router.get('/readMentor/:id', (req, res) => {
 });
 
 //POST that updates a mentor item
-router.post('/readMentor/:id', (req, res) => {
-    Mentor.findByIdAndUpdate({
-        id: req.params.id
-    }, {
-        login: false
-    }, function(err, docs) {
-        if (err) {
-            res.json(err);
-        } else {
-            console.log("successful");
-            res.json("logged out!")
-        }
-    })
-});
+// router.post('/readMentor/:id', (req, res) => {
+//     Mentor.findByIdAndUpdate({
+//         id: req.params.id
+//     }, {
+//         login: false
+//     }, function(err, docs) {
+//         if (err) {
+//             res.json(err);
+//         } else {
+//             console.log("successful");
+//             res.json("logged out!")
+//         }
+//     })
+// });
 
-createMentor()
-updateMentor()
-deleteMentor()
+// createMentor()
+// updateMentor()
+// deleteMentor()
 
 modules.exports = router;

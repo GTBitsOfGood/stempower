@@ -21,6 +21,7 @@ router.use(bodyParser.urlencoded({
 
 router.route('/').get((req, res) => {
     console.log("Reached basic '/' route");
+    
 });
 
 //RESTful endpoints (currently just user)
