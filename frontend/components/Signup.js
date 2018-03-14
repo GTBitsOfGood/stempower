@@ -1,7 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { createHashHistory } from 'history';
 
 const Signup = () => {
+    
+};
+
+const SignupPage = (props) => {
     return (
         <div>
             <b>Signup for Stempower</b><br/>
@@ -19,6 +24,6 @@ const Signup = () => {
             </form>
         </div>
     );
-};
+}
 
 export default Signup;

@@ -5,14 +5,16 @@ import { Redirect } from 'react-router';
 import { createHashHistory } from 'history';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
+import BasicExample from './BasicExample';
 
 const WelcomePage = () => {
     return(
         <Router>
             <div>
-            <Route exact path='/' component={WelcomeScreen}/>
-            <Route path='/login' component={Login}/>
-            <Route path='/signup' component={Signup}/>
+                <Route exact path='/' component={WelcomeScreen}/>
+                <Route path='/login' component={Login}/>
+                <Route path='/signup' component={Signup}/>
+                <Route exact path='/basicExample' render={BasicExample}/>
             </div>
         </Router>
     );
