@@ -3,8 +3,8 @@ import React from 'react';
 
 export default class ImageUpload extends React.Component {
     constructor(props) {
-    super(props);
-    this.state = {file: '',imagePreviewUrl: ''};
+        super(props);
+        this.state = {file: '',imagePreviewUrl: '', uploaded: 'false'};
     }
     handleSubmit(e) {
         e.preventDefault();
@@ -17,19 +17,16 @@ export default class ImageUpload extends React.Component {
             }
         }
         let metadata = {
-            name: file.name,
+            name: "sophia-pic",
             size: file.size,
             type: file.type,
             lastModified: file.lastModifiedDate,
         };
         formData.append('metadata', JSON.stringify(metadata));
         axios.post('api/upload',formData, config)
-            .then(function (response) {
-                console.log("Your picture was uploaded");
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+            .then(response => console.log(response))
+            .catch(error => console.log(error));
+        console.log(this.state);
     }
     handleImageChange(e) {
         //e.preventDefault();
@@ -59,7 +56,7 @@ export default class ImageUpload extends React.Component {
                 </form>
                 <div className="imgPreview">{$imagePreview}</div>
             </div>
-        )
+        );
     }
 }
 

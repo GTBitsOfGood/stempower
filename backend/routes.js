@@ -10,7 +10,6 @@ router.use(fileUpload());
 
 // YOUR API ROUTES HERE
 router.get('/upload', (req, res) => {
-    console.log(req.query.name);
     mongo.connect(url, function(err, db) {
        assert.equal(null, err);
        db.collection('mentor').findOne({name: req.query.name}, function(err, result) {
@@ -37,6 +36,7 @@ router.post('/upload', (req, res) => {
             assert.equal(null, err);
             console.log("Image inserted");
             db.close();
+            res.send("Image inserted");
         });
     });
 });
