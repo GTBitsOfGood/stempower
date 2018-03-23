@@ -22,10 +22,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (request, response) => {
-    response.sendFile('/public/index.html'); // For React/Redux
-});
 app.use('/api', api);
+
+app.get('/*', (request, response) => {
+    response.sendFile(__dirname + '/public/index.html'); // For React/Redux
+});
 
 app.listen(PORT, error => {
     error

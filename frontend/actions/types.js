@@ -2,6 +2,8 @@
 
 export const login = 'LOGIN';
 export const logout = 'LOGOUT';
+export const ADD_MEMBER = 'ADD_MEMBER';
+export const ADD_BIO_INFO = 'ADD_BIO_INFO';
 export const signup = 'SIGNUP';
 export const delete_user = 'DELETE_USER';
 export const find_user = 'FIND_USER';
