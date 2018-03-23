@@ -2,13 +2,42 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import Title from '../components/Title';
+import MentorApplication from './MentorApplication';
+import Profile from './Profile';
+import Registration from './Registration';
+import Navbar from '../components/Navbar';
 
-const AppContainer = ({ name }) => {
-    return (
-        <div>
-            <Title name={name} />
-        </div>
-    );
+class AppContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state ={
+            page: "Application"
+        }
+    }
+
+    routePage(page) {
+        switch(page){
+            case "Profile":
+                return(<Profile />)
+            case "Registration":
+                return(<Registration />)
+            default:
+                return(<MentorApplication />)        
+        }
+    }
+
+    //<Navbar style={{float:"right"}} />
+
+    render() {
+        return (
+            <div>
+                <Title name={name} />
+                <Navbar />
+                {this.routePage(this.state.page)}
+            </div>
+        );    
+    }
+    
 };
 
 AppContainer.propTypes = {

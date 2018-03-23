@@ -1,4 +1,62 @@
 h1 {
-  font-family: helvetica;
+  font-family: raleway, sans-serif;
   font-weight: 200;
+}
+
+div {
+    font-family: raleway, sans-serif;
+}
+
+.background-colored {
+    background-color: rgb(84, 72, 98);
+}
+
+.foreground-colored {
+    color: #825EA8;
+}
+
+.step-banner {
+    background: rgb(75, 102, 31);
+    color:white;
+    height: 46px;
+    font-weight: bold;
+    padding-bottom: 16px;
+    padding-left: 34px;
+    padding-right: 8px;
+    padding-top: 16px;
+    font-size: 20px;
+    margin-bottom:20px;
+}
+
+
+.single-choice {
+    margin-top: 20px;
+}
+
+.single-choice div input {
+    margin-right: 10px;
+    margin-bottom:20px;
+}
+
+ textarea.ta-question {
+    border-bottom: 3px;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    max-width: 426px;
+    width:426px;
+}
+
+.next-btn {
+
+}
+
+label.question {
+    font-size: 20px;
+
+}
+
+.btn-primary {
+    background-color: #825EA8;
+    border-color:#825EA8;
 }
