@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import AppContainer from './AppContainer.js';
 import DevTools from './DevTools';
 import BasicExample from './BasicExample';
+import ImageUpload from './ImageUpload.js';
 import WelcomePage from './WelcomePage';
 
 export default function Root({ store }) {
@@ -11,7 +12,7 @@ export default function Root({ store }) {
         <Provider store={store}>
             <div>
                 <WelcomePage />
-                <DevTools />
+                <ImageUpload />
             </div>
         </Provider>
     );

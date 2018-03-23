@@ -25,7 +25,6 @@ const PORT = process.env.PORT || 3000;
 app.get('/', (request, response) => {
     response.sendFile('/public/index.html'); // For React/Redux
 });
-
 app.use('/api', api);
 
 app.listen(PORT, error => {
@@ -33,3 +32,4 @@ app.listen(PORT, error => {
     ? console.error(error)
     : console.info(`==> 🌎 Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`);
 });
+
