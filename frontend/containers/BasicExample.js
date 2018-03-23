@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import MemberPage from '../components/MemberPage';
-import Login from '../components/Login';
 
 const BasicExample = () => (
   <Router>
@@ -19,9 +18,6 @@ const BasicExample = () => (
        <li>
          <Link to="/memberpage">MemberPage</Link>
        </li>
-       <li>
-         <Link to="/login">Login Screen</Link>
-       </li>
      </ul>
 
      <hr />
@@ -30,7 +26,6 @@ const BasicExample = () => (
      <Route path="/about" component={About} />
      <Route path="/topics" component={Topics} />
      <Route path="/memberpage" component={MemberPage}/>
-     <Route path="/login" component={Login}/>
    </div>
  </Router>
 );

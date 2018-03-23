@@ -20,12 +20,21 @@ router.use(bodyParser.urlencoded({
 }));
 
 router.route('/').get((req, res) => {
+<<<<<<< HEAD
     console.log("Basic '/' in index.js works!");
     res.send("Basic '/' in index.js works!");
 })
 
 //RESTful endpoints (currently just user)
 router.use('/user', user);
+=======
+    console.log("Reached basic '/' route");
+    
+});
+
+//RESTful endpoints (currently just user)
+router.use('./user', User);
 router.use('./mentor', Mentor);
+>>>>>>> 8ff026baf46845e051572a5e80bf256268fbf4ad
 
 module.exports = router;
