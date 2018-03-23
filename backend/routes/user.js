@@ -61,6 +61,7 @@ passport.deserializeUser(function(id, done) {
 // GET '/' route
  router.route('/').get((req, res) => {
      console.log("Reached '/' in user routes");
+     res.send("/ in user.js works!");
  });
    
 // Handle Login POST

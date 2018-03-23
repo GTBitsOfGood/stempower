@@ -1,12 +1,18 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
 const Title = ( { name } ) => {
     return (
-        <form>
-		<input type="button" value="Member Page" onclick="window.location.href='http://localhost:3000/api/memberpage'" />
-		</form>
+  		<button onClick={handleClick}>Member Page</button>
     );
+
+    function handleClick(e) {
+   		e.preventDefault();
+   		console.log('The link was clicked.');
+   		return document.location = '/memberpage';
+  	}
+  		
 };
 
 Title.propTypes = {
