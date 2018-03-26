@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import LoginTitle from '../components/LoginTitle';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
+import ImageDisplay from './ImageDisplay';
 
 
 import Navbar from '../components/Navbar';
