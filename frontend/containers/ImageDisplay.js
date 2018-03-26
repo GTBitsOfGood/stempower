@@ -16,7 +16,7 @@ export default class ImageDisplay extends React.Component {
     }
     render() {
         //console.log(this.state);
-        this.renderPic();
+        //this.renderPic();
         return (
             <div className="profile-picture">
                 <img src = {this.state.imgSrc}/>

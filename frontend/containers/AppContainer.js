@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import LoginTitle from '../components/LoginTitle';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
-import ImageDisplay from './ImageDisplay';
+import ImageUpload from './containers';
 
 
 import Navbar from '../components/Navbar';
@@ -33,7 +33,7 @@ class AppContainer extends React.Component {
                         <Route exact path='/' component={WelcomeScreen}/>
                         <Route path='/login' component={Login}/>
                         <Route path='/signup' component={Signup}/>
-                        <Route path='/upload' component={ImageDisplay}/>
+                        <Route path='/upload' component={ImageUpload}/>
                     </Switch>
                 </Router>
             </div>
