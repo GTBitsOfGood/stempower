@@ -60,7 +60,13 @@ typings/
 
 # dotenv environment variables file
 .env
-
+.DS_Store
+.idea/
+public/*.json
+public/bundle.js
 
 
 # End of https://www.gitignore.io/api/node
+
+*.notes.txt
+public/

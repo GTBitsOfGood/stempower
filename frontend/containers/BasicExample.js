@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import MemberPage from '../components/MemberPage';
 
 const BasicExample = () => (
- <Router>
+  <Router>
    <div>
      <ul>
        <li>

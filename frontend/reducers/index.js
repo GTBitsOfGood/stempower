@@ -1,7 +1,15 @@
 import * as types from '../actions/types';
+/*
 
+In this file we see that the root reducers default parameter is an ojbect
+called "state" containing just {name: 'Stempower'}.
 
-function rootReducer(state = {name: 'Devany'}, action) {
+Inside the reducers switch statement we see that the default case is to just
+return this parameter. Where is it involed? In configureStore.js
+
+*/
+
+function rootReducer(state = {name: 'Stempower'}, action) {
     switch (action.type) {
     	case types.ADD_BIO_INFO:
     		return Object.assign({}, state, {

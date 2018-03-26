@@ -1,0 +1,175 @@
+{
+	"info": {
+		"name": "StemPower Collection",
+		"_postman_id": "8006bd16-f6a5-1d4d-65ae-43a716221d6a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/api/user/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				},
+				"description": "User login test"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				},
+				"description": "Basic html page access with Server.js"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						""
+					]
+				},
+				"description": "API call test"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/user/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/user/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				},
+				"description": "Call to user test"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/user/getUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/user/getUsers",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"getUsers"
+					]
+				},
+				"description": "Get all users test"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/user/logout/:id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/user/logout/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"logout",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				},
+				"description": "User logout test (needs users in database, will fail in its current state)"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/user/updatePassword/:_id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/user/updatePassword/:_id",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"updatePassword",
+						":_id"
+					],
+					"variable": [
+						{
+							"key": "_id",
+							"value": ""
+						}
+					]
+				},
+				"description": "Password update test"
+			},
+			"response": []
+		}
+	]
+}
