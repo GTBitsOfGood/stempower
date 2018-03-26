@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const dbclient = require('mongodb').MongoClient;
 
-let url = "mongodb://localhost:27017";
 let db_name = "stempower"
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
