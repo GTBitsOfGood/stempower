@@ -12,7 +12,7 @@ import './assets/stylesheets/base.scss';
 const store = configureStore();
 
 //The "props" of the "Root" component are defined / passed here. Declare them
-//as parameters in the component do access them.
+//as parameters in the component to access them.
 render(
     <Root store={store} history={history} />,
     document.getElementById('root')

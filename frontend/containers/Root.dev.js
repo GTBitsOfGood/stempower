@@ -13,11 +13,7 @@ import WelcomePage from './WelcomePage';
 export default function Root({ store }) {
     return (
         <Provider store={store}>
-            <div>
-                <WelcomePage />
-                <AppContainer />
-                <ImageUpload />
-            </div>
+            <AppContainer />
         </Provider>
     );
 }
