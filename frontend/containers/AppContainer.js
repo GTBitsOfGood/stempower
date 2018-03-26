@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import LoginTitle from '../components/LoginTitle';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
-import ImageUpload from './containers';
+import ImageUpload from './ImageUpload';
 
 
 import Navbar from '../components/Navbar';
@@ -19,7 +19,6 @@ import Navbar from '../components/Navbar';
 class AppContainer extends React.Component {
     constructor(props) {
         super(props);
-
     }
 
     render() {
