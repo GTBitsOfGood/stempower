@@ -1,15 +1,14 @@
 const express = require('express');
-const router = express.Router();
-const dbclient = require('mongodb').MongoClient;
-
-let url = "mongodb://localhost:27017";
-let db_name = "stempower"
 const bodyParser = require('body-parser');
-router.use(bodyParser.json());
-let mongo = require('mongodb');
-let url = 'mongodb://localhost:27017/stempower';
 const assert = require('assert');
+
+const mongo = require('mongodb');
+const dbclient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017/stempower';
 const fileUpload = require('express-fileupload');
+
+const router = express.Router();
+router.use(bodyParser.json());
 router.use(fileUpload());
 
 // YOUR API ROUTES HERE
@@ -31,16 +30,6 @@ router.get('/mentors', (req, res) => {
     });
 });
 
-router.get('/upload', (req, res) => {
-    mongo.connect(url, function(err, db) {
-       assert.equal(null, err);
-       db.collection('mentor').findOne({name: req.query.name}, function(err, result) {
-           if (err) throw err;
-           res.send(result.raw);
-           db.close();
-       });
-    });
-});
 router.put('/mentors', (req, res) => {
     dbclient.connect(url, (err, client) => {
         if(err){
@@ -64,6 +53,16 @@ router.get('/mentors/:id',(req, res) => {
 	return res.json({ mentor });
 });
 
+router.get('/upload', (req, res) => {
+    mongo.connect(url, function(err, db) {
+       assert.equal(null, err);
+       db.collection('mentor').findOne({name: req.query.name}, function(err, result) {
+           if (err) throw err;
+           res.send(result.raw);
+           db.close();
+       });
+    });
+});
 
 router.post('/upload', (req, res) => {
     let metadata = JSON.parse(req.body.metadata);
@@ -85,6 +84,7 @@ router.post('/upload', (req, res) => {
         });
     });
 });
+
 module.exports = router;
 
 

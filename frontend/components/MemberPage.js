@@ -17,7 +17,7 @@ export class MemberPage extends React.Component {
     }
 
     addBioInfo(header, content) {
-        this.setState(..this.state, {content: content});
+        this.setState(...this.state, {content: content});
     }
     componentWillMount() {
         axios.get('/api/mentors/1').then(({ data }) => {

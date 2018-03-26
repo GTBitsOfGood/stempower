@@ -6,44 +6,36 @@ import MentorApplication from './MentorApplication';
 import Profile from './Profile';
 import Registration from './Registration';
 import MemberPage from '../components/MemberPage';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import WelcomeScreen from'./WelcomePage';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import LoginTitle from '../components/LoginTitle';
+import Login from '../components/Login';
+import Signup from '../components/Signup';
+
 
 import Navbar from '../components/Navbar';
 
 class AppContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state ={
-            page: "Application"
-        }
-    }
 
-    routePage(page) {
-        switch(page){
-            case "Profile":
-                return(<Profile />)
-            case "Registration":
-                return(<Registration />)
-            default:
-                return(<MentorApplication />)        
-        }
     }
-
-    //<Navbar style={{float:"right"}} />
 
     render() {
         return (
-        <Router>
             <div>
-                <Title name={name} />
-            <Route path="/memberpage" component={MemberPage}/>
-                <Route exact path={'/loginTitle'} render={LoginTitle}/>
-                <Navbar />
-                <Route exact path={'/login'} render={Login}/>
-                {this.routePage(this.state.page)}
+                <div>
+                    <Navbar />
+                </div>
+                <Router>
+                    <Switch>
+                        <Route exact path='/' component={WelcomeScreen}/>
+                        <Route path='/login' component={Login}/>
+                        <Route path='/signup' component={Signup}/>
+                        <Route path='/upload' component={ImageDisplay}/>
+                    </Switch>
+                </Router>
             </div>
-        </Router>
-
         );    
     }
     
