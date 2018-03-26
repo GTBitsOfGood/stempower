@@ -6,10 +6,31 @@ import { addBioInfo } from '../actions/index';
 
 
 class AddBioInfo extends Component {
+
+	/*constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            college: '',
+            year: '',
+            //bio: '',
+            bioInfos: {}
+        };
+    }
+
+    addBioInfo(header, content) {
+        this.setState(this.state, {content: content});
+    }
+    componentWillMount() {
+        axios.get('/api/mentors/1').then(({ data }) => {
+            console.log(data.mentor);
+            const mentor = data.mentor;
+            this.setState({name: mentor.name, college: mentor.college, year: mentor.year, bioInfos: mentor.bioInfos})//, bio: mentor.bio})
+        })
+    } */
 	constructor(props) {
 		super(props);
 		this.state = {
-			header: '',
 			content: ''
 		}
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -18,14 +39,11 @@ class AddBioInfo extends Component {
 
 	submitBioInfo() {
 		const { content } = this.state.content;
-
-		/**if (content.length == 0) {
-			alert("Cannot submit empty bio information.");
-			return;
-		} */
-
+		const state = this.state
+		
 		const{ add } = this.props;
-		add(content);
+		add(state);
+		this.setState(state.content)
 	}
 
 	handleInputChange(event) {

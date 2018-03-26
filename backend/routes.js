@@ -13,10 +13,10 @@ router.get('/mentors/:id',(req, res) => {
 		name: 'Devany', 
 		college: 'Georgia Institue of Technology',
 		year: 'Third',
-		bio: 'Hi! I am a third year Computer Science at Georgia Tech!'
+		bioInfos: {}
+		//bio: 'Hi! I am a third year Computer Science at Georgia Tech!'
 	}
 	return res.json({ mentor });
 });
-
 
 module.exports = router;

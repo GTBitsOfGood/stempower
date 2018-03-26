@@ -1,8 +1,10 @@
 module.exports = {
-	bioInfos: [
+	MemberInfo: [
 		{
-			header: '',
-			content: ''
+			name: '',
+            college: '',
+            year: '',
+			bioInfos: {}
 		}
 	]
 }

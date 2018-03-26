@@ -12,18 +12,19 @@ export class MemberPage extends React.Component {
             name: '',
             college: '',
             year: '',
-            bio: ''
+            //bio: '',
+            bioInfos: {}
         };
     }
 
-    addBioInfo(header, content) {
-        this.setState(..this.state, {content: content});
-    }
+    /*addBioInfo(header, content) {
+        this.setState(this.state, {content: content});
+    } */
     componentWillMount() {
         axios.get('/api/mentors/1').then(({ data }) => {
             console.log(data.mentor);
             const mentor = data.mentor;
-            this.setState({name: mentor.name, college: mentor.college, year: mentor.year, bio: mentor.bio})
+            this.setState({name: mentor.name, college: mentor.college, year: mentor.year, bioInfos: mentor.bioInfos})//, bio: mentor.bio})
         })
     }
 
@@ -71,11 +72,10 @@ export class MemberPage extends React.Component {
                              Fun Facts about me...
                               <AddBioInfo />
                         </td>
-
                     </tr>
                     </tbody>
                 </table>
-            </div> 
+            </div>
         );
     }
 };
