@@ -19,7 +19,7 @@ export default class ImageDisplay extends React.Component {
     }
     changePicture() {
         document.getElementById("overlay").style.display = "block";
-        renderPic();
+        this.renderPic();
     }
     off() {
         document.getElementById("overlay").style.display = "none";
