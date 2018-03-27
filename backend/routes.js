@@ -37,15 +37,14 @@ router.put('/mentors', (req, res) => {
             next();
         } else {
             const db = client.db(db_name)
-        }           
-
+        }
     });
 });
 
 router.get('/mentors/:id',(req, res) => {
 	//this is where to make the database mongo call
 	var mentor = {
-		name: 'Devany', 
+		name: 'Devany',
 		college: 'Georgia Institue of Technology',
 		year: 'Third',
 		bio: 'Hi! I am a third year Computer Science at Georgia Tech!'
@@ -54,13 +53,18 @@ router.get('/mentors/:id',(req, res) => {
 });
 
 router.get('/upload', (req, res) => {
-    mongo.connect(url, function(err, db) {
+    dbclient.connect(url, (err, database) => {
        assert.equal(null, err);
-       db.collection('mentor').findOne({name: req.query.name}, function(err, result) {
+       const myDb = database.db("stempower");
+       myDb.collection('mentor').findOne({name: req.query.name}, function(err, result) {
            if (err) throw err;
-           res.send(result.raw);
-           db.close();
+           if (result == null) {
+            res.send();
+           } else {
+             res.send(result.raw);
+           }
        });
+       database.close();
     });
 });
 
@@ -73,15 +77,15 @@ router.post('/upload', (req, res) => {
         lastModified : metadata.lastModified,
         raw: req.files.file.data
     }
-    console.log(image);
-    mongo.connect(url, function(err, db) {
+    dbclient.connect(url, (err, database) => {
        assert.equal(null, err);
-        db.collection('mentor').insertOne(image, function(err, result) {
+       const myDb = database.db("stempower");
+        myDb.collection('mentor').insertOne(image, function(err, result) {
             assert.equal(null, err);
             console.log("Image inserted");
-            db.close();
             res.send("Image inserted");
         });
+        database.close();
     });
 });
 

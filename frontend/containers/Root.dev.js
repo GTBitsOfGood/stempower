@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import AppContainer from './AppContainer.js';
 import DevTools from './DevTools';
 import ImageUpload from './ImageUpload.js';
+import ImageDisplay from './ImageDisplay.js';
 import WelcomePage from './WelcomePage';
 
 /*
@@ -12,9 +13,10 @@ import WelcomePage from './WelcomePage';
 
 export default function Root({ store }) {
     return (
-        <Provider store={store}>
-            <AppContainer />
-        </Provider>
+        <div>
+            <ImageUpload />
+            <ImageDisplay name="sophia-pic"/>
+        </div>
     );
 }
 
