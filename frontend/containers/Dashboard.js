@@ -12,173 +12,144 @@ class Dashboard extends React.Component{
                 <div className="col-sm-3 col-md-2 sidebar">
                   <ul className="nav nav-sidebar">
                     <li className="active"><a href="#">Overview <span className="sr-only">(current)</span></a></li>
-                    <li><a href="#">Reports</a></li>
-                    <li><a href="#">Analytics</a></li>
-                    <li><a href="#">Export</a></li>
-                  </ul>
-                  <ul className="nav nav-sidebar">
-                    <li><a href="">Nav item</a></li>
-                    <li><a href="">Nav item again</a></li>
-                    <li><a href="">One more nav</a></li>
-                    <li><a href="">Another nav item</a></li>
-                    <li><a href="">More navigation</a></li>
-                  </ul>
-                  <ul className="nav nav-sidebar">
-                    <li><a href="">Nav item again</a></li>
-                    <li><a href="">One more nav</a></li>
-                    <li><a href="">Another nav item</a></li>
+                    <li><a href="#">Troop 29303</a></li>
+                    <li><a href="#">Troop 29101</a></li>
+                    <li><a href="#">Organization 3</a></li>
+                    <li><a href="">Example Org</a></li>
+                    <li><a href="">Organizatoin 4</a></li>
                   </ul>
                 </div>
                 <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                  <h1 className="page-header">Dashboard</h1>
+                  <h1 className="page-header"><br /> </h1>
 
                   <div className="row placeholders">
                     <div className="col-xs-6 col-sm-3 placeholder">
-                      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" className="img-responsive" alt="Generic placeholder thumbnail" />
-                      <h4>Label</h4>
-                      <span className="text-muted">Something else</span>
+                      <img src="pictures/org_leader.jpg" width="200" height="200" className="img-responsive" alt="Generic placeholder thumbnail" />
+                      <h4>Organization Leader</h4>
+                      <div><span className="text-muted">Stock Photo</span></div>
+                      <div><span className="text-muted">example@email.com</span></div>
                     </div>
                     <div className="col-xs-6 col-sm-3 placeholder">
-                      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" className="img-responsive" alt="Generic placeholder thumbnail" />
-                      <h4>Label</h4>
-                      <span className="text-muted">Something else</span>
+                      <img src="pictures/mentor_example_2.png" width="200" height="200" className="img-responsive" alt="Generic placeholder thumbnail" />
+                      <h4>Mentor</h4>
+                      <div><span className="text-muted">Devany</span></div>
+                      <span className="text-muted">devany@gatech.edu</span>
                     </div>
                     <div className="col-xs-6 col-sm-3 placeholder">
-                      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" className="img-responsive" alt="Generic placeholder thumbnail" />
-                      <h4>Label</h4>
-                      <span className="text-muted">Something else</span>
-                    </div>
-                    <div className="col-xs-6 col-sm-3 placeholder">
-                      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" className="img-responsive" alt="Generic placeholder thumbnail" />
-                      <h4>Label</h4>
-                      <span className="text-muted">Something else</span>
+                      <img src="pictures/mentor_example.jpg" width="200" height="200" className="img-responsive" alt="Generic placeholder thumbnail" />
+                      <h4>Mentor</h4>
+                      <div><span className="text-muted">Sophia</span></div>
+                      <span className="text-muted">sophia@gatech.edu</span>
                     </div>
                   </div>
 
-                  <h2 className="sub-header">Section title</h2>
+                  <h2 className="sub-header">Membership</h2>
                   <div className="table-responsive">
                     <table className="table table-striped">
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Header</th>
-                          <th>Header</th>
-                          <th>Header</th>
-                          <th>Header</th>
+                          <th>Member</th>
+                          <th>Email</th>
+                          <th>Registration Date</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>1,001</td>
-                          <td>Lorem</td>
-                          <td>ipsum</td>
-                          <td>dolor</td>
-                          <td>sit</td>
+                          <td>1</td>
+                          <td>Jenny</td>
+                          <td>example@example.com</td>
+                          <td>3/1/2018</td>
                         </tr>
                         <tr>
-                          <td>1,002</td>
-                          <td>amet</td>
-                          <td>consectetur</td>
-                          <td>adipiscing</td>
-                          <td>elit</td>
+                          <td>2</td>
+                          <td>Laura</td>
+                          <td>example@example.com</td>
+                          <td>3/1/2018</td>
                         </tr>
                         <tr>
-                          <td>1,003</td>
-                          <td>Integer</td>
-                          <td>nec</td>
-                          <td>odio</td>
-                          <td>Praesent</td>
+                          <td>3</td>
+                          <td>Vishali</td>
+                          <td>example@example.com</td>
+                          <td>3/1/2018</td>
                         </tr>
                         <tr>
-                          <td>1,003</td>
-                          <td>libero</td>
-                          <td>Sed</td>
-                          <td>cursus</td>
-                          <td>ante</td>
+                          <td>4</td>
+                          <td>Rosa</td>
+                          <td>example@example.com</td>
+                          <td>3/1/2018</td>
                         </tr>
                         <tr>
-                          <td>1,004</td>
-                          <td>dapibus</td>
-                          <td>diam</td>
-                          <td>Sed</td>
-                          <td>nisi</td>
+                          <td>5</td>
+                          <td>Jameisha</td>
+                          <td>example@example.com</td>
+                          <td>3/1/2018</td>
                         </tr>
                         <tr>
-                          <td>1,005</td>
-                          <td>Nulla</td>
-                          <td>quis</td>
-                          <td>sem</td>
-                          <td>at</td>
+                          <td>6</td>
+                          <td>Erin</td>
+                          <td>example@example.com</td>
+                          <td>3/1/2018</td>
                         </tr>
                         <tr>
-                          <td>1,006</td>
-                          <td>nibh</td>
-                          <td>elementum</td>
-                          <td>imperdiet</td>
-                          <td>Duis</td>
+                          <td>7</td>
+                          <td>Erica</td>
+                          <td>example@example.com</td>
+                          <td>3/1/2018</td>
                         </tr>
                         <tr>
-                          <td>1,007</td>
-                          <td>sagittis</td>
-                          <td>ipsum</td>
-                          <td>Praesent</td>
-                          <td>mauris</td>
+                          <td>8</td>
+                          <td>Lynn</td>
+                          <td>example@example.com</td>
+                          <td>3/1/2018</td>
                         </tr>
                         <tr>
                           <td>1,008</td>
                           <td>Fusce</td>
                           <td>nec</td>
                           <td>tellus</td>
-                          <td>sed</td>
                         </tr>
                         <tr>
                           <td>1,009</td>
                           <td>augue</td>
                           <td>semper</td>
                           <td>porta</td>
-                          <td>Mauris</td>
                         </tr>
                         <tr>
                           <td>1,010</td>
                           <td>massa</td>
                           <td>Vestibulum</td>
                           <td>lacinia</td>
-                          <td>arcu</td>
                         </tr>
                         <tr>
                           <td>1,011</td>
                           <td>eget</td>
                           <td>nulla</td>
                           <td>className</td>
-                          <td>aptent</td>
                         </tr>
                         <tr>
                           <td>1,012</td>
                           <td>taciti</td>
                           <td>sociosqu</td>
                           <td>ad</td>
-                          <td>litora</td>
                         </tr>
                         <tr>
                           <td>1,013</td>
                           <td>torquent</td>
                           <td>per</td>
                           <td>conubia</td>
-                          <td>nostra</td>
                         </tr>
                         <tr>
                           <td>1,014</td>
                           <td>per</td>
                           <td>inceptos</td>
                           <td>himenaeos</td>
-                          <td>Curabitur</td>
                         </tr>
                         <tr>
                           <td>1,015</td>
                           <td>sodales</td>
                           <td>ligula</td>
                           <td>in</td>
-                          <td>libero</td>
                         </tr>
                       </tbody>
                     </table>
