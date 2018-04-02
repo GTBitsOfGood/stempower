@@ -16,8 +16,8 @@ export default function Root({ store }) {
     return (
 <<<<<<< HEAD
         <div>
-            <ImageUpload />
-            <ImageDisplay name="sophia-pic"/>
+            <ImageUpload id={1}/>
+            <ImageDisplay id={1}/>
         </div>
 =======
         <Provider store={store}>

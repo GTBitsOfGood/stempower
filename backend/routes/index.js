@@ -8,9 +8,10 @@ const {check, oneOf, validationResult} = require('express-validator/check');
 //local imports
 const user = require('./user');
 
+
 const db = 'C:\data\db\stempower';
 
-mongoose.Promilse = global.Promise;
+mongoose.Promise = global.Promise;
 mongoose.connect(db);
 console.log(db);
 
@@ -27,5 +28,7 @@ router.route('/').get((req, res) => {
 //RESTful endpoints (currently just user)
 router.use('/user', user);
 router.use('./mentor', Mentor);
+
+
 
 module.exports = router;

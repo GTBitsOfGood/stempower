@@ -1,3 +1,5 @@
+//This component must have a prop that is the mentor's unique ID
+
 import axios from 'axios';
 import React from 'react';
 
@@ -16,14 +18,13 @@ export default class ImageUpload extends React.Component {
                 'content-type': 'multipart/form-data'
             }
         }
-        //later name will be changed to the specific id/name of the user. Right now it is dummy data
         let metadata = {
-            name: "sophia-pic",
             size: file.size,
             type: file.type,
         };
+        let mentorId = this.props.id;
         formData.append('metadata', JSON.stringify(metadata));
-        axios.post('api/upload',formData, config)
+        axios.post('api/files/profilePicture/' + mentorId, formData, config)
             .then(response => console.log(response))
             .catch(error => console.log(error));
     }

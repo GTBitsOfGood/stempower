@@ -1,3 +1,5 @@
+//This component must have a prop that is the mentor's unique ID
+
 import axios from 'axios';
 import React from 'react';
 import '../../frontend/assets/stylesheets/profilePic.css';
@@ -10,10 +12,9 @@ export default class ImageDisplay extends React.Component {
     }
     //search quey is name, or the ID of the user. For now it is dummy field
     renderPic() {
-        let query = '?name=' + this.props.name;
+        let mentorId = this.props.id;
         let src = '';
-        let self = this;
-        axios.get('api/upload' + query)
+        axios.get('api/files/profilePicture/' + mentorId)
             .then(response => this.setState({imgSrc: "data:image/jpeg;base64," + response.data}))
             .catch(error => console.log(error));
     }

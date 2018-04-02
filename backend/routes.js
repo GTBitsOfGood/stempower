@@ -1,8 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const assert = require('assert');
-
-const mongo = require('mongodb');
 const dbclient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/stempower';
 const fileUpload = require('express-fileupload');
@@ -10,6 +8,10 @@ const fileUpload = require('express-fileupload');
 const router = express.Router();
 router.use(bodyParser.json());
 router.use(fileUpload());
+
+const files = require('./routes/files');
+router.use('/files', files);
+
 
 // YOUR API ROUTES HERE
 router.get('/mentors', (req, res) => {
@@ -52,42 +54,6 @@ router.get('/mentors/:id',(req, res) => {
 	return res.json({ mentor });
 });
 
-router.get('/upload', (req, res) => {
-    dbclient.connect(url, (err, database) => {
-       assert.equal(null, err);
-       const myDb = database.db("stempower");
-       myDb.collection('mentor').findOne({name: req.query.name}, function(err, result) {
-           if (err) throw err;
-           if (result == null) {
-            res.send();
-           } else {
-             res.send(result.raw);
-           }
-       });
-       database.close();
-    });
-});
-
-router.post('/upload', (req, res) => {
-    let metadata = JSON.parse(req.body.metadata);
-    var image = {
-        name: metadata.name,
-        size: metadata.size,
-        type: metadata.type,
-        lastModified : metadata.lastModified,
-        raw: req.files.file.data
-    }
-    dbclient.connect(url, (err, database) => {
-       assert.equal(null, err);
-       const myDb = database.db("stempower");
-        myDb.collection('mentor').insertOne(image, function(err, result) {
-            assert.equal(null, err);
-            console.log("Image inserted");
-            res.send("Image inserted");
-        });
-        database.close();
-    });
-});
 
 module.exports = router;
 

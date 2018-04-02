@@ -2,11 +2,14 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let MentorSchema = new Schema({
+    id: {
+        type = int,
+        required = true
+    },
     name: {
         type = String,
         required = true
     },
-
     email: {
         type = String,
         required: true
@@ -25,7 +28,7 @@ let MentorSchema = new Schema({
      * them later
      */
     availability: {
-        
+
     },
 
     profilePicture: {
