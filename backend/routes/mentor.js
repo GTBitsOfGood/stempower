@@ -11,7 +11,6 @@ const Mentor = require('../models/mentor');
 router.get('/readMentor/:id', (req, res) => {
     User.find(id, function(err, mentor) {
         if (err || !mentor) return next(err);
-
         req.mentor = mentor;
         next();
     });

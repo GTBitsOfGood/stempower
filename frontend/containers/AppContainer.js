@@ -7,11 +7,13 @@ import Profile from './Profile';
 import Registration from './Registration';
 import MemberPage from '../components/MemberPage';
 import WelcomeScreen from'./WelcomePage';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch, withRouter } from "react-router-dom";
 import LoginTitle from '../components/LoginTitle';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
-import ImageDisplay from './ImageDisplay';
+import ImageUpload from './ImageUpload';
+import Account from './Account';
+import Dashboard from './Dashboard';
 
 
 import Navbar from '../components/Navbar';
@@ -19,23 +21,25 @@ import Navbar from '../components/Navbar';
 class AppContainer extends React.Component {
     constructor(props) {
         super(props);
-
-    }
+    }   
 
     render() {
         return (
-            <div>
-                <div>
-                    <Navbar />
+            <div style={{height:"50px"}}>
+                <div><Navbar /></div>
+                <div className="body-content">
+                <Switch>
+                    <Route exact path='/' component={WelcomeScreen}/>
+                    <Route path='/login' component={Login}/>
+                    <Route path='/signup' component={Signup}/>
+                    <Route path='/upload' component={ImageUpload}/>
+                    <Route path='/profile' component={Profile} />
+                    <Route path='/account' component={Account} />
+                    <Route path='/memberpage' component={MemberPage} />
+                    <Route path='/dashboard' component={Dashboard} />
+                    <Route path='/application' component={MentorApplication} />
+                </Switch>
                 </div>
-                <Router>
-                    <Switch>
-                        <Route exact path='/' component={WelcomeScreen}/>
-                        <Route path='/login' component={Login}/>
-                        <Route path='/signup' component={Signup}/>
-                        <Route path='/upload' component={ImageDisplay}/>
-                    </Switch>
-                </Router>
             </div>
         );    
     }
@@ -57,7 +61,7 @@ const mapDispatchToProps = (/* dispatch */) => {
     };
 };
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(AppContainer);
+)(AppContainer));

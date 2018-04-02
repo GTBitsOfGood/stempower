@@ -26,7 +26,7 @@ export default class ImageDisplay extends React.Component {
     }
     render() {
         //console.log(this.state);
-        this.renderPic();
+        //this.renderPic();
         return (
             <div>
                 <div id="overlay" >

@@ -5,13 +5,72 @@ h1 {
 
 div {
     font-family: raleway, sans-serif;
+    background-color:white;
 }
 
-/* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
-  padding-bottom: 20px;
+  background-color: rgb(84, 72, 98);
 }
+
+.profile-header {
+  display:flex;
+}
+
+.profile-about {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  flex: auto;
+}
+
+.profile-picture {
+  flex: auto;
+}
+
+.profile-name {
+  font-size: 63px;
+  font-weight: 500;
+}
+
+.nav-item a {
+  color:white;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.nav-sidebar a {
+  color:black;
+}
+
+.body-contents {
+  background-color:white;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.flex-item {
+  flex:auto;
+}
+
+.nav-banner {
+  display: flex;
+  background-color: rgb(84, 72, 98);
+  height: 40px;
+}
+
+.nav-item {
+  flex: 1 1 100px; 
+  text-align: center; 
+  color: white;
+  background-color: rgb(84, 72, 98);
+  justify-content: center;
+}
+/* "Welcome screen" styles */
+/* Move down content because we have a fixed navbar that is 50px tall */
 
 .background-colored {
     background-color: rgb(84, 72, 98);
@@ -110,3 +169,36 @@ label.question {
   text-align: center;
   width: 500px;
 }
+
+body {
+  padding-top: 20px;
+}
+
+.footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .masthead,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
