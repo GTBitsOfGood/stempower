@@ -2,7 +2,7 @@
 
 import * as types from './types';
 
-export const addBioInfo = (header, content) => {
+export const addBioInfo = (content) => {
 	return {
 		type: types.ADD_BIO_INFO,
 		content: content

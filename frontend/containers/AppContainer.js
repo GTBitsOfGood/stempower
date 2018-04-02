@@ -33,6 +33,7 @@ class AppContainer extends React.Component {
                         <Route path='/login' component={Login}/>
                         <Route path='/signup' component={Signup}/>
                         <Route path='/upload' component={ImageUpload}/>
+                        <Route path='/memberpage' component={MemberPage} />
                     </Switch>
                 </Router>
             </div>

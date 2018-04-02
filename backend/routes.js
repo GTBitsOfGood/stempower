@@ -56,8 +56,6 @@ router.get('/mentors/:id',(req, res) => {
 	return res.json({ mentor });
 });
 
-<<<<<<< HEAD
-=======
 router.get('/upload', (req, res) => {
     mongo.connect(url, function(err, db) {
        assert.equal(null, err);
@@ -69,7 +67,6 @@ router.get('/upload', (req, res) => {
     });
 });
 
->>>>>>> 43bca58ac4671fa4455de238057c4cc8d34f2f30
 router.post('/upload', (req, res) => {
     let metadata = JSON.parse(req.body.metadata);
     var image = {
