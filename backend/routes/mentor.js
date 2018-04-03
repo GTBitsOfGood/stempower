@@ -17,6 +17,7 @@ router.get('/readMentor/:id', (req, res) => {
 
 //GETs all mentors
 router.get('/readMentors', (req, res) => {
+    console.log("Reading all mentors");
     Mentor.find({})
         .exec().then((mentor) => res.send(mentor))
         .catch((err) => {

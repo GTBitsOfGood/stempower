@@ -4,7 +4,6 @@ class Registration extends React.Component {
     render() {
         return(
         <div class="container">
-
           <form class="form-signin">
             <h2 class="form-signin-heading">Please sign in</h2>
             <label for="inputEmail" class="sr-only">Email address</label>
@@ -18,7 +17,6 @@ class Registration extends React.Component {
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
           </form>
-
         </div>
         )
     }
