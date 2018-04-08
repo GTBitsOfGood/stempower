@@ -14,8 +14,6 @@ import Signup from '../components/Signup';
 import ImageUpload from './ImageUpload';
 import Account from './Account';
 import Dashboard from './Dashboard';
-
-
 import Navbar from '../components/Navbar';
 
 class AppContainer extends React.Component {
