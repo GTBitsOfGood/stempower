@@ -10,7 +10,7 @@ const user = require('./user');
 const mentor = require('./mentor');
 const db = require('/data/db');
 
-mongoose.Promilse = global.Promise;
+mongoose.Promise = global.Promise;
 mongoose.connect(db);
 console.log(db);
 
