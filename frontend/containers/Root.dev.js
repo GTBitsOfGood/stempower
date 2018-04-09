@@ -14,19 +14,11 @@ import { BrowserRouter } from "react-router-dom";
 
 export default function Root({ store }) {
     return (
-<<<<<<< HEAD
-        <div>
-            <ImageUpload id={1}/>
-            <ImageDisplay id={1}/>
-        </div>
-=======
         <Provider store={store}>
             <BrowserRouter>
                 <AppContainer />
             </BrowserRouter>
         </Provider>
-
->>>>>>> eead7c165f0db61d6cfa60ef7e031d38a0b57732
     );
 }
 
