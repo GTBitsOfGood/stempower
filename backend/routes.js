@@ -54,7 +54,6 @@ router.get('/mentors/:id',(req, res) => {
 	return res.json({ mentor });
 });
 
-
 module.exports = router;
 
 
