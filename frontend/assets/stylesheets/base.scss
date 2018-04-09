@@ -9,7 +9,7 @@ div {
 }
 
 body {
-  background-color: rgb(84, 72, 98);
+  background-color: #563d7c;/*rgb(84, 72, 98);*/
 }
 
 .profile-header {
@@ -40,6 +40,10 @@ ul {
   list-style-type: none;
 }
 
+.bg-dark {
+  background-color: #563d7c;
+}
+
 .nav-sidebar a {
   color:black;
 }
@@ -58,7 +62,7 @@ ul {
 
 .nav-banner {
   display: flex;
-  background-color: rgb(84, 72, 98);
+  background-color: #563d7c;
   height: 40px;
 }
 
@@ -66,7 +70,7 @@ ul {
   flex: 1 1 100px; 
   text-align: center; 
   color: white;
-  background-color: rgb(84, 72, 98);
+  background-color: #563d7c;
   justify-content: center;
 }
 /* "Welcome screen" styles */

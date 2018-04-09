@@ -6,10 +6,12 @@ const mongo = require('mongodb');
 const dbclient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/stempower';
 const fileUpload = require('express-fileupload');
+const users = require('./routes/user');
 
 const router = express.Router();
 router.use(bodyParser.json());
 router.use(fileUpload());
+
 
 // YOUR API ROUTES HERE
 router.get('/mentors', (req, res) => {

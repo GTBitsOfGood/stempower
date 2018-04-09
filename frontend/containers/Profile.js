@@ -6,9 +6,6 @@ class Profile extends React.Component{
               <div className="container">
                   <div className="jumbotron">
                     <div className="profile-header">
-                      <div className="profile-picture">
-                        <img src="pictures/me_example.jpg" width="200" height="200" className="img-responsive" alt="Generic placeholder thumbnail" />
-                      </div>
                       <div className="profile-about">
                         <label className="flex-item profile-name">Jeff Drasher</label>
                         <div className="display-flex flex-item">
