@@ -58,4 +58,4 @@ router.delete('/deleteMentor/:id', (req, res) => {
     })
 });
 
-modules.exports = router;
+module.exports = router;
