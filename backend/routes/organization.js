@@ -1,0 +1,3 @@
+/*
+    This file should one day contain routes related to organizations.
+*/
