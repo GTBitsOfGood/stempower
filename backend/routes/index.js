@@ -7,9 +7,8 @@ const {check, oneOf, validationResult} = require('express-validator/check');
 
 //local imports
 const user = require('./user');
-
-
-const db = 'C:\data\db\stempower';
+const mentor = require('./mentor');
+const db = require('/data/db');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(db);
@@ -22,13 +21,10 @@ router.use(bodyParser.urlencoded({
 
 router.route('/').get((req, res) => {
     console.log("Basic '/' in index.js works!");
-    res.send("Basic '/' in index.js works!");
 })
 
 //RESTful endpoints (currently just user)
 router.use('/user', user);
-router.use('./mentor', Mentor);
-
-
+router.use('/mentor', mentor);
 
 module.exports = router;
