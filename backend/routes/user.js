@@ -4,6 +4,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const router = express.Router();
 
+//MongoDB
+const mongo = require('mongodb');
+const dbclient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017/stempower';
+
 //Passport configuration
 const passport = require('passport');
 const expressSession = require('express-session');
@@ -46,22 +51,72 @@ passport.use(new LocalStrategy(
 }));
 
 //Serialize and deserializing user instances/ session management
-passport.serializeuser(function(user, done) {
+passport.serializeUser(function(user, done) {
     done(null, user._id);
 });
 
-passport.deserializeuser(function(id, done) {
+passport.deserializeUser(function(id, done) {
     user.findById(id, function(err, user) {
         done(err, user);
     });
 });
 
 //All of the main routs for logging in/ out, etc
- 
-// GET '/' route
- router.route('/').get((req, res) => {
-     console.log("Reached '/' in user routes");
- });
+
+//TEST
+router.get('/getUsers', (req, res) => {
+    console.log("getUsers call is made");
+    dbclient.connect(url, (err, client) => {
+        if (err) {
+            console.log("err" + err);
+        } else {
+            const db = client.db('mentor');
+            const add = db.collection('mentor').find().toArray();
+            res.send(add);
+        }
+        client.close();
+    });
+});
+
+router.post('/newUser', (req, res) => {
+    console.log("newUser call is made");
+    let newUser = {name: "Sean", email: "seanwalsh@gatech.edu", password: "password"};
+    dbclient.connect(url, (err, client) => {
+        if (err) {
+            console.log("err" + err);
+        } else {
+            const db = client.db('mentor');
+            db.collection('mentor').insertOne(newUser, function(err, results) {
+                if (err) throw err;
+                res.send(res.raw);
+            });
+        }
+        client.close();
+    });
+});
+
+ // GET for list of all users
+// router.get('/getUsers', (req, res) => {
+//     console.log("getUsers call is made");
+//     user.find({})
+//     .exec()
+//     .then((user) => res.send(user))
+//     .catch((err) => {
+//       res.send("" + err);
+//     });
+// });
+
+//POSTs a new user
+// router.post('/newUser', (req, res) => {
+//     console.log("New user created")
+//       user.create(req.body, (err, user) => {
+//         if(err) {
+//           res.send("" + err);
+//         } else {
+//           console.log(user);
+//           res.send(user);
+//     }})
+//   });
    
 // Handle Login POST
 router.post('/login', (req, res) => {
@@ -73,16 +128,6 @@ router.post('/login', (req, res) => {
         return res.status(user ? 200 : 400).json(user ? { user } : { errors: "Login Failed" });
       });
     })(req, res);
-});
-
-// GET for list of all users
-router.get('/getUsers', (req, res) => {
-    user.find({})
-    .exec()
-    .then((user) => res.send(user))
-    .catch((err) => {
-      res.send("" + err);
-    });
 });
 
 // POST that handles user logout given a specific ID

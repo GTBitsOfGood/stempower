@@ -4,10 +4,14 @@ const assert = require('assert');
 const dbclient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/stempower';
 const fileUpload = require('express-fileupload');
+const user = require('./routes/user');
+const mentor = require('./routes/mentor');
 
 const router = express.Router();
 router.use(bodyParser.json());
 router.use(fileUpload());
+router.use('/user', user);
+router.use('/mentor', mentor);
 
 const files = require('./routes/files');
 router.use('/files', files);
@@ -55,6 +59,3 @@ router.get('/mentors/:id',(req, res) => {
 });
 
 module.exports = router;
-
-
-

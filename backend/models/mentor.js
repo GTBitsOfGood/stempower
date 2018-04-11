@@ -7,33 +7,35 @@ let MentorSchema = new Schema({
         required = true
     },
     name: {
-        type = String,
-        required = true
+        type: String,
+        required: true
     },
     email: {
-        type = String,
+        type: String,
         required: true
     },
 
     phoneNumber: {
-        type = String,
+        type: String,
+        required: true
     },
 
     troopNumber: {
-        type = int
-    },
+        type: String,
+        required: true
+    }
 
     /**
      * The following methods are stubbed, talk about how we'll implement
      * them later
      */
-    availability: {
+    // availability: {
 
-    },
+    // },
 
-    profilePicture: {
+    // profilePicture: {
 
-    }
+    // }
 });
 
-modal.exports = Mongoose.model('mentor', MentorSchema);
+module.exports = mongoose.model('mentor', MentorSchema);
