@@ -1,4 +1,5 @@
-//This component must have a prop that is the mentor's unique ID
+//This component must have a prop that is the mentor's unique ID, and one that is
+//true or false depending on whether the profile picture can be changed.
 
 import axios from 'axios';
 import React from 'react';
@@ -25,6 +26,7 @@ export default class ImageUpload extends React.Component {
             size: file.size,
             type: file.type
         };
+        this.setState({imagePreviewUrl:''});
         formData.append('metadata', JSON.stringify(metadata));
         axios.post('api/files/profilePicture', formData, config)
             .then(response => console.log(response))
@@ -42,6 +44,7 @@ export default class ImageUpload extends React.Component {
         reader.readAsDataURL(file);
     }
     render() {
+        this.props.loggedIn;
         let {imagePreviewUrl} = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
@@ -52,10 +55,10 @@ export default class ImageUpload extends React.Component {
         return (
             <div className="previewComponent">
                 <form onSubmit={(e) => this.handleSubmit(e)}>
-                    <input name="profile" className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
-                    <button className="submitButton" type="submit" onClick={(e) => this.handleSubmit(e)}>Upload Image</button>
+                    <input name="profile" id="fileInput" className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
+                    <button className="submitButton" id="submit" type="submit" onClick={(e) => this.handleSubmit(e)}>Upload Image</button>
                 </form>
-                <div className="imgPreview">{$imagePreview}</div>
+                <div id="prev" className="imgPreview">{$imagePreview}</div>
             </div>
         );
     }
