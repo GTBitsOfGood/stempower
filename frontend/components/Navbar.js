@@ -15,21 +15,6 @@ class Navbar extends React.Component {
                     </Link>
                 </div>
                 <div className="nav-item">
-                    <Link to='/login'>
-                        Login
-                    </Link>
-                </div>
-                <div className="nav-item">
-                    <Link to='/signup'>
-                        Signup
-                    </Link>
-                </div>
-                <div className="nav-item">
-                    <Link to='/upload'>
-                        Upload
-                    </Link>
-                </div>
-                <div className="nav-item">
                     <Link to='/profile'>
                         Profile
                     </Link>
@@ -46,7 +31,7 @@ class Navbar extends React.Component {
                 </div>
                 <div className="nav-item">
                     <Link to='/application'>
-                        Application
+                        Availability
                     </Link>
                 </div>
             </div>

@@ -18,7 +18,11 @@ function rootReducer(state = {name: 'Stempower'}, action) {
     				header: action.header
     			]}
     		);
-    		break
+        case types.LOGIN:
+            return Object.assign({}, state, {
+                login: true,
+                username: action.username
+            });
         default:
             return state;
     }

@@ -10,3 +10,10 @@ export const addBioInfo = (header, content) => {
 	};
 }
 
+export const login = (username) => {
+    return {
+        type: types.LOGIN,
+        username: username,
+    };
+}
+

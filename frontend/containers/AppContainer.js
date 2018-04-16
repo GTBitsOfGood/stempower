@@ -15,6 +15,7 @@ import ImageUpload from './ImageUpload';
 import Account from './Account';
 import Dashboard from './Dashboard';
 import Navbar from '../components/Navbar';
+import Availability from './Availability';
 
 class AppContainer extends React.Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class AppContainer extends React.Component {
 
     render() {
         return (
+            <div>
             <div style={{height:"50px"}}>
                 <div><Navbar /></div>
                 <div className="body-content">
@@ -35,9 +37,12 @@ class AppContainer extends React.Component {
                     <Route path='/account' component={Account} />
                     <Route path='/memberpage' component={MemberPage} />
                     <Route path='/dashboard' component={Dashboard} />
-                    <Route path='/application' component={MentorApplication} />
+                    <Route path='/application' component={Availability} />
                 </Switch>
                 </div>
+            </div>
+            <div id="footer" style={{height: "100%", backgroundColor:"white"}}>
+            </div>
             </div>
         );    
     }

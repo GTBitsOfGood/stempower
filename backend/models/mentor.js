@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let MentorSchema = new Schema({
-    id: {
-        type = int,
-        required = true
-    },
+    // id: {
+    //     type: int,
+    //     required: true
+    // },
     name: {
         type: String,
         required: true
