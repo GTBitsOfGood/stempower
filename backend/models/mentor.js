@@ -3,8 +3,8 @@ let Schema = mongoose.Schema;
 
 let MentorSchema = new Schema({
     id: {
-        type = int,
-        required = true
+        type: String,
+        required: true
     },
     name: {
         type: String,
