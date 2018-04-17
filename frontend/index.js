@@ -2,6 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { configureStore, history } from './store/configureStore';
 import Root from './containers/Root';
+import Bootstrap from 'bootstrap';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import '../frontend/templates/login_template.css';
 import './assets/stylesheets/base.scss';

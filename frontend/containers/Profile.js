@@ -7,9 +7,7 @@ class Profile extends React.Component{
               <div className="container">
                   <div className="jumbotron">
                     <div className="profile-header">
-                      <div className="profile-picture">
                         <ImageDisplay id={1} className="img-responsive" width="200" height="200"/>
-                      </div>
                       <div className="profile-about">
                         <label className="flex-item profile-name">Jeff Drasher</label>
                         <div className="display-flex flex-item">

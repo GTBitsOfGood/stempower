@@ -6,6 +6,7 @@ const dbclient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 
 const app = express();
+const router = express.Router();
 
 let url = "mongodb://localhost:27017/stempower";
 dbclient.connect(url, (err, db) => {
@@ -22,11 +23,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const PORT = process.env.PORT || 3000;
 
-app.use('/api', api);
+router.use('/api', api);
 
+// I guess this is wrong
 app.get('/*', (request, response) => {
     response.sendFile(__dirname + '/public/index.html'); // For React/Redux
 });
+
+
 
 app.listen(PORT, error => {
     error

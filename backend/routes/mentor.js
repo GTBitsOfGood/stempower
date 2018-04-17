@@ -25,6 +25,12 @@ router.get('/readMentors', (req, res) => {
         });
 });
 
+// Now I need to define a new Mongoose schema? Maybe having a model
+// would be nice.
+router.put('/mentor', (req, res) => {
+
+})
+
 
 //POSTs a new mentor
 router.post('/createMentor', (req,res) => {
