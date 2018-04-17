@@ -11,7 +11,7 @@ import { Route, Link, Switch, withRouter } from "react-router-dom";
 import LoginTitle from '../components/LoginTitle';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
-import ImageUpload from './ImageUpload';
+import ImageUpload from '../components/ImageUpload';
 import Account from './Account';
 import Dashboard from './Dashboard';
 import Navbar from '../components/Navbar';

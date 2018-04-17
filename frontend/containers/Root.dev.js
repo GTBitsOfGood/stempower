@@ -3,8 +3,6 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import AppContainer from './AppContainer.js';
 import DevTools from './DevTools';
-import ImageUpload from './ImageUpload.js';
-import ImageDisplay from './ImageDisplay.js';
 import WelcomePage from './WelcomePage';
 import { BrowserRouter } from "react-router-dom";
 
