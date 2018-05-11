@@ -3,15 +3,19 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import AppContainer from './AppContainer.js';
 import DevTools from './DevTools';
-import BasicExample from './BasicExample';
+import WelcomePage from './WelcomePage';
+import { BrowserRouter } from "react-router-dom";
+
+/*
+    The only props for the root component is the Redux store.
+*/
 
 export default function Root({ store }) {
     return (
         <Provider store={store}>
-            <div>
-                <BasicExample />
-                <DevTools />
-            </div>
+            <BrowserRouter>
+                <AppContainer />
+            </BrowserRouter>
         </Provider>
     );
 }

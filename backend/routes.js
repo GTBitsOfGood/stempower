@@ -1,9 +1,21 @@
 const express = require('express');
-const router = express.Router();
+const bodyParser = require('body-parser');
+const assert = require('assert');
 const dbclient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017/stempower';
+const fileUpload = require('express-fileupload');
+const users = require('./routes/user');
+const mentor = require('./routes/mentor');
 
-let url = "mongodb://localhost:27017";
-let db_name = "stempower"
+const router = express.Router();
+router.use(bodyParser.json());
+router.use(fileUpload());
+
+router.use('/mentor', mentor);
+
+const files = require('./routes/files');
+router.use('/files', files);
+
 
 // YOUR API ROUTES HERE
 router.get('/mentors', (req, res) => {
@@ -31,13 +43,19 @@ router.put('/mentors', (req, res) => {
             next();
         } else {
             const db = client.db(db_name)
-        }           
-
+        }
     });
 });
 
-router.use('/memberpage',(req, res) => {
-	res.json({success: true});
+router.get('/mentors/:id',(req, res) => {
+	//this is where to make the database mongo call
+	var mentor = {
+		name: 'Devany',
+		college: 'Georgia Institue of Technology',
+		year: 'Third',
+		bio: 'Hi! I am a third year Computer Science at Georgia Tech!'
+	}
+	return res.json({ mentor });
 });
 
 module.exports = router;

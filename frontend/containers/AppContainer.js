@@ -2,26 +2,58 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import Title from '../components/Title';
+import MentorApplication from './MentorApplication';
+import Profile from './Profile';
+import Registration from './Registration';
 import MemberPage from '../components/MemberPage';
-import { Switch, Route, Redirect, withRouter, Router } from 'react-router-dom';
+import WelcomeScreen from'./WelcomePage';
+import { Route, Link, Switch, withRouter } from "react-router-dom";
+import LoginTitle from '../components/LoginTitle';
+import Login from '../components/Login';
+import Signup from '../components/Signup';
+import ImageUpload from '../components/ImageUpload';
+import Account from './Account';
+import Dashboard from './Dashboard';
+import Navbar from '../components/Navbar';
+import Availability from './Availability';
 
+class AppContainer extends React.Component {
+    constructor(props) {
+        super(props);
+    }   
 
-const AppContainer = ({ name }) => {
-    return (
-        <Router>
+    render() {
+        return (
             <div>
-                <Route exact path ={'/title'} render={Title}/>
-                <Route exact path = {'/memberpage'} render={MemberPage}/>
+            <div style={{height:"50px"}}>
+                <div><Navbar /></div>
+                <div className="body-content">
+                <Switch>
+                    <Route exact path='/' component={WelcomeScreen}/>
+                    <Route path='/login' component={Login}/>
+                    <Route path='/signup' component={Signup}/>
+                    <Route path='/upload' component={ImageUpload}/>
+                    <Route path='/profile' component={Profile} />
+                    <Route path='/account' component={Account} />
+                    <Route path='/memberpage' component={MemberPage} />
+                    <Route path='/dashboard' component={Dashboard} />
+                    <Route path='/application' component={Availability} />
+                </Switch>
+                </div>
             </div>
-        </Router>
-    );
+            <div id="footer" style={{height: "100%", backgroundColor:"white"}}>
+            </div>
+            </div>
+        );    
+    }
+    
 };
 
 AppContainer.propTypes = {
     name: PropTypes.string,
 };
 
-const mapStateToProps = (state) => { //mapstatetoprops: passes shit in
+const mapStateToProps = (state) => {
     return {
         name: state.name
     };
