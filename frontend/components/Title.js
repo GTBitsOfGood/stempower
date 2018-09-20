@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 var axios = require('axios')
 
@@ -38,5 +39,17 @@ Title.propTypes = {
     name: PropTypes.string,
 };
 
-
-export default Title;
+const mapStateToProps = (state) => {
+    return {
+      t: state.t
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+    return {};
+  }
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Title);
