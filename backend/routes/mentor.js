@@ -8,7 +8,7 @@ const router = express.Router();
 const Mentor = require('../models/mentor');
 
 //GETs a specific mentor by their ID
-router.get('/readMentor/:id', (req, res) => {
+router.get('/mentors/:id', (req, res) => {
     Mentor.find({
         id: req.params.id
     }).then((mentor) => res.send(mentor))
@@ -16,7 +16,7 @@ router.get('/readMentor/:id', (req, res) => {
 });
 
 //GETs all mentors
-router.get('/readMentors', (req, res) => {
+router.get('/mentors', (req, res) => {
     console.log("Reading all mentors");
     Mentor.find({})
         .exec().then((mentor) => res.send(mentor))
@@ -25,15 +25,8 @@ router.get('/readMentors', (req, res) => {
         });
 });
 
-// Now I need to define a new Mongoose schema? Maybe having a model
-// would be nice.
-router.put('/mentor', (req, res) => {
-
-})
-
-
 //POSTs a new mentor
-router.post('/createMentor', (req,res) => {
+router.post('/mentors', (req,res) => {
     Mentor.create(req.body, (err, mentor) => {
         if (err) {
             req.send("" + err);
@@ -44,7 +37,7 @@ router.post('/createMentor', (req,res) => {
     });
 });
 
-router.put('/updateMentor/:id', (req, res) => {
+router.put('/mentors/:id', (req, res) => {
     Mentor.findByIdAndUpdate(req.params.id, req,body, function(err, response) {
         if (err) {
             res.json("" + err);
@@ -54,7 +47,7 @@ router.put('/updateMentor/:id', (req, res) => {
     });
 });
 
-router.delete('/deleteMentor/:id', (req, res) => {
+router.delete('/mentors/:id', (req, res) => {
     Mentor.findByIdAndRemove(req,params.id, function(err, response) {
         if (err) {
             res.json("" + err);

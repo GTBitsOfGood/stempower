@@ -20,6 +20,38 @@ let MentorSchema = new Schema({
         required: true
     },
 
+    university: {
+        type: String,
+        required: true
+    },
+
+    major: {
+        type: String,
+        required: false
+    },
+
+    year: {
+        type: Number,
+        required: false
+    },
+
+    bios: {
+        type: [String],
+        required: false
+    },
+
+    profilePicture: {
+        type: Buffer,
+        required: false
+    },
+
+    organization: {
+        type: String,
+        required: true
+    }
+
+
+
     // troopNumber: {
     //     type: String,
     //     required: true

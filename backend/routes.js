@@ -11,14 +11,14 @@ const router = express.Router();
 router.use(bodyParser.json());
 router.use(fileUpload());
 
-router.use('/mentor', mentor);
+router.use('/mentors', mentor);
 
 const files = require('./routes/files');
 router.use('/files', files);
 
 
 // YOUR API ROUTES HERE
-router.get('/mentors', (req, res) => {
+router.get('/', (req, res) => {
     dbclient.connect(url, (err, client) => {
         if(err){
             console.log("Error: ", err);
@@ -47,15 +47,15 @@ router.put('/mentors', (req, res) => {
     });
 });
 
-router.get('/mentors/:id',(req, res) => {
-	//this is where to make the database mongo call
-	var mentor = {
-		name: 'Devany',
-		college: 'Georgia Institue of Technology',
-		year: 'Third',
-		bio: 'Hi! I am a third year Computer Science at Georgia Tech!'
-	}
-	return res.json({ mentor });
-});
+// router.get('/mentors/:id',(req, res) => {
+// 	//this is where to make the database mongo call
+// 	var mentor = {
+// 		name: 'Devany',
+// 		college: 'Georgia Institue of Technology',
+// 		year: 'Third',
+// 		bio: 'Hi! I am a third year Computer Science at Georgia Tech!'
+// 	}
+// 	return res.json({ mentor });
+// });
 
 module.exports = router;
