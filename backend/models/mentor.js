@@ -20,10 +20,10 @@ let MentorSchema = new Schema({
         required: true
     },
 
-    troopNumber: {
-        type: String,
-        required: true
-    }
+    // troopNumber: {
+    //     type: String,
+    //     required: true
+    // }
 
     /**
      * The following methods are stubbed, talk about how we'll implement
