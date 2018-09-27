@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 let url = "mongodb://localhost:27017/stempower";
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/news');
+mongoose.connect(url);
 require('./backend/models/mentor');
 
 const api = require('./backend/routes');

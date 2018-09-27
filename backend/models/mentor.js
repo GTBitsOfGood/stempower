@@ -6,7 +6,11 @@ let MentorSchema = new Schema({
     //  type: String,
     //  required: true
     // },
-    name: {
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
         type: String,
         required: true
     },
@@ -36,10 +40,9 @@ let MentorSchema = new Schema({
     },
 
     bios: {
-        type: [String],
+        type: [{bio: String}],
         required: false
     },
-
     profilePicture: {
         type: Buffer,
         required: false
