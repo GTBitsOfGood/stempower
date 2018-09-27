@@ -1,0 +1,149 @@
+{
+	"variables": [],
+	"info": {
+		"name": "stempower",
+		"_postman_id": "0ac65028-be1d-2ed6-fb5e-f784b9924b2b",
+		"description": "Routes for the Bits of Good stempower app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/mentors/",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\" : \"726c9fb4b1560d8826e7dd3a384308f92bed787198deeaf8cc054a1dd3edbf554425fd4fcb800fcfcc18bb04d745927ed5bfed35f09c38051b1ff3d11921e0ca\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/mentors",
+			"request": {
+				"url": "http://localhost:3000/api/mentors",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Sam\",\n\t\"lastName\": \"Costley\",\n\t\"email\": \"robertscostley@gmail.com\",\n\t\"phoneNumber\": 7064993776,\n\t\"university\": \"Georgia Tech\",\n\t\"organization\": \"Bits of Good\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/mentors/5bad474a85acea6568363af5",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/5bad474a85acea6568363af5",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/mentors/5bad474a85acea6568363af5",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/5bad474a85acea6568363af5",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Sam\",\n\t\"lastName\": \"Costley\",\n\t\"email\": \"robertscostley@gmail.com\",\n\t\"phoneNumber\": 7064993776,\n\t\"university\": \"Georgia Tech\",\n\t\"organization\": \"Bits of Good\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/mentors/5bad4b0794ee7f66e7f2e593",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/5bad4b0794ee7f66e7f2e593",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/mentors/5bad4d33b8201167bc9f43e2/bios",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/5bad4d33b8201167bc9f43e2/bios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bio\": \"My second bio\"\n} "
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/mentors/5bad4d33b8201167bc9f43e2/bios/5bad4d41b8201167bc9f43e4",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/5bad4d33b8201167bc9f43e2/bios/5bad4d41b8201167bc9f43e4",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/mentors/5bad4d33b8201167bc9f43e2/bios/5bad4d41b8201167bc9f43e4",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/5bad4d33b8201167bc9f43e2/bios/5bad4d41b8201167bc9f43e4",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bio\": \"My updated bio\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/mentors/5bad4d33b8201167bc9f43e2/bios/5bad4d41b8201167bc9f43e4",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/5bad4d33b8201167bc9f43e2/bios/5bad4d41b8201167bc9f43e4",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
