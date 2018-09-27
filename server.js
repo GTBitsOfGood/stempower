@@ -1,13 +1,17 @@
 //NPM imports
 const path = require('path');
 const express = require('express');
-const api = require('./backend/routes');
 const dbclient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 
-const app = express();
-
 let url = "mongodb://localhost:27017/stempower";
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/news');
+require('./backend/models/mentor');
+
+const api = require('./backend/routes');
+
+const app = express();
 dbclient.connect(url, (err, db) => {
     if(err){
         console.log("Error: ", err);

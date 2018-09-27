@@ -1,25 +1,45 @@
-//npm Packages
+// npm Packages
 const express = require('express');;
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const router = express.Router();
 
-//Local imports
-const Mentor = require('../models/mentor');
+// Local imports
+const Mentor = require('mongoose').model('Mentor');
 
 router.get('/test', (req, res) => {
-    res.send('/api/mentors successful');
+    res.send('test successful');
 });
 
-//GETs a specific mentor by their ID
-router.get('/:id', (req, res) => {
+router.get('/:mentor_id/bios/:bio_id', (req, res) => {
     Mentor.find({
         id: req.params.id
     }).then((mentor) => res.send(mentor))
       .catch((err) => res.send("" + err));
 });
 
-router.put('/:id', (req, res) => {
+router.get('/:mentor_id/bios', (req, res) => {
+    Mentor.find({
+        id: req.params.id
+    }).then((mentor) => res.send(mentor))
+      .catch((err) => res.send("" + err));
+});
+
+router.get('/:mentor_id/bios/picture', (req, res) => {
+    Mentor.find({
+        id: req.params.id
+    }).then((mentor) => res.send(mentor))
+      .catch((err) => res.send("" + err));
+});
+
+// GETs a specific mentor by their ID
+router.get('/:mentor_id', (req, res) => {
+    Mentor.find({
+        id: req.params.id
+    }).then((mentor) => res.send(mentor))
+      .catch((err) => res.send("" + err));
+});
+
+router.put('/:mentor_id', (req, res) => {
     Mentor.findByIdAndUpdate(req.params.id, req,body, function(err, response) {
         if (err) {
             res.json("" + err);
@@ -29,7 +49,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:mentor_id', (req, res) => {
     Mentor.findByIdAndRemove(req,params.id, function(err, response) {
         if (err) {
             res.json("" + err);
@@ -39,7 +59,7 @@ router.delete('/:id', (req, res) => {
     })
 });
 
-//GETs all mentors
+// GETs all mentors
 router.get('/', (req, res) => {
     console.log("Reading all mentors");
     Mentor.find({})
@@ -49,8 +69,9 @@ router.get('/', (req, res) => {
         });
 });
 
-//POSTs a new mentor
+// POSTs a new mentor
 router.post('/', (req,res) => {
+    console.log(req.body);
     Mentor.create(req.body, (err, mentor) => {
         if (err) {
             res.send("" + err);

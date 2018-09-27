@@ -70,4 +70,4 @@ let MentorSchema = new Schema({
     // }
 });
 
-module.exports = mongoose.model('mentor', MentorSchema);
+module.exports = mongoose.model('Mentor', MentorSchema);
