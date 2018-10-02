@@ -6,10 +6,6 @@ const router = express.Router();
 // Local imports
 const Mentor = require('mongoose').model('Mentor');
 
-router.get('/test', (req, res) => {
-    res.send('test successful');
-});
-
 router.get('/:mentor_id/bios/:bio_id', (req, res) => {
     Mentor.findById(req.params.mentor_id).then(function(mentor) { 
         if (mentor.bios == null) {
@@ -63,6 +59,20 @@ router.delete('/:mentor_id/bios/:bio_id', (req, res) => {
       .catch((err) => res.send("" + err));
 });
 
+router.get('/:mentor_id/picture', (req, res) => {
+    Mentor.findById({
+        _id: req.params.mentor_id
+    }).then((mentor) => res.send(mentor.profilePictureURL))
+      .catch((err) => res.send("" + err));
+});
+
+router.delete('/:mentor_id/picture', (req, res) => {
+    Mentor.findById(req.params.mentor_id).then(function(mentor) { 
+        mentor.profilePictureURL = null;
+        mentor.save((e, mentor) => res.send(mentor.profilePictureURL))})
+      .catch((err) => res.send("" + err));
+});
+
 router.get('/:mentor_id/bios', (req, res) => {
     Mentor.findById({
         _id: req.params.mentor_id
@@ -81,13 +91,6 @@ router.post('/:mentor_id/bios', (req, res) => {
         mentor.bios.push(newBio);
         mentor.save((e, mentor) => res.send(mentor));
     })
-      .catch((err) => res.send("" + err));
-});
-
-router.get('/:mentor_id/bios/picture', (req, res) => {
-    Mentor.find({
-        id: req.params.mentor_id
-    }).then((mentor) => res.send(mentor))
       .catch((err) => res.send("" + err));
 });
 
