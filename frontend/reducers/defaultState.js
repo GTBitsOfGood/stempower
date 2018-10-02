@@ -1,8 +1,9 @@
 module.exports = {
-	bioInfos: [
+	bioInfo:
 		{
-			header: '',
-			content: ''
+			title: 'my bio item title',
+			description: 'my bio item desc'
 		}
-	]
+
+
 }
