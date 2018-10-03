@@ -149,8 +149,7 @@ router.post('/:organization_id/mentors', (req, res) => {
         if (organization.mentors == null) {
             organization.mentors = [];
         }
-        var newMentor = {"mentor": req.body.mentor, "id": organization.mentors.length};
-        organization.mentors.push(newMentor);
+        organization.mentors.push(req.body.mentor);
         organization.save((e, organization) => res.send(organization));
     })
       .catch((err) => res.send("" + err));
