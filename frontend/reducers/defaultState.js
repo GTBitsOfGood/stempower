@@ -6,6 +6,7 @@ module.exports = {
 		},
 	about:
 		{
+			name: "Jeff Drasher",
 			education: "Georgia Institute of Technology, 5th Year",
 			email: "jeff.drasher@gatech.edu",
 			phone: "(678) 367 - 7718"
