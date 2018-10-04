@@ -1,0 +1,447 @@
+{
+	"variables": [],
+	"info": {
+		"name": "stempower",
+		"_postman_id": "0ac65028-be1d-2ed6-fb5e-f784b9924b2b",
+		"description": "Routes for the Bits of Good stempower app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET mentor",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST mentor",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"First\",\n\t\"lastName\": \"Name\",\n\t\"email\": \"example@test.com\",\n\t\"phoneNumber\": \"7064993776\",\n\t\"university\": \"Example University\",\n\t\"organization\": \"Example organization\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT mentor",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/mentors/:mentor_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mentors",
+						":mentor_id"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "mentor_id",
+							"value": ""
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"First\",\n\t\"lastName\": \"Name\",\n\t\"email\": \"example@test.com\",\n\t\"phoneNumber\": \"7064993776\",\n\t\"university\": \"Example University\",\n\t\"organization\": \"Example organization\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE mentor",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/mentors/:mentor_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mentors",
+						":mentor_id"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "mentor_id",
+							"value": ""
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET mentor bios",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/mentors/:mentor_id/bios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mentors",
+						":mentor_id",
+						"bios"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "mentor_id",
+							"value": ""
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bio\": \"My updated bio\",\n\t\"title\": \"My updated bio title\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET specific mentor bio",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/mentors/:mentor_id/bios/:bio_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mentors",
+						":mentor_id",
+						"bios",
+						":bio_id"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "mentor_id",
+							"value": ""
+						},
+						{
+							"key": "bio_id",
+							"value": ""
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT specific mentor bio",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/mentors/:mentor_id/bios/:bio_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mentors",
+						":mentor_id",
+						"bios",
+						":bio_id"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "mentor_id",
+							"value": ""
+						},
+						{
+							"key": "bio_id",
+							"value": ""
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bio\": \"My updated bio\",\n\t\"title\": \"My updated bio title\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST mentor bio",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/mentors/:mentor_id/bios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mentors",
+						":mentor_id",
+						"bios"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "mentor_id",
+							"value": ""
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bio\": \"My new bio\",\n\t\"title\": \"My new bio title\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE specific mentor bio",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/mentors/:mentor_id/bios/:bio_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mentors",
+						":mentor_id",
+						"bios",
+						":bio_id"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "mentor_id",
+							"value": ""
+						},
+						{
+							"key": "bio_id",
+							"value": ""
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET mentor profile picture url",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/mentors/:mentor_id/picture",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mentors",
+						":mentor_id",
+						"picture"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "mentor_id",
+							"value": ""
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bio\": \"My new bio\",\n\t\"title\": \"My new bio title\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE mentor profile picture url",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/mentors/:mentor_id/picture",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mentors",
+						":mentor_id",
+						"picture"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "mentor_id",
+							"value": ""
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT mentor profile picture url",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/upload/mentors/:mentor_id/picture",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"upload",
+						"mentors",
+						":mentor_id",
+						"picture"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "mentor_id",
+							"value": ""
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"profilePictureURL\": \"http://example.com/example.png\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
