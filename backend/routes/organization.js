@@ -165,7 +165,7 @@ router.get('/:organization_id/mentors/:mentor_id', (req, res) => {
         var requestedMentor = null;
         for (var i = 0; i < mentors.length; i++) {
             var m = mentors[i];
-            if (m._id == req.params.mentor_id) {
+            if (m == req.params.mentor_id) {
                 requestedMentor = m;
                 break;
             }
@@ -183,12 +183,17 @@ router.put('/:organization_id/mentors/:mentor_id', (req, res) => {
         var m = null;
         for (var i = 0; i < mentors.length; i++) {
             m = mentors[i];
-            if (m._id == req.params.mentor_id) {
-                m.mentor = req.body.mentor;
+            if (m == req.params.mentor_id) {
+            	console.log("got here");
+                m = req.body.mentor;
+                console.log(m);
+                organization.mentors[i] = m;
+                console.log(mentors[i]);
+                console.log(organization.mentors);
                 break;
             }
         }
-        organization.save((e, organization) => res.send(m.mentor))})
+        organization.save((e, organization) => res.send(m))})
       .catch((err) => res.send("" + err));
 });
 
@@ -200,12 +205,12 @@ router.delete('/:organization_id/mentors/:mentor_id', (req, res) => {
         var mentors = organization.mentors;
         for (var i = 0; i < mentors.length; i++) {
             var m = mentors[i];
-            if (m._id == req.params.mentor_id) {
+            if (m == req.params.mentor_id) {
                 organization.mentors.splice(i, 1);
                 break;
             }
         }
-        organization.save((e, organization) => res.send(m.mentor))})
+        organization.save((e, organization) => res.send(m))})
       .catch((err) => res.send("" + err));
 });
 
