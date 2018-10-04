@@ -7,6 +7,7 @@ const fileUpload = require('express-fileupload');
 const users = require('./routes/user');
 const mentor = require('./routes/mentor');
 const organization = require('./routes/organization');
+const upload = require('./routes/upload');
 const files = require('./routes/files');
 
 const router = express.Router();
@@ -16,6 +17,8 @@ router.use(fileUpload());
 router.use('/mentors', mentor);
 router.use('/organizations', organization);
 router.use('/files', files);
+router.use('/upload', upload);
+router.use('/files', files);  // set to delete next iteration
 
 
 // YOUR API ROUTES HERE
