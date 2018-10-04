@@ -2,60 +2,25 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const assert = require('assert');
 const dbclient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/stempower';
+const url = 'mongodb://127.0.0.1:27017/stempower';
 const fileUpload = require('express-fileupload');
 const users = require('./routes/user');
 const mentor = require('./routes/mentor');
+const upload = require('./routes/upload');
+const files = require('./routes/files');
 
 const router = express.Router();
 router.use(bodyParser.json());
 router.use(fileUpload());
 
-router.use('/mentor', mentor);
-
-const files = require('./routes/files');
-router.use('/files', files);
+router.use('/mentors', mentor);
+router.use('/upload', upload);
+router.use('/files', files);  // set to delete next iteration
 
 
 // YOUR API ROUTES HERE
-router.get('/mentors', (req, res) => {
-    dbclient.connect(url, (err, client) => {
-        if(err){
-            console.log("Error: ", err);
-        } else {
-            const db = client.db(db_name);
-            db.collection("mentors").find({}).toArray((err, docs)=>{
-                if(err){
-                    console.log("DB Error: ", err);
-                } else {
-                    res.json(docs);
-                }
-            });
-        }
-        client.close(); //end connection
-    });
-});
-
-router.put('/mentors', (req, res) => {
-    dbclient.connect(url, (err, client) => {
-        if(err){
-            console.log("Error: ", err);
-            next();
-        } else {
-            const db = client.db(db_name)
-        }
-    });
-});
-
-router.get('/mentors/:id',(req, res) => {
-	//this is where to make the database mongo call
-	var mentor = {
-		name: 'Devany',
-		college: 'Georgia Institue of Technology',
-		year: 'Third',
-		bio: 'Hi! I am a third year Computer Science at Georgia Tech!'
-	}
-	return res.json({ mentor });
+router.get('/test', (req, res) => {
+    res.send("/api test successful");
 });
 
 module.exports = router;

@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let MentorSchema = new Schema({
-    // id: {
-    //  type: String,
-    //  required: true
-    // },
-    name: {
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
         type: String,
         required: true
     },
@@ -14,28 +14,34 @@ let MentorSchema = new Schema({
         type: String,
         required: true
     },
-
     phoneNumber: {
         type: String,
         required: true
     },
-
-    troopNumber: {
+    university: {
+        type: String,
+        required: true
+    },
+    major: {
+        type: String,
+        required: false
+    },
+    year: {
+        type: Number,
+        required: false
+    },
+    bios: {
+        type: [{bio: String, title: String}],
+        required: false
+    },
+    profilePictureURL: {
+        type: String,
+        required: false
+    },
+    organization: {
         type: String,
         required: true
     }
-
-    /**
-     * The following methods are stubbed, talk about how we'll implement
-     * them later
-     */
-    // availability: {
-
-    // },
-
-    // profilePicture: {
-
-    // }
 });
 
-module.exports = mongoose.model('mentor', MentorSchema);
+module.exports = mongoose.model('Mentor', MentorSchema);
