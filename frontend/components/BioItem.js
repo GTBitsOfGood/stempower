@@ -13,8 +13,8 @@ class BioItem extends React.Component {
     render() {
         return (
             <div>
-                <h4>{this.state.bioInfo.title}</h4>
-                <p>{this.state.bioInfo.description}</p>
+                <h4 contentEditable="true">{this.state.bioInfo.title}</h4>
+                <p contentEditable="true">{this.state.bioInfo.description}</p>
             </div>
         )
     }
