@@ -13,12 +13,12 @@ class AboutHeader extends React.Component {
     render() {
         return (
             <div className="profile-about">
-                <div className="display-flex flex-item">
-                    <label className="flex-item profile-name">{this.state.about.name}</label>
+                <label className="flex-item profile-name">{this.state.about.name}</label>
+                <div className="display-flex">
                     <div className="flex-item">{this.state.about.education}</div>
-                    <div className="flex-item">{this.state.about.email}</div>
-                    <div className="flex-item">{this.state.about.phone}</div>
                 </div>
+                <div className="flex-item">{this.state.about.email}</div>
+                <div className="flex-item">{this.state.about.phone}</div>
             </div>
         )
     }

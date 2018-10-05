@@ -16,8 +16,6 @@ import Account from './Account';
 import Dashboard from './Dashboard';
 import Navbar from '../components/Navbar';
 import Availability from './Availability';
-import BioItem from '../components/BioItem';
-import AboutHeader from '../components/AboutHeader';
 
 
 
@@ -37,7 +35,7 @@ class AppContainer extends React.Component {
                     <Route path='/login' component={Login}/>
                     <Route path='/signup' component={Signup}/>
                     <Route path='/upload' component={ImageUpload}/>
-                    <Route path='/profile' component={AboutHeader} />
+                    <Route path='/profile' component={Profile} />
                     <Route path='/account' component={Account} />
                     <Route path='/memberpage' component={MemberPage} />
                     <Route path='/dashboard' component={Dashboard} />
