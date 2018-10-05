@@ -1,6 +1,8 @@
 import React from 'react';
 import ImageDisplay from '../components/ImageDisplay.js';
 import AboutHeader from '../components/AboutHeader.js'
+import BioItem from '../components/BioItem.js'
+
 
 class Profile extends React.Component {
   render() {
@@ -17,8 +19,7 @@ class Profile extends React.Component {
         <div className="row marketing">
           <div className="col-lg-6">
 
-            <h4>Background</h4>
-            <p>After 5 years in industry working as a Software Engineer in various roles, I've returned to Georgia Tech to pursue my Master's degree full time.</p>
+            <BioItem></BioItem>
 
             <h4>Interests</h4>
             <p>I enjoy reading historical non-fiction (check out SPQR by Mary Beard). I'm also a vocal supporter of pedestrian-focused urban planning.</p>

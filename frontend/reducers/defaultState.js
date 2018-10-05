@@ -1,8 +1,8 @@
 module.exports = {
 	bioInfo:
 		{
-			title: 'my bio item title',
-			description: 'my bio item desc'
+			title: "Background",
+			description: "After 5 years in industry working as a Software Engineer in various roles, I've returned to Georgia Tech to pursue my Master's degree full time."
 		},
 	about:
 		{
