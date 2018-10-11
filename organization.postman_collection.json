@@ -1,0 +1,431 @@
+{
+	"variables": [],
+	"info": {
+		"name": "stempower",
+		"_postman_id": "a8a1ed6d-38fa-49d0-bf8d-f1c322d90d21",
+		"description": "Routes for the Bits of Good stempower app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/mentors",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Sam\",\n\t\"lastName\": \"Costley\",\n\t\"email\": \"robertscostley@gmail.com\",\n\t\"phoneNumber\": \"7064993776\",\n\t\"university\": \"Georgia Tech\",\n\t\"organization\": \"Bits of Good\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/mentors",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"William\",\n\t\"lastName\": \"Zheng\",\n\t\"email\": \"fake@gmail.com\",\n\t\"phoneNumber\": \"31876423\",\n\t\"university\": \"GeorgiaTech\",\n\t\"organization\": \"BitsofGood\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/mentors",
+			"request": {
+				"url": "http://localhost:3000/api/mentors/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"William\",\n\t\"lastName\": \"Zheng\",\n\t\"email\": \"fake@gmail.com\",\n\t\"phoneNumber\": \"31876423\",\n\t\"university\": \"GeorgiaTech\",\n\t\"organization\": \"BitsofGood\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"name\": \"testWilliam\",\n\"leaders\": [{\"leader\": \"leader1\"}, {\"leader\": \"leader2\"}],\n\"address\": \"1600 penn ave\",\n\"members\": [{\"member\": \"member1\"}, {\"member\": \"member2\"}],\n\"mentors\": [\"5bad4b0794ee7f66e7f2e593\"]\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"name\": \"testWilliam\",\n\"leaders\": [{\"leader\": \"leader1\"}, {\"leader\": \"leader2\"}],\n\"address\": \"1600 penn ave\",\n\"members\": [{\"member\": \"member1\"}, {\"member\": \"member2\"}],\n\"mentors\": [\"5bad4b0794ee7f66e7f2e593\"]\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/members",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/members",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"member\": \"member3\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/members",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/members",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"member\": \"member3\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/members/:member_id",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/members/5bb3fca930e8a720b9bb99ae",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"member\": \"putMember\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/members/:member_id",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/members/5bb3fca930e8a720b9bb99ae",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"mentor\": \"5bb3c4f0544b7d417df525d2\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/members/:member_id",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/members/5bb3fca930e8a720b9bb99ae",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"mentor\": \"5bb3c4f0544b7d417df525d2\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/leaders",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"leader\": \"leader3\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/leaders/",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/leaders",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"leader\": \"leader3\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/leaders/:leader_id",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/leaders/5bb3fca930e8a720b9bb99ac",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"leader\": \"putLeader\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/leaders/:leader_id",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/leaders/5bb3fca930e8a720b9bb99af",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"mentor\": \"5bb3c4f0544b7d417df525d2\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/leaders/:leader_id",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/leaders/5bb3fca930e8a720b9bb99ad",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"mentor\": \"5bb3c4f0544b7d417df525d2\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/mentors/",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/mentors",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"mentor\": \"5bb3c4f0544b7d417df525d2\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/mentors/",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/mentors",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"mentor\": \"5bb3c4f0544b7d417df525d2\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Doesn't Work http://localhost:3000/api/organizations/:organization_id/mentors/:mentor_id",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/mentors/5bb3c4f0544b7d417df525d3",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"mentor\": \"5bb3c4f0544b7d417df525d4\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/mentors/:mentor_id",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/mentors/5bb3c4f0544b7d417df525d3",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"mentor\": \"5bb3c4f0544b7d417df525d2\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/:organization_id/mentors/:mentor_id",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/5bb3fca930e8a720b9bb99ab/mentors/5bb3c4f0544b7d417df525d2",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"mentor\": \"5bb3c4f0544b7d417df525d2\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/organizations/",
+			"request": {
+				"url": "http://localhost:3000/api/organizations/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\"mentor\": \"5bb3c4f0544b7d417df525d2\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

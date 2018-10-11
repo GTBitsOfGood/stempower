@@ -174,8 +174,10 @@ router.get('/:organization_id/mentors/:mentor_id', (req, res) => {
       .catch((err) => res.send("" + err));
 });
 
+
+//WARNING: DOES NOT WORK PROPERLY
 router.put('/:organization_id/mentors/:mentor_id', (req, res) => {
-    Organization.findById(req.params.organization_id).then(function(organization) { 
+    Organization.findByIdAndUpdate(req.params.organization_id).then(function(organization) { 
         if (organization.mentors == null) {
             organization.mentors = [];
         }
@@ -184,12 +186,8 @@ router.put('/:organization_id/mentors/:mentor_id', (req, res) => {
         for (var i = 0; i < mentors.length; i++) {
             m = mentors[i];
             if (m == req.params.mentor_id) {
-            	console.log("got here");
                 m = req.body.mentor;
-                console.log(m);
                 organization.mentors[i] = m;
-                console.log(mentors[i]);
-                console.log(organization.mentors);
                 break;
             }
         }
