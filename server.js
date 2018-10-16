@@ -8,6 +8,7 @@ let url = "mongodb://localhost:27017/stempower";
 var mongoose = require('mongoose');
 mongoose.connect(url);
 require('./backend/models/mentor');
+require('./backend/models/organization');
 
 const api = require('./backend/routes');
 

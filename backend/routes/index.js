@@ -8,6 +8,7 @@ const {check, oneOf, validationResult} = require('express-validator/check');
 //local imports
 const user = require('./user');
 const mentor = require('./mentor');
+const organization = require('./organization');
 const db = require('/data/db');
 
 mongoose.Promise = global.Promise;
@@ -26,5 +27,6 @@ router.route('/').get((req, res) => {
 //RESTful endpoints (currently just user)
 router.use('/user', user);
 router.use('/mentor', mentor);
+router.use('/organization', organization);
 
 module.exports = router;
