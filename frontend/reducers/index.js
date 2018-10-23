@@ -9,15 +9,10 @@ return this parameter. Where is it involed? In configureStore.js
 
 */
 
-function rootReducer(state = {name: 'Stempower'}, action) {
+import defaultState from './defaultState';
+
+function rootReducer(state = defaultState, action) {
     switch (action.type) {
-    	case types.ADD_BIO_INFO:
-    		return Object.assign({}, state, {
-    			bioInfo:[...state.bioInfo,
-    				content: action.content,
-    				header: action.header
-    			]}
-    		);
         case types.LOGIN:
             return Object.assign({}, state, {
                 login: true,
