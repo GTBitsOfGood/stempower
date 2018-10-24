@@ -1,24 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchMentor } from '../actions/mentorActions.js'
 
 
 class AboutHeader extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            about: props.about
+        this.fields = {
+            name: props.name,
+            education: props.education,
+            email: props.email,
+            phone: props.phone
         }
+    }
+
+    componentDidMount() {
+        this.props.dispatch(fetchMentor());
     }
 
     render() {
         return (
             <div className="profile-about">
-                <label className="flex-item profile-name">{this.state.about.name}</label>
+                <label className="flex-item profile-name">{this.fields.name}</label>
                 <div className="display-flex">
-                    <div className="flex-item">{this.state.about.education}</div>
+                    <div className="flex-item">{this.fields.education}</div>
                 </div>
-                <div className="flex-item">{this.state.about.email}</div>
-                <div className="flex-item">{this.state.about.phone}</div>
+                <div className="flex-item">{this.fields.email}</div>
+                <div className="flex-item">{this.fields.phone}</div>
             </div>
         )
     }
@@ -26,7 +34,10 @@ class AboutHeader extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        about: state.about
+        name: state.firstName + ' ' + state.lastName,
+        education: state.university,
+        email: state.email,
+        phone: state.phoneNumber
     };
 }
 
