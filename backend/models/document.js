@@ -2,11 +2,7 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let DocumentSchema = new Schema({
-	documentID: {
-		type: String,
-		required: true
-	},
-	url: {
+	path: {
 		type: String,
 		required: false
 	}
