@@ -9,7 +9,7 @@ const {check, oneOf, validationResult} = require('express-validator/check');
 const user = require('./user');
 const mentor = require('./mentor');
 const organization = require('./organization');
-const document = require('./document');
+const doc = require('./document');
 const db = require('/data/db');
 
 mongoose.Promise = global.Promise;
@@ -29,6 +29,6 @@ router.route('/').get((req, res) => {
 router.use('/user', user);
 router.use('/mentor', mentor);
 router.use('/organization', organization);
-router.use('/document', document);
+router.use('/document', doc);
 
 module.exports = router;
