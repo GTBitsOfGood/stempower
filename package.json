@@ -15,11 +15,13 @@
   "license": "ISC",
   "dependencies": {
     "assert": "^1.4.1",
+    "aws-sdk": "^2.341.0",
     "axios": "^0.18.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "bluebird": "^3.5.2",
     "body-parser": "^1.18.2",
     "bootstrap": "4.1.2",
     "css-loader": "^0.28.0",
@@ -29,6 +31,8 @@
     "express-fileupload": "^0.4.0",
     "express-session": "^1.15.6",
     "express-validator": "^5.0.0",
+    "file-type": "^10.1.0",
+    "fs": "0.0.1-security",
     "jquery": "^3.3.1",
     "mocha": "^5.2.0",
     "mongodb": "^3.0.2",
@@ -50,6 +54,7 @@
     "redux-devtools-log-monitor": "^1.3.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
+    "uuid": "^3.3.2",
     "webpack": "^2.3.3"
   },
   "devDependencies": {

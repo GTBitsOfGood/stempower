@@ -1,0 +1,71 @@
+{
+	"variables": [],
+	"info": {
+		"name": "documentUpload",
+		"_postman_id": "bb38d026-688b-a7ba-5362-ce4b9b0a2614",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/documents/",
+			"request": {
+				"url": "http://localhost:3000/api/documents/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"path\": \"/test.png\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/documents/",
+			"request": {
+				"url": "http://localhost:3000/api/documents/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"path\": \"/test.png\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/documents/:document:id",
+			"request": {
+				"url": "http://localhost:3000/api/documents/5bd8b9be088dbfcdec4be12a",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"path\": \"/test.png\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
