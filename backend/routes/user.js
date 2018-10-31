@@ -22,7 +22,6 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true}));
 router.use(passport.initialize());
 router.use(passport.session());
-router.use(expressSession({secret: 'mySecretKey'}));
 
 //Main login strategy
 passport.use(new LocalStrategy(
