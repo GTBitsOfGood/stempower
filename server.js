@@ -14,6 +14,12 @@ require('./backend/models/document');
 const api = require('./backend/routes');
 
 const app = express();
+
+if(process.env.NODE_ENV === 'production'){
+	url = process.env.MONGODB_URI
+	console.log(url)
+}
+
 dbclient.connect(url, (err, db) => {
     if(err){
         console.log("Error: ", err);
