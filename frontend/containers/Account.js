@@ -1,42 +1,54 @@
 import React from 'react';
+import axios from 'axios';
+
+import OrganizationOverview from './../components/account/OrganizationOverview';
+import OrganizationUpdates from './../components/account/OrganizationUpdates';
+import OrganizationMeetingHistory from './../components/account/OrganizationMeetingHistory';
+import OrganizationDocuments from './../components/account/OrganizationDocuments';
+import OrganizationCalendar from './../components/account/OrganizationCalendar';
 
  class Account extends React.Component{
+
+    constructor(props) {
+      super(props);
+      this.state = {mentors: []}
+    }
+
+    componentWillMount() {
+        axios.get('/api/mentors').then(({ data }) => {
+          var mentors = [];
+          for (var i = 0; i < data.length; i++) {
+            var d = data[i];
+            mentors.push(d.firstName + " " + d.lastName);
+          }
+          this.setState({mentors: mentors});
+      })
+    }
+
     render() {
         return (
-          <div  className="container">
-              {/*<!-- Jumbotron -->*/}
-              <div  className="jumbotron">
-                <h1>Troop 29303 John's Creek, Georgia</h1>
-                <p  className="lead">Your mentors are: <a href='/'>Devany Sandoval</a> and <a href='/'>Sophia Yan</a></p>
-                <p  className="lead">Your next meeting is on <a href='/'>4/11/2018</a> </p>
-              </div>
-        
-              {/*<!-- Example row of columns -->*/}
-              <div  className="row">
-                <div  className="col-lg-4">
-                  <h2>Updates!</h2>
-                  <p  className="text-danger">13 members still need to upload participation waivers!</p>
-                  <p> </p>
-                  <p><a  className="btn btn-primary" href="#" role="button">Contact Your Mentors &raquo;</a></p>
+          <div className="container">
+            <OrganizationOverview
+              mentors={this.state.mentors}
+              organizationName={"Troop 1234"}
+              />
+              {/* <p style={{textAlign: "center"}}>Your next meeting Troop Meeting is on January 1st, 2019 at 9:00am at Georgia Tech</p> */}
+              <div style={{display: "flex", flexDirection: "row"}}>
+              <div style={{flex: 1}}>
+                  <OrganizationUpdates
+                    waiversNeeded={42}
+                    />
+                  <OrganizationMeetingHistory
+                    meetingHistory={["1/1/2016", "1/1/2017", "1/1/2018"]}
+                    />
+                  <OrganizationDocuments />
                 </div>
-                <div  className="col-lg-4">
-                  <h2>Meeting History</h2>
-                  <ul>
-                    <li>2/28/2018</li>
-                    <li>3/14/2018</li>
-                    <li>3/28/2018</li>
-                  </ul>
-                  <p><a  className="btn btn-primary" href="#" role="button">Provide Feedback &raquo;</a></p>
-               </div>
-                <div  className="col-lg-4">
-                  <h2>Documents</h2>
-                  <ul>
-                  <li>Organization Application</li>
-                  <li>Feedback</li>
-                  <li>Waiver</li>
-                  <li>Upload Photos</li>
-                  </ul>
-                </div>
+                <div style={{flex: 5}}><OrganizationCalendar 
+                  embedUrl={"https://calendar.google.com/calendar/embed?src=2vfvknte3efemq5dqsn43q7qik%40group.calendar.google.com&ctz=America%2FNew_York"}
+                  width={600}
+                  height={400}
+                  align={"center"}
+                  /></div>
               </div>
             </div>
         )

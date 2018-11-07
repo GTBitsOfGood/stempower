@@ -1,3 +1,0 @@
-/*
-    This file should one day contain routes on document uploads
-*/
