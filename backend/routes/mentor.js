@@ -87,7 +87,7 @@ router.post('/:mentor_id/bios', (req, res) => {
         if (mentor.bios == null) {
             mentor.bios = [];
         }
-        var newBio = {"bio": req.body.bio, "id": mentor.bios.length};
+        var newBio = {"bio": req.body.bio, "title": req.body.title};
         mentor.bios.push(newBio);
         mentor.save((e, mentor) => res.send(mentor));
     })
