@@ -15,11 +15,11 @@ import OrganizationCalendar from './../components/account/OrganizationCalendar';
     }
 
     componentWillMount() {
-        axios.get('/api/mentors/1234').then(({ data }) => {
+        axios.get('/api/mentors').then(({ data }) => {
           var mentors = [];
           for (var i = 0; i < data.length; i++) {
             var d = data[i];
-            mentors.push(d.firstName + " " + d.lastName);
+            mentors.push({name: d.firstName + " " + d.lastName, id: d._id});
           }
           this.setState({mentors: mentors});
           console.log("State",this.state);
