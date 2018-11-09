@@ -26,7 +26,6 @@ class Profile extends React.Component {
     componentWillMount() {
       const id = this.props.match.params.id;
         axios.get('/api/mentors/' + id).then(({ data }) => {
-          console.log(data);
           this.setState({mentor: data});
       })
     }

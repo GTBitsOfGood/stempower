@@ -22,7 +22,6 @@ import OrganizationCalendar from './../components/account/OrganizationCalendar';
             mentors.push({name: d.firstName + " " + d.lastName, id: d._id});
           }
           this.setState({mentors: mentors});
-          console.log("State",this.state);
       })
     }
 
