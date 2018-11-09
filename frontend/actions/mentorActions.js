@@ -7,7 +7,7 @@ export function fetchMentor() {
             .then(res => res.json())
             .then(json => {
                 //dispatch(fetchProductsSuccess(json.products));
-                console.log(json);
+                //console.log(json);
                 return json;
             })
     };
