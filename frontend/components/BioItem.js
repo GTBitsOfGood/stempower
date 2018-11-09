@@ -3,28 +3,25 @@ import { connect } from 'react-redux';
 
 
 class BioItem extends React.Component {
-    constructor(props) {
-		super(props);
-		this.fields = {
-           title: props.title,
-           description: props.description
-        }
+    getInitialState() {
+        return {typed: ''};
+    }
+
+    onBlur(event) {
+        this.setState({typed: event.target.value});
+        axios.put('/api/mentors/5bcfb5b2a3a9c009bfddfabf/bios/')    //hardcoded vals
     }
     
     render() {
         return (
             <div>
-                <h4 contentEditable="true">{this.fields.title}</h4>
-                <p contentEditable="true">{this.fields.description}</p>
+                <h4 contentEditable="true" onBlur={this.onBlur.bind(this)}>{this.props.title}</h4>
+                <p contentEditable="true" onBlur={this.onBlur.bind(this)}>{this.props.description}</p>
             </div>
         )
     }
 };
 
-// const mapStateToProps = state => {
-// 	return {
-//         bioInfo: state.bioInfo
-//     };
-// }
 
-export default (BioItem) //connect(mapStateToProps)(BioItem);
+
+export default (BioItem);
