@@ -43,7 +43,7 @@ import OrganizationCalendar from './../components/account/OrganizationCalendar';
                   <OrganizationDocuments />
                 </div>
                 <div style={{flex: 5}}><OrganizationCalendar 
-                  embedUrl={"https://calendar.google.com/calendar/embed?src=bitsofgood.stempower%40gmail.com&ctz=America%2FNew_York}
+                  embedUrl={"https://calendar.google.com/calendar/embed?src=bitsofgood.stempower%40gmail.com&ctz=America%2FNew_York"}
                   width={600}
                   height={400}
                   align={"center"}
