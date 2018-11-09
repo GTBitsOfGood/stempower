@@ -35,6 +35,7 @@ router.put('/:mentor_id/bios/:bio_id', (req, res) => {
             b = bios[i];
             if (b._id == req.params.bio_id) {
                 b.bio = req.body.bio;
+                b.title = req.body.title;
                 break;
             }
         }
