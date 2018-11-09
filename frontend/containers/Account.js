@@ -19,7 +19,7 @@ import OrganizationCalendar from './../components/account/OrganizationCalendar';
           var mentors = [];
           for (var i = 0; i < data.length; i++) {
             var d = data[i];
-            mentors.push(d.firstName + " " + d.lastName);
+            mentors.push({name: d.firstName + " " + d.lastName, id: d._id});
           }
           this.setState({mentors: mentors});
       })
@@ -32,7 +32,6 @@ import OrganizationCalendar from './../components/account/OrganizationCalendar';
               mentors={this.state.mentors}
               organizationName={"Troop 1234"}
               />
-              {/* <p style={{textAlign: "center"}}>Your next meeting Troop Meeting is on January 1st, 2019 at 9:00am at Georgia Tech</p> */}
               <div style={{display: "flex", flexDirection: "row"}}>
               <div style={{flex: 1}}>
                   <OrganizationUpdates
@@ -44,7 +43,7 @@ import OrganizationCalendar from './../components/account/OrganizationCalendar';
                   <OrganizationDocuments />
                 </div>
                 <div style={{flex: 5}}><OrganizationCalendar 
-                  embedUrl={"https://calendar.google.com/calendar/embed?src=2vfvknte3efemq5dqsn43q7qik%40group.calendar.google.com&ctz=America%2FNew_York"}
+                  embedUrl={"https://calendar.google.com/calendar/embed?src=bitsofgood.stempower%40gmail.com&ctz=America%2FNew_York}
                   width={600}
                   height={400}
                   align={"center"}

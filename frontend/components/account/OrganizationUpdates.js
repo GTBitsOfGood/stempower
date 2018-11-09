@@ -11,7 +11,6 @@ class OrganizationUpdates extends React.Component{
             <p><a  className="btn btn-primary" href="#" role="button">Contact Your Mentors &raquo;</a></p>
         </div>
    )};
-
 }
 
 

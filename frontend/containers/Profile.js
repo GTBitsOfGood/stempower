@@ -15,16 +15,17 @@ class Profile extends React.Component {
         this.state = {
             mentor: {
                 bios: [],
-                firstName: "default first",
-                lastName: "default last",
-                university: "default university"
+                firstName: "",
+                lastName: "",
+                university: ""
             }
         }
     }
     
     //api call for mentor
     componentWillMount() {
-        axios.get('/api/mentors/5bcfb5b2a3a9c009bfddfabf').then(({ data }) => {
+      const id = this.props.match.params.id;
+        axios.get('/api/mentors/' + id).then(({ data }) => {
           this.setState({mentor: data});
       })
     }
