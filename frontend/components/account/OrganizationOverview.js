@@ -4,8 +4,10 @@ import React from 'react';
 
     render() {
         var c = this.props.mentors.length;
+        console.log(this.props.mentor);
         var mentors = this.props.mentors.map(function(mentorData, i) {
             var append = i == c - 1 ? "" : ", ";
+            // const id = mentorData[i]._id;
             if (c == 2 && i == 0) { 
                 append = " and "; 
             } else if (i > 1 && i == c - 2) { 

@@ -15,13 +15,14 @@ import OrganizationCalendar from './../components/account/OrganizationCalendar';
     }
 
     componentWillMount() {
-        axios.get('/api/mentors').then(({ data }) => {
+        axios.get('/api/mentors/1234').then(({ data }) => {
           var mentors = [];
           for (var i = 0; i < data.length; i++) {
             var d = data[i];
             mentors.push(d.firstName + " " + d.lastName);
           }
           this.setState({mentors: mentors});
+          console.log("State",this.state);
       })
     }
 
@@ -32,7 +33,6 @@ import OrganizationCalendar from './../components/account/OrganizationCalendar';
               mentors={this.state.mentors}
               organizationName={"Troop 1234"}
               />
-              {/* <p style={{textAlign: "center"}}>Your next meeting Troop Meeting is on January 1st, 2019 at 9:00am at Georgia Tech</p> */}
               <div style={{display: "flex", flexDirection: "row"}}>
               <div style={{flex: 1}}>
                   <OrganizationUpdates
