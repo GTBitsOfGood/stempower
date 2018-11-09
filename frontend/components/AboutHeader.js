@@ -1,33 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchMentor } from '../actions/mentorActions.js'
 
 
 class AboutHeader extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            about: props.about
-        }
-    }
 
     render() {
         return (
             <div className="profile-about">
-                <label className="flex-item profile-name">{this.state.about.name}</label>
+                <label className="flex-item profile-name">{this.props.mentor.firstName} {this.props.mentor.lastName}</label>
                 <div className="display-flex">
-                    <div className="flex-item">{this.state.about.education}</div>
+                    <div className="flex-item">{this.props.mentor.university}</div>
                 </div>
-                <div className="flex-item">{this.state.about.email}</div>
-                <div className="flex-item">{this.state.about.phone}</div>
+                <div className="flex-item">{this.props.mentor.email}</div>
+                <div className="flex-item">{this.props.mentor.phoneNumber}</div>
             </div>
         )
     }
 };
 
-const mapStateToProps = state => {
-    return {
-        about: state.about
-    };
-}
-
-export default connect(mapStateToProps)(AboutHeader);
+export default AboutHeader;
