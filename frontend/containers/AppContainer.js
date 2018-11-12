@@ -16,6 +16,8 @@ import Account from './Account';
 import Dashboard from './Dashboard';
 import Navbar from '../components/Navbar';
 import Availability from './Availability';
+import UploadDocument from '../components/UploadDocument';
+import DownloadDocument from '../components/DownloadDocument';
 
 
 
@@ -29,6 +31,8 @@ class AppContainer extends React.Component {
             <div>
             <div style={{height:"50px"}}>
                 <div><Navbar /></div>
+                <div><UploadDocument /></div>
+                <div><DownloadDocument /></div>
                 <div className="body-content">
                 <Switch>
                     <Route exact path='/' component={WelcomeScreen}/>

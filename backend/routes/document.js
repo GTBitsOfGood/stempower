@@ -13,13 +13,10 @@ const uuid = require('uuid');
 // Local imports
 const Document = require('mongoose').model('Document');
 
-AWS.config.update({
-    accessKeyId: "AKIAIRMIGEOQPEMEWWBQ",
-    secretAccessKey: "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"
-});
+//var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+//AWS.config.credentials = credentials;
 
 const s3 = new AWS.S3();
-
 
 //Gets all documents 
 router.get('/', (req, res) => {
@@ -30,45 +27,34 @@ router.get('/', (req, res) => {
         });
 });
 
-/*Gets a document based off id
-
-**Important Notes**
-1. Gets a document based off id, but key(document name) and file type is currently hard-coded
-2. In the future, file type should be dynamically chosen
-*/
+//Gets a document based off fileName, returns url
 router.get('/:document_id', (req, res) => {
-    const bucket = 'elasticbeanstalk-us-west-2-547258468023';
-    const key = 'test.png';
-    const params = {Bucket: bucket, Key: key};
-    s3.getObject(params, function(err, data) {
-        res.attachment("received.png");
-        res.send(data.Body);
-    })
+    Document.findById(req.params.document_id).then(function(Document) { 
+        const bucket = 'elasticbeanstalk-us-west-2-547258468023';
+        const key = Document.fileName;
+        const params = {Bucket: bucket, Key: key};
+        s3.getSignedUrl('getObject', params, function(err, data) {
+            res.send(data);
+        })
+    }).catch((err) => res.send("" + err));
 });
 
-/*Posts a document
-
-**Important Notes**
-1.This route currently reads the document at the root directory (C: for Windows, Users for Mac)
-2. The key(document name) is currently hard coded
-3. Rather than saving the url of the document location, currently the path is being saved 
-
-*/
+//Posts a document
 router.post('/', (req, res) => {
-    const buffer = fs.readFileSync(req.body.path);
+    var file = req.files.image;
     const bucket = 'elasticbeanstalk-us-west-2-547258468023';
-    const key = 'test.png';
-    const params = {Bucket: bucket, Key: key, Body: buffer};
+    const key = file.name;
+    const params = {Bucket: bucket, Key: key, Body: file.data};
     s3.upload(params, function(err, data) {
         console.log(err, data);
-    });
-    Document.create(req.body, (err, doc) => {
-        if (err) {
-            res.send("" + err);
-        } else {
-            console.log("Succesfully uploaded document");
-            res.send(doc);
-        }
+        Document.create({fileName: key}, (err, doc) => {
+            if (err) {
+                res.send("" + err);
+            } else {
+                console.log("Succesfully uploaded document");
+                res.send(doc);
+            };
+        });
     });
 });
 
