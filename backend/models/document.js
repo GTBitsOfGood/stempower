@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let DocumentSchema = new Schema({
-	path: {
+	fileName: {
 		type: String,
 		required: false
 	}
