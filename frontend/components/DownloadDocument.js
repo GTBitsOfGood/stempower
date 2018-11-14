@@ -13,11 +13,11 @@ class DownloadDocument extends React.Component {
     */
     onDownloadFile() {
     	axios.get('/api/documents').then(function(docs) {
-    		var route = docs.data[0]._id;
-	    	axios.get(`/api/documents/${route}`).then(function(file) {
+    		var route = docs.data[6]._id;
+	    	axios.get('/api/documents/' + route).then(function(file) {
 		        var elem = document.createElement('a');
-		        elem.href = file;
-		        elem.download = docs.data[0].fileName;        
+		        elem.href = file.data;
+		        elem.download = docs.data[6].fileName;        
 		        document.body.appendChild(elem);
 		        elem.click();        
 		        document.body.removeChild(elem);

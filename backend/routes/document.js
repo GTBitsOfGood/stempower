@@ -13,8 +13,8 @@ const uuid = require('uuid');
 // Local imports
 const Document = require('mongoose').model('Document');
 
-//var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
-//AWS.config.credentials = credentials;
+/*var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+AWS.config.credentials = credentials;*/
 
 const s3 = new AWS.S3();
 
@@ -34,8 +34,13 @@ router.get('/:document_id', (req, res) => {
         const key = Document.fileName;
         const params = {Bucket: bucket, Key: key};
         s3.getSignedUrl('getObject', params, function(err, data) {
-            res.send(data);
-        })
+            if (err) {
+                res.send("" + err);
+            } else {
+                console.log("Succesfully got document");
+                res.send(data);
+            }
+        });
     }).catch((err) => res.send("" + err));
 });
 
