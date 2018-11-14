@@ -18,8 +18,4 @@ let UserSchema = new Schema({
     }
 });
 
-UserSchema.methods.verifyPassword = (password) => {
-    return password == this.password
-};
-
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

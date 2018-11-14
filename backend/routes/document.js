@@ -13,8 +13,8 @@ const uuid = require('uuid');
 // Local imports
 const Document = require('mongoose').model('Document');
 
-//var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
-//AWS.config.credentials = credentials;
+// var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+// AWS.config.credentials = credentials;
 
 const s3 = new AWS.S3();
 
