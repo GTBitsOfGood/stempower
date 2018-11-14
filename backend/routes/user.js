@@ -58,7 +58,7 @@ router.post('/', (req, res) => {
 if(process.env.NODE_ENV !== 'production'){
     router.get('/', (req, res) => {
         //DO NOT LEAK PASSWORDS
-        let fields = "_id username email";
+        let fields = "_id username email organization";
         User.find({},fields, (err, result) => {
             if(err){
                 console.log(err)
@@ -72,7 +72,7 @@ if(process.env.NODE_ENV !== 'production'){
 
 router.get('/:user_id', (req, res) => {
     //DO NOT LEAK PASSWORDS
-    let fields = "_id username email";
+    let fields = "_id username email organization";
     User.findById(req.params.user_id, fields, (err, result) => {
         if(err){
             console.log(err)
@@ -111,5 +111,17 @@ router.post('/logout', (req,res) => {
     res.clearCookie("loggedin");
     res.status(200).send("Logged Out");
 })
+
+router.put('/:user_id', (req, res) => {
+    let fields = "_id username email organization";
+    User.findByIdAndUpdate(req.params.user_id, req.body, {upsert:true, new:true, fields:fields}, (err, result) => {
+
+        //TODO(jeff) make sure you can't have both mentor and organization
+        if(err){
+            res.status(500).send(err);
+        }
+        res.status(200).send(result);
+    });
+});
 
 module.exports = router;
