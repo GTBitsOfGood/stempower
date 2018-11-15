@@ -28,7 +28,7 @@ class DownloadDocument extends React.Component {
     render() {
     return (
     		<div>
-			<button onClick={this.onDownloadFile}>Download File</button>
+			<button className="documentButton btn-primary" onClick={this.onDownloadFile}>Download File</button>
         	</div>
         )
     }

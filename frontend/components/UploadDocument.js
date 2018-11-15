@@ -22,11 +22,18 @@ class UploadDocument extends React.Component {
     	}
     }
 
+    onFileChange() {
+        var listOfFiles = document.getElementById("documentToUpload");
+        document.getElementById('uploadLabel').innerHTML = listOfFiles.files[0].name;
+    }
+
     render() {
     return (
     		<div>
-        	<input type="file" id="documentToUpload" multiple></input>
-			<button onClick={this.onSubmitFile}>Upload File</button>
+            <div><label className="documentUploadButton btn-primary" id="uploadLabel"> Choose files
+        	<input type="file" id="documentToUpload" onChange={this.onFileChange} multiple></input>
+            </label></div>
+			<div><button className="documentButton btn-primary" onClick={this.onSubmitFile}>Upload File</button></div>
         	</div>
         )
     }

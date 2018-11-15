@@ -47,19 +47,22 @@ router.get('/:document_id', (req, res) => {
 //Posts a document
 router.post('/', (req, res) => {
     var file = req.files.image;
-    const bucket = 'elasticbeanstalk-us-west-2-547258468023';
-    const key = file.name;
-    const params = {Bucket: bucket, Key: key, Body: file.data};
-    s3.upload(params, function(err, data) {
-        console.log(err, data);
-        Document.create({fileName: key}, (err, doc) => {
-            if (err) {
-                res.send("" + err);
-            } else {
-                console.log("Succesfully uploaded document");
-                res.send(doc);
-            };
-        });
+    Document.create({fileName: file.name}, (err, doc) => {
+        if (err) {
+            res.send("" + err);
+        } else {
+            const bucket = 'elasticbeanstalk-us-west-2-547258468023';
+            const key = file.name;
+            const params = {Bucket: bucket, Key: key, Body: file.data};
+            s3.upload(params, function(err, data) {
+                if (err) {
+                    console.log(err, data);
+                } else {
+                    console.log("Succesfully uploaded document");
+                    res.send(doc);
+                }
+            });
+        };
     });
 });
 

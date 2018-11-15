@@ -195,6 +195,25 @@ body {
   font-size: 21px;
 }
 
+.documentUploadButton {
+  font-size: 12px;
+  padding: 3px 8px;
+  border: 2px;
+  border-color: #825EA8;
+  border-bottom-style: outset;
+  border-right-style: outset;
+  margin: 0px;
+}
+
+#documentToUpload {
+  display: none;
+}
+
+.documentButton {
+  font-size: 12px;
+  padding: 3px 8px;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
