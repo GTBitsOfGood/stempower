@@ -21,17 +21,12 @@ class Navbar extends React.Component {
                 </div>
                 <div className="nav-item">
                     <Link to='/account'>
-                        Account
+                        Organization
                     </Link>
                 </div>
                 <div className="nav-item">
                     <Link to='/dashboard'>
                         Dashboard
-                    </Link>
-                </div>
-                <div className="nav-item">
-                    <Link to='/application'>
-                        Availability
                     </Link>
                 </div>
             </div>

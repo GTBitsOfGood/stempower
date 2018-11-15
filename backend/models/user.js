@@ -15,11 +15,16 @@ let UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+
+    organization: {
+        type: {type: mongoose.Schema.Types.ObjectId, ref: "Organization"}, required: false
+    },
+
+    mentor: {
+        type: {type: mongoose.Schema.Types.ObjectId, ref: "Mentor"}, required: false
     }
+
 });
 
-UserSchema.methods.verifyPassword = (password) => {
-    return password == this.password
-};
-
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

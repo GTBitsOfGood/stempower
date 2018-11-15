@@ -4,7 +4,7 @@ const assert = require('assert');
 const dbclient = require('mongodb').MongoClient;
 const url = 'mongodb://127.0.0.1:27017/stempower';
 const fileUpload = require('express-fileupload');
-const users = require('./routes/user');
+const user = require('./routes/user');
 const mentor = require('./routes/mentor');
 const organization = require('./routes/organization');
 const doc = require('./routes/document');
@@ -15,12 +15,12 @@ const router = express.Router();
 router.use(bodyParser.json());
 router.use(fileUpload());
 
+router.use('/user', user)
 router.use('/mentors', mentor);
 router.use('/organizations', organization);
 router.use('/documents', doc);
 router.use('/files', files);
 router.use('/upload', upload);
-router.use('/files', files);  // set to delete next iteration
 
 
 // YOUR API ROUTES HERE
