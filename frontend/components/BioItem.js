@@ -9,7 +9,10 @@ class BioItem extends React.Component {
 
     onBlur(event) {
         this.setState({typed: event.target.value});
-        axios.put('/api/mentors/5bcfb5b2a3a9c009bfddfabf/bios/')    //hardcoded vals
+        axios.put('/api/mentors/5bcfb5b2a3a9c009bfddfabf/bios/5be236e58bc647043b228a9e', ({
+            "bio": "if u see this",
+            "title": "it worked!"
+        }));    //hardcoded vals
     }
     
     render() {
