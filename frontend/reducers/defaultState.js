@@ -1,5 +1,5 @@
 module.exports = {
-	loggedin: false, 
+	loggedin: true, 
 	bioInfo:[
 		{
 			title: "Background",

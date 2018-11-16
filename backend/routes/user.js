@@ -17,6 +17,9 @@ router.use(bodyParser.urlencoded({ extended: true}));
 //Creates a new user, it's the backend for registration
 router.post('/', (req, res) => {
     console.log("Creating user :" + req.body.username);
+    
+    //TODO(jeff): verify the user's email is whitelisted from the
+    //google sheet
     bcrypt.hash(req.body.password, 10, function(err, hash){
         if (err){
             res.send(err);
@@ -26,9 +29,6 @@ router.post('/', (req, res) => {
             password: hash,
             email: req.body.email
         };
-
-        //TODO(jeff): verify the user's email is whitelisted from the
-        //google sheet
         User.find({username: req.body.username})
             .exec()
             .then((dupe) => {
