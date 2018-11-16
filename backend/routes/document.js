@@ -47,7 +47,7 @@ router.get('/:document_id', (req, res) => {
 //Posts a document
 router.post('/', (req, res) => {
     var file = req.files.image;
-    Document.create({fileName: file.name}, (err, doc) => {
+    Document.create({fileName: file.name, fileLabel:req.body.label}, (err, doc) => {
         if (err) {
             res.send("" + err);
         } else {
@@ -59,6 +59,7 @@ router.post('/', (req, res) => {
                     console.log(err, data);
                 } else {
                     console.log("Succesfully uploaded document");
+                    console.log(doc);
                     res.send(doc);
                 }
             });

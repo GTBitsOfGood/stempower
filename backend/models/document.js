@@ -5,6 +5,11 @@ let DocumentSchema = new Schema({
 	fileName: {
 		type: String,
 		required: false
+	},
+
+	fileLabel: {
+		type: String,
+		required: false
 	}
 });
 
