@@ -24,7 +24,6 @@ let UserSchema = new Schema({
     mentor: {
         type: {type: mongoose.Schema.Types.ObjectId, ref: "Mentor"}, required: false
     }
-
 });
 
 module.exports = mongoose.model('User', UserSchema);

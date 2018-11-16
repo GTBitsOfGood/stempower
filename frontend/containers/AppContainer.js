@@ -31,10 +31,9 @@ class AppContainer extends React.Component {
             <div style={{height:"50px"}}>
                 <div><UploadDocument /></div>
                 <div><DownloadDocument /></div>
-                {this.props.loggedin ? (<div><Navbar /></div>) : (<div></div>)}
                 <div className="body-content">
                 <Switch>
-                    {this.props.loggedin ? (<div></div>) : (<Route exact path='/' component={WelcomePage}/>)}
+                    <Route exact path='/' component={WelcomePage}/>
                     <Route path='/login' component={Login}/>
                     <Route path='/signup' component={Signup}/>
                     <Route path='/upload' component={ImageUpload}/>
