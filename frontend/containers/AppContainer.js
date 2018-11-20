@@ -5,18 +5,13 @@ import Title from '../components/Title';
 import MentorApplication from './MentorApplication';
 import Profile from './Profile';
 import Registration from './Registration';
-import WelcomePage from'./WelcomePage';
+import Login from'./Login';
 import { Route, Link, Switch, withRouter } from "react-router-dom";
-import LoginTitle from '../components/LoginTitle';
-import Login from '../components/Login';
-import Signup from '../components/Signup';
 import ImageUpload from '../components/ImageUpload';
-import Account from './Account';
+import Organization from './Organization';
 import Dashboard from './Dashboard';
 import Navbar from '../components/Navbar';
 import Availability from './Availability';
-import UploadDocument from '../components/UploadDocument';
-import DownloadDocument from '../components/DownloadDocument';
 
 
 
@@ -27,26 +22,19 @@ class AppContainer extends React.Component {
 
     render() {
         return (
-            <div>
-            <div style={{height:"50px"}}>
-                <div><UploadDocument /></div>
-                <div><DownloadDocument /></div>
-                {this.props.loggedin ? (<div><Navbar /></div>) : (<div></div>)}
-                <div className="body-content">
-                <Switch>
-                    {this.props.loggedin ? (<div></div>) : (<Route exact path='/' component={WelcomePage}/>)}
-                    <Route path='/login' component={Login}/>
-                    <Route path='/signup' component={Signup}/>
-                    <Route path='/upload' component={ImageUpload}/>
-                    <Route path='/profile/:id' component={Profile} />
-                    <Route path='/account' component={Account} />
-                    <Route path='/dashboard' component={Dashboard} />
-                    <Route path='/application' component={Availability} />
-                </Switch>
+            <div className="body-content">
+                <div style={{height:"50px"}}>
+                    {this.props.loggedin ? (<div><Navbar /></div>) : (<div></div>)}
+                    <div className="body-content">
+                    <Switch>
+                        {this.props.loggedin ? (<div></div>) : (<Route exact path='/' component={Login}/>)}
+                        <Route path='/upload' component={ImageUpload}/>
+                        <Route path='/profile/:id' component={Profile} />
+                        <Route path='/organization' component={Organization} />
+                        <Route path='/dashboard' component={Dashboard} />
+                    </Switch>
+                    </div>
                 </div>
-            </div>
-            <div id="footer" style={{height: "100%", backgroundColor:"white"}}>
-            </div>
             </div>
         );    
     }

@@ -1,15 +1,20 @@
 h1 {
-  font-family: raleway, sans-serif;
+  font-family: monsterrat, sans-serif;
   font-weight: 200;
+  color: purple;
 }
 
 div {
-    font-family: raleway, sans-serif;
+    font-family: montserrat, sans-serif;
     background-color:white;
 }
 
-body {
-  background-color: #563d7c;/*rgb(84, 72, 98);*/
+.login-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
 .profile-header {

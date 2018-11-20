@@ -7,7 +7,7 @@ import OrganizationMeetingHistory from './../components/account/OrganizationMeet
 import OrganizationDocuments from './../components/account/OrganizationDocuments';
 import OrganizationCalendar from './../components/account/OrganizationCalendar';
 
- class Account extends React.Component{
+ class Organization extends React.Component{
 
     constructor(props) {
       super(props);
@@ -54,4 +54,4 @@ import OrganizationCalendar from './../components/account/OrganizationCalendar';
     }
 };
 
-export default Account;
+export default Organization;
