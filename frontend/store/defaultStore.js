@@ -1,6 +1,6 @@
 const defaultStore = {
     title: "",
-    register:true,
+    register:false,
     // profile: true,
     regStep: {
         isMentor: false,

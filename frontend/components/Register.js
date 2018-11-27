@@ -15,8 +15,8 @@ class Register extends React.Component {
             <div>
             {(this.state.regStep.isMentor || this.state.regStep.mentorTell || this.state.regStep.orgTell) ? <div></div> : <div><UserForm setCredentials={this.props.setCredentials} toggleRegister={this.props.toggleRegister} /></div>}
             {this.state.regStep.isMentor ? <WhatAreYou /> : <div></div>}
-            {this.state.regStep.mentorTell ? <WhatAreYou /> : <div></div>}
-            {this.state.regStep.orgTell ? <WhatAreYou /> : <div></div>}
+            {this.state.regStep.mentorTell ? <RegisterMentor /> : <div></div>}
+            {this.state.regStep.orgTell ? <RegisterOrganization /> : <div></div>}
             </div>
 
         )

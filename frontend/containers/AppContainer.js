@@ -10,7 +10,7 @@ import {setCredentials, toggleRegister} from '../actions';
 
 const AppContainer = ({ title, register, regStep, profile, mentor, organization, org, dashboard, setCredentials,  toggleRegister}) => {
     return (
-        <div>
+        <div style={{height:"600px",display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
             {title ? <Title name={title}/> : <div></div>}
             {(register || profile || organization || dashboard) ? <div></div> : <div className="page-container"><Login setCredentials={setCredentials} toggleRegister={toggleRegister}/></div>}
             {register ? <div className="page-container"><Register regStep={regStep} setCredentials={setCredentials} toggleRegister={toggleRegister}/></div> : <div></div> }

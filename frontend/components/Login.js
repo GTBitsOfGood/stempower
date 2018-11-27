@@ -22,7 +22,7 @@ class Login extends React.Component {
         return (
             <div className="vertical-container">
                 <div className="vertical-container">
-                <h1>Welcome to <span className="primary-color">Horizons</span></h1>
+                <h1>Welcome to <span className="primary-color">Stempower</span></h1>
                 <div style={{width:"100%"}}>
                     <input 
                         type="text"
