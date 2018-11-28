@@ -1,10 +1,10 @@
 const defaultStore = {
     title: "",
-    register:false,
+    register:true,
     // profile: true,
     regStep: {
         isMentor: false,
-        mentorTell: false,
+        mentorTell: true,
         orgTell: false
     },
     mentor: {

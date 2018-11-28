@@ -154,8 +154,24 @@ class RegisterMentor extends React.Component {
     render() {
         return (
             <div className="page-container">
-                <div>What is your educational background?</div>
-                <textarea></textarea>
+                <div><h1>What is the name of your <span className="primary-color">organization</span>?</h1></div>
+                <input 
+                            type="text"
+                            className="text-input"
+                            placeholder="i.e. Girl's Who Code"
+                            onChange={this.handleUsernameChange}
+                            style={{marginBottom: "10px"}}
+                        />
+                        <br />
+                <div><h1>What is your <span className="primary-color"> email address</span>?</h1></div>
+                <br />
+                                <input 
+                            type="text"
+                            className="text-input"
+                            placeholder="jane@example.com"
+                            onChange={this.handleUsernameChange}
+                            style={{marginBottom: "10px"}}
+                        />
             </div>    
         )
     }
