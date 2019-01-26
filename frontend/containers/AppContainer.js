@@ -29,8 +29,7 @@ class AppContainer extends React.Component {
         return (
             <div>
             <div style={{height:"50px"}}>
-                <div><UploadDocument /></div>
-                <div><DownloadDocument /></div>
+                <div><Navbar /></div>
                 <div className="body-content">
                 <Switch>
                     <Route exact path='/' component={WelcomePage}/>
