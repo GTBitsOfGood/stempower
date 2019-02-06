@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/GTBitsOfGood/stempower.svg?branch=master)](https://travis-ci.com/GTBitsOfGood/stempower)
 # React + Node Starter
 _for [Heroku](https://www.heroku.com/) deployment_
 
