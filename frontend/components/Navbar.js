@@ -10,7 +10,7 @@ class Navbar extends React.Component {
     return (
       <div className="nav-banner">
         <div className="nav-item">
-          <Link class-name="nav-link " to="/">
+          <Link className="nav-link" to="/">
             Welcome Screen
           </Link>
         </div>

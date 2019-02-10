@@ -21,7 +21,7 @@ class ProfilePanel extends React.Component {
         </div>
 
         <div className="bottom">
-          <h3>Bios</h3>
+          <h3 style={{ marginBottom: 8 }}>Bios</h3>
           <BioContainer bioInfo={info.bios} />
         </div>
       </div>

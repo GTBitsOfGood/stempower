@@ -35,7 +35,12 @@ class Profile extends React.Component {
         );
         this.setState({
           mentor: {
-            bios: [{ title: "This is my Bio", bio: "I am a person" }],
+            bios: [
+              {
+                title: "This is my Bio",
+                bio: "I am a person, and I am capable of eating and sleeping. "
+              }
+            ],
             firstName: "Dummy",
             lastName: "Lname",
             university: "GECH University",
