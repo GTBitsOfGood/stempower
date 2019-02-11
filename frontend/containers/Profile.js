@@ -16,7 +16,8 @@ class Profile extends React.Component {
         lastName: "",
         university: "",
         email: "",
-        phone: ""
+        phone: "",
+        photo: ""
       }
     };
   }
@@ -45,7 +46,8 @@ class Profile extends React.Component {
             lastName: "Lname",
             university: "GECH University",
             email: "gpburdell@gatech.edu",
-            phone: "1234567"
+            phone: "1234567",
+            photo: "http://lorempixel.com/500/500/people/"
           }
         });
       });

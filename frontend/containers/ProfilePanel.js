@@ -9,6 +9,7 @@ class ProfilePanel extends React.Component {
     return (
       <div id="user-profile">
         <div className="top">
+          <Avatar image={info.photo} width={100} height={100} />
           <h2>
             {info.firstName} {info.lastName}
           </h2>
@@ -34,6 +35,24 @@ class ProfilePanel extends React.Component {
       //     <div className="flex-item">{this.props.mentor.email}</div>
       //     <div className="flex-item">{this.props.mentor.phoneNumber}</div>
       // </div>
+    );
+  }
+}
+
+class Avatar extends React.Component {
+  render() {
+    var image = this.props.image,
+      style = {
+        width: this.props.width || 50,
+        height: this.props.height || 50
+      };
+
+    if (!image) return null;
+
+    return (
+      <div className="avatar" style={style}>
+        <img src={this.props.image} />
+      </div>
     );
   }
 }

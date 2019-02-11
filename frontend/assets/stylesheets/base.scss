@@ -14,7 +14,7 @@ body {
 
 #user-profile {
   width: 100%;
-  max-width: 850px;
+  max-width: 100%;
   margin: 0 auto;
   border-radius: 5px;
   text-align: center;
@@ -63,6 +63,17 @@ body {
   .bottom {
     background-color: rgba(white, 0.3);
     text-align: left;
+  }
+
+  .avatar {
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-flex;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+    img {
+      width: 100%;
+    }
   }
 }
 
