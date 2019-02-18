@@ -16,7 +16,7 @@ class Profile extends React.Component {
         lastName: "",
         university: "",
         email: "",
-        phone: "",
+        phoneNumber: "",
         photo: ""
       }
     };
@@ -25,6 +25,7 @@ class Profile extends React.Component {
   //api call for mentor
   componentWillMount() {
     const id = this.props.match.params.id;
+
     axios
       .get("/api/mentors/" + id)
       .then(({ data }) => {
@@ -34,6 +35,7 @@ class Profile extends React.Component {
         console.log(
           "No such person found, creating dummy person for debugging"
         );
+        console.log(error);
         this.setState({
           mentor: {
             bios: [
@@ -46,11 +48,15 @@ class Profile extends React.Component {
             lastName: "Lname",
             university: "GECH University",
             email: "gpburdell@gatech.edu",
-            phone: "1234567",
+            phoneNumber: "1234567",
             photo: "http://lorempixel.com/500/500/people/"
           }
         });
       });
+  }
+
+  handleSave(id, value) {
+    console.log(id + " " + value);
   }
 
   render() {
@@ -58,9 +64,7 @@ class Profile extends React.Component {
       <div className="container">
         <div className="jumbotron">
           <div className="profile-header">
-            {/*<ImageDisplay id={1} className="img-responsive" width="200" height="200"/>*/}
-
-            <ProfilePanel mentor={this.state.mentor} />
+            <ProfilePanel mentor={this.state.mentor} onSave={this.handleSave} />
           </div>
         </div>
       </div>
