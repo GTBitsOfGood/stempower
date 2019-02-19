@@ -15,12 +15,10 @@ let OrganizationSchema = new Schema({
         type: String,
         required: true
     },
-
     members: {
         type: [{member: String}],
         required: false
     },
-
     mentors: {
         type: [{type: mongoose.Schema.Types.ObjectId, ref: "Mentor"}], required: false
     }

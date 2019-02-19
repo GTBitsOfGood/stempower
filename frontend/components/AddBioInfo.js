@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-import { connect } from 'react-redux';
-
-import { addBioInfo } from '../actions/index';
-
 
 class AddBioInfo extends Component {
 	constructor(props) {
@@ -44,16 +40,4 @@ class AddBioInfo extends Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return {};
-}
-
-const mapDispatchToProps = dispatch => {
-	return {
-		add: content => {
-			dispatch(addBioInfo(content));
-		}
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddBioInfo);
+export default AddBioInfo

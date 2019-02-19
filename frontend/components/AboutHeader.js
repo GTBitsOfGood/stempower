@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { fetchMentor } from '../actions/mentorActions.js'
 
 
 class AboutHeader extends React.Component {

@@ -1,6 +1,4 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { createHashHistory } from 'history';
 
 const Signup = () => {
     return (
