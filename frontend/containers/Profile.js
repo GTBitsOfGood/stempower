@@ -20,6 +20,7 @@ class Profile extends React.Component {
         photo: ""
       }
     };
+    this.handleSave = this.handleSave.bind(this);
   }
 
   //api call for mentor
@@ -56,7 +57,23 @@ class Profile extends React.Component {
   }
 
   handleSave(id, value) {
-    console.log(id + " " + value);
+    if (id == 1) {
+      var temp = this.state.mentor;
+      temp.email = value;
+      this.setState({
+        mentor: temp
+      });
+    }
+
+    axios
+      .delete("/api/mentors/" + this.props.match.params.id)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
+
+    axios
+      .post("/api/mentors/", temp)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
   }
 
   render() {
