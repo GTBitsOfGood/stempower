@@ -31,7 +31,11 @@ class ProfilePanel extends React.Component {
 
         <div className="bottom">
           {/* <h3 style={{ marginBottom: 8 }}>Bios</h3> */}
-          <BioContainer bioInfo={info.bios} isEditing={this.props.isEditing} />
+          <BioContainer
+            bioInfo={info.bios}
+            isEditing={this.props.isEditing}
+            profile={this.props.profile}
+          />
         </div>
       </div>
 
@@ -61,7 +65,6 @@ class ProfilePanel extends React.Component {
     temp.university = newVals.university.value;
 
     profile.setState({ mentor: temp });
-    console.log(this.props.profile);
   }
 
   normalView() {

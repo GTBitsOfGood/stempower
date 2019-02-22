@@ -8,7 +8,11 @@ class BioContainer extends React.Component {
       <div>
         {this.props.bioInfo.map(item => (
           <div key={item.title}>
-            <BioItem title={item.title} description={item.bio} />
+            <BioItem
+              bio={item}
+              isEditing={this.props.isEditing}
+              profile={this.props.profile}
+            />
           </div>
         ))}
       </div>
