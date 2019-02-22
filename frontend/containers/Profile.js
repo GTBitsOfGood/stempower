@@ -10,6 +10,7 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isEditing: false,
       mentor: {
         bios: [],
         firstName: "",
@@ -17,7 +18,7 @@ class Profile extends React.Component {
         university: "",
         email: "",
         phoneNumber: "",
-        photo: ""
+        profilePictureURL: ""
       }
     };
     this.handleSave = this.handleSave.bind(this);
@@ -50,30 +51,64 @@ class Profile extends React.Component {
             university: "GECH University",
             email: "gpburdell@gatech.edu",
             phoneNumber: "1234567",
-            photo: "http://lorempixel.com/500/500/people/"
+            profilePictureURL: "http://lorempixel.com/500/500/people/"
           }
         });
       });
   }
 
   handleSave(id, value) {
-    if (id == 1) {
-      var temp = this.state.mentor;
-      temp.email = value;
-      this.setState({
-        mentor: temp
-      });
-    }
+    var temp = this.state.mentor;
+
+    if (id == 1) temp.email = value;
+
+    if (id == 2) temp.phoneNumber = value;
+
+    this.setState({
+      mentor: temp
+    });
 
     axios
-      .delete("/api/mentors/" + this.props.match.params.id)
+      .put("/api/mentors/" + this.props.match.params.id, temp)
       .then(response => console.log(response))
       .catch(error => console.log(error));
+  }
 
+  newSave() {
     axios
-      .post("/api/mentors/", temp)
+      .put("/api/mentors/" + this.props.match.params.id, this.state.mentor)
       .then(response => console.log(response))
       .catch(error => console.log(error));
+  }
+
+  toggleView() {
+    if (!this.state.isEditing) return this.editView();
+    else return this.saveView();
+  }
+
+  editView() {
+    return (
+      <button
+        onClick={() => {
+          this.setState({ isEditing: true });
+        }}
+      >
+        Edit
+      </button>
+    );
+  }
+
+  saveView() {
+    return (
+      <button
+        onClick={() => {
+          this.newSave();
+          this.setState({ isEditing: false });
+        }}
+      >
+        Save
+      </button>
+    );
   }
 
   render() {
@@ -81,7 +116,13 @@ class Profile extends React.Component {
       <div className="container">
         <div className="jumbotron">
           <div className="profile-header">
-            <ProfilePanel mentor={this.state.mentor} onSave={this.handleSave} />
+            {this.toggleView()}
+            <ProfilePanel
+              isEditing={this.state.isEditing}
+              profile={this}
+              mentor={this.state.mentor}
+              onSave={this.handleSave}
+            />
           </div>
         </div>
       </div>

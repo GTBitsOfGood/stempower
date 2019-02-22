@@ -41,10 +41,6 @@ let MentorSchema = new Schema({
   organization: {
     type: String,
     required: true
-  },
-  photo: {
-    type: String,
-    required: false
   }
 });
 

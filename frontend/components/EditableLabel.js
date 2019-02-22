@@ -12,6 +12,7 @@ class EditableLabel extends Component {
   }
 
   save() {
+    this.props.onSave(this.props.id, this.refs.newText.value);
     this.setState({ editing: false });
   }
 
@@ -30,7 +31,6 @@ class EditableLabel extends Component {
         <textarea ref="newText" defaultValue={this.props.text} />
         <button
           onClick={() => {
-            this.props.onSave(this.props.id, this.refs.newText.value);
             this.save();
           }}
         >
