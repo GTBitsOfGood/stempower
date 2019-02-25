@@ -28,7 +28,6 @@ router.get('/', (req, res) => {
     Organization.find({})
         .exec().then((organization) => res.send(organization))
         .catch((err) => {
-            console.log(err)
             res.send("" + err);
         });
 });
