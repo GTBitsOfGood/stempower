@@ -14,7 +14,7 @@ class ProfilePanel extends React.Component {
     const { onSave } = this.props;
     var info = this.props.mentor;
     return (
-      <div id="user-profile">
+      <div>
         <div className="top">
           <Avatar image={info.photo} width={100} height={100} />
           <h2>
@@ -38,7 +38,6 @@ class ProfilePanel extends React.Component {
           />
         </div>
       </div>
-
       // <div className="profile-about">
       //     <label className="flex-item profile-name">{this.props.mentor.firstName} {this.props.mentor.lastName}</label>
       //     <div className="display-flex">
