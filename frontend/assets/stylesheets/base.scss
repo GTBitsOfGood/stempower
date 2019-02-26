@@ -4,36 +4,101 @@ h1 {
 }
 
 div {
-    font-family: raleway, sans-serif;
-    background-color:white;
+  font-family: raleway, sans-serif;
+  background-color: white;
 }
 
 body {
-  background-color: #563d7c;/*rgb(84, 72, 98);*/
+  background-color: #563d7c; /*rgb(84, 72, 98);*/
 }
 
-.profile-header {
-  display:flex;
+#user-profile {
+  width: 100%;
+  max-width: 80%;
+  margin: 0 auto;
+  border-radius: 5px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 2px 2px 5px #000;
+  border: 1px solid #000;
+
+  hr {
+    margin: 20px auto;
+    width: 50px;
+    border: 1px solid #6b0a3a;
+    background-color: transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .top,
+  .bottom {
+    padding: 30px;
+  }
+
+  .bottom {
+    background-color: rgba(white, 0.3);
+    text-align: left;
+  }
+
+  .avatar {
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-flex;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+    img {
+      width: 100%;
+    }
+  }
 }
 
-.profile-about {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  flex: auto;
-}
+// .profile-header {
+//   display:flex;
+// }
 
-.profile-picture {
-  flex: auto;
-}
+// .profile-about {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: left;
+//   flex: auto;
+// }
 
-.profile-name {
-  font-size: 63px;
-  font-weight: 500;
-}
+// .profile-picture {
+//   flex: auto;
+// }
+
+// .profile-name {
+//   font-size: 63px;
+//   font-weight: 500;
+// }
 
 .nav-item a {
-  color:white;
+  color: white;
 }
 
 ul {
@@ -45,11 +110,11 @@ ul {
 }
 
 .nav-sidebar a {
-  color:black;
+  color: black;
 }
 
 .body-contents {
-  background-color:white;
+  background-color: white;
 }
 
 .display-flex {
@@ -57,7 +122,7 @@ ul {
 }
 
 .flex-item {
-  flex:auto;
+  flex: auto;
 }
 
 .nav-banner {
@@ -67,8 +132,8 @@ ul {
 }
 
 .nav-item {
-  flex: 1 1 100px; 
-  text-align: center; 
+  flex: 1 1 100px;
+  text-align: center;
   color: white;
   background-color: #563d7c;
   justify-content: center;
@@ -77,57 +142,54 @@ ul {
 /* Move down content because we have a fixed navbar that is 50px tall */
 
 .background-colored {
-    background-color: rgb(84, 72, 98);
+  background-color: rgb(84, 72, 98);
 }
 
 .foreground-colored {
-    color: #825EA8;
+  color: #825ea8;
 }
 
 .step-banner {
-    background: rgb(75, 102, 31);
-    color:white;
-    height: 46px;
-    font-weight: bold;
-    padding-bottom: 16px;
-    padding-left: 34px;
-    padding-right: 8px;
-    padding-top: 16px;
-    font-size: 20px;
-    margin-bottom:20px;
+  background: rgb(75, 102, 31);
+  color: white;
+  height: 46px;
+  font-weight: bold;
+  padding-bottom: 16px;
+  padding-left: 34px;
+  padding-right: 8px;
+  padding-top: 16px;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
-
 .single-choice {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .single-choice div input {
-    margin-right: 10px;
-    margin-bottom:20px;
+  margin-right: 10px;
+  margin-bottom: 20px;
 }
 
- textarea.ta-question {
-    border-bottom: 3px;
-    border-top: 0px;
-    border-right: 0px;
-    border-left: 0px;
-    max-width: 426px;
-    width:426px;
+textarea.ta-question {
+  border-bottom: 3px;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  max-width: 426px;
+  width: 426px;
 }
 
 .next-btn {
-
 }
 
 label.question {
-    font-size: 20px;
-
+  font-size: 20px;
 }
 
 .btn-primary {
-    background-color: #825EA8;
-    border-color:#825EA8;
+  background-color: #825ea8;
+  border-color: #825ea8;
 }
 .fileInput {
   border-bottom: 4px solid #d3d3d3;
@@ -205,4 +267,3 @@ body {
     padding-left: 0;
   }
 }
-
