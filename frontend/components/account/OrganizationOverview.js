@@ -21,7 +21,7 @@ import React from 'react';
         return (
         <div style={{textAlign: "center", padding: 30}}>
             <h1>{this.props.organizationName}</h1>
-            <p  className="lead">Your mentors are: {mentors} </p>
+            <p  className="lead">Organization Overview</p>
         </div>
     )};
 
