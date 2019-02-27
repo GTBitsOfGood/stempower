@@ -9,7 +9,7 @@
     "frontend": "webpack -d --watch",
     "backend": "nodemon server.js",
     "start": "npm run build && NODE_ENV=production node server.js",
-    "test": "mocha --compilers js:babel-core/register ./test/**/*.js --require ignore-styles"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -63,7 +63,10 @@
     "webpack": "^2.3.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^7.2.2",
+    "babel-jest": "^24.1.0",
     "concurrently": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.9.0",
@@ -71,9 +74,10 @@
     "eslint-plugin-react": "^6.10.3",
     "eslint-watch": "^3.1.0",
     "ignore-styles": "^5.0.1",
+    "jest": "^24.1.0",
     "nodemon": "^1.18.4",
     "react-addons-test-utils": "^15.5.1",
-    "react-test-renderer": "^15.5.4",
+    "react-test-renderer": "^16.8.3",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-dev-server": "^2.4.2",
     "webpack-hot-middleware": "^2.18.0"
