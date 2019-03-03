@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 
+import ProfileCard from "./ProfileCard.js";
 import OrganizationOverview from "./../components/account/OrganizationOverview";
 import OrganizationUpdates from "./../components/account/OrganizationUpdates";
 import OrganizationMeetingHistory from "./../components/account/OrganizationMeetingHistory";
@@ -31,6 +32,19 @@ class Account extends React.Component {
           mentors={this.state.mentors}
           organizationName={"Troop 1234"}
         />
+
+        <div className="clearfix">
+          {this.state.mentors[3] != undefined ? (
+            <ProfileCard id={this.state.mentors[3].id} isEditable={false} />
+          ) : (
+            console.log("undefined")
+          )}
+          {this.state.mentors[2] != undefined ? (
+            <ProfileCard id={this.state.mentors[2].id} isEditable={false} />
+          ) : (
+            console.log("undefined")
+          )}
+        </div>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <div style={{ flex: 1 }}>
             <OrganizationUpdates waiversNeeded={42} />

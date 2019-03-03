@@ -16,7 +16,7 @@ class ProfilePanel extends React.Component {
     return (
       <div>
         <div className="top">
-          <Avatar image={info.photo} width={100} height={100} />
+          <Avatar image={info.profilePictureURL} width={100} height={100} />
           <h2>
             {info.firstName} {info.lastName}
           </h2>
