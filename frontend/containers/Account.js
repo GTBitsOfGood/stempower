@@ -37,9 +37,10 @@ import './../assets/stylesheets/organization_styles.css';
             />
             <div>
 
-            <table className = "table-bordered view overlay" width = "1200" >
-               <tr className = "mask flex-center rgba-blue-light">
-                  <td className="mask flex-center rgba-blue-light">
+            <table className = "table-bordered" width = "1200" >
+              <tbody>
+               <tr>
+                  <td>
                     <div className="d-flex justify-content-center"><OrganizationMeetingHistory
                       meetingHistory={["1/1/2016", "1/1/2017", "1/1/2018"]}
                     /></div>
@@ -79,6 +80,7 @@ import './../assets/stylesheets/organization_styles.css';
                 />
                   </td>
                </tr>
+              </tbody>
             </table>
             </div>
 

@@ -8,7 +8,6 @@ import React from 'react';
         var mentors = this.props.mentors.map(function(mentorData, i) {
             var append = i == c - 1 ? "" : ", ";
             const id = mentorData.id;
-            console.log(mentorData);
             if (c == 2 && i == 0) { 
                 append = " and "; 
             } else if (i > 1 && i == c - 2) { 
