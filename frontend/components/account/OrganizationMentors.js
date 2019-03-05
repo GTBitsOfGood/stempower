@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import './../../assets/stylesheets/organization_styles.css';
 
-class OrganizationDocuments extends React.Component{
+class OrganizationMentors extends React.Component{
 
   constructor(props, context) {
     super(props, context);
@@ -26,20 +26,17 @@ class OrganizationDocuments extends React.Component{
    render() {
        return (
         <div>
-            <h2 className="text-center">Documents</h2>
-
-            <ul className="text-left">
-                <a href='#'><li>Organization Application</li></a>
-                <a href='#'><li>Feedback</li></a>
-                <a href='#'><li>Waiver</li></a>
-                <a href='#'><li>Upload Photos</li></a>
-            </ul>
-            <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">View Documents &raquo;</a></p>
-
+            <h2 className="text-center">Mentors</h2>
+            <div>
+            	<textarea className="border border-dark" cols='10' rows='5' value="  Jane Doe"/>
+            	<textarea className="border border-white" cols='1' />
+            	<textarea className="border border-dark" cols='10' rows='5' value="   Joe Doe" />
+            </div>
+            <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">Contact Your Mentors &raquo;</a></p>
 
             <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header>
-              <Modal.Title>All Documents</Modal.Title>
+              <Modal.Title>Contact Mentors</Modal.Title>
             </Modal.Header>
             <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
             <Modal.Footer>
@@ -51,11 +48,9 @@ class OrganizationDocuments extends React.Component{
               </Button>
             </Modal.Footer>
           </Modal>
-
         </div>
    )};
-
 }
 
 
-export default OrganizationDocuments;
+export default OrganizationMentors;

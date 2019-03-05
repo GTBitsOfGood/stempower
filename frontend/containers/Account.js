@@ -1,12 +1,14 @@
 import React from "react";
 import axios from "axios";
 
-import ProfileCard from "./ProfileCard.js";
-import OrganizationOverview from "./../components/account/OrganizationOverview";
-import OrganizationUpdates from "./../components/account/OrganizationUpdates";
-import OrganizationMeetingHistory from "./../components/account/OrganizationMeetingHistory";
-import OrganizationDocuments from "./../components/account/OrganizationDocuments";
-import OrganizationCalendar from "./../components/account/OrganizationCalendar";
+import OrganizationOverview from './../components/account/OrganizationOverview';
+import OrganizationUpdates from './../components/account/OrganizationUpdates';
+import OrganizationMentors from './../components/account/OrganizationMentors';
+import OrganizationMeetingHistory from './../components/account/OrganizationMeetingHistory';
+import OrganizationDocuments from './../components/account/OrganizationDocuments';
+import OrganizationCalendar from './../components/account/OrganizationCalendar';
+import OrganizationPaypal from './../components/account/OrganizationPaypal';
+import './../assets/stylesheets/organization_styles.css';
 
 class Account extends React.Component {
   constructor(props) {
@@ -25,48 +27,82 @@ class Account extends React.Component {
     });
   }
 
-  render() {
-    return (
-      <div className="container">
-        <OrganizationOverview
-          mentors={this.state.mentors}
-          organizationName={"Troop 1234"}
-        />
+    render() {
+        return (
+          <div className="container">
+            <OrganizationOverview
+              mentors={this.state.mentors}
+              organizationName={"Troop 1234"}
+            />
+            <div>
 
-        <div className="clearfix">
-          {this.state.mentors[3] != undefined ? (
-            <ProfileCard id={this.state.mentors[3].id} isEditable={false} />
-          ) : (
-            console.log("undefined")
-          )}
-          {this.state.mentors[2] != undefined ? (
-            <ProfileCard id={this.state.mentors[2].id} isEditable={false} />
-          ) : (
-            console.log("undefined")
-          )}
-        </div>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <div style={{ flex: 1 }}>
-            <OrganizationUpdates waiversNeeded={42} />
-            <OrganizationMeetingHistory
-              meetingHistory={["1/1/2016", "1/1/2017", "1/1/2018"]}
-            />
-            <OrganizationDocuments />
+            <div className="clearfix">
+              {this.state.mentors[3] != undefined ? (
+                <ProfileCard id={this.state.mentors[3].id} isEditable={false} />
+              ) : (
+                console.log("undefined")
+              )}
+              {this.state.mentors[2] != undefined ? (
+                <ProfileCard id={this.state.mentors[2].id} isEditable={false} />
+              ) : (
+                console.log("undefined")
+              )}
+            </div>
+
+            <table className = "table-bordered" width = "1200" >
+              <tbody>
+               <tr>
+                  <td>
+                    <div className="d-flex justify-content-center"><OrganizationMeetingHistory
+                      meetingHistory={["1/1/2016", "1/1/2017", "1/1/2018"]}
+                    /></div>
+                  </td>
+                  <td>
+                    <div className="d-flex justify-content-center">
+                      <OrganizationDocuments />
+                    </div>
+                  </td>
+                  <td>
+                   <div className="d-flex justify-content-center">
+                      <OrganizationMentors />
+                    </div>
+                  </td>
+                    
+               </tr>
+               <tr>
+                  <td>
+                    <div className="d-flex justify-content-center">
+                      <OrganizationUpdates
+                        waiversNeeded={42}
+                      />
+                    </div>
+                    
+                  </td>
+                  <td>
+                    <div className="d-flex justify-content-center">
+                      <OrganizationPaypal/>
+                    </div>
+                  </td>
+                  <td>
+                    <OrganizationCalendar 
+                  embedUrl={"https://calendar.google.com/calendar/embed?src=bitsofgood.stempower%40gmail.com&ctz=America%2FNew_York"}
+                  width={300}
+                  height={200}
+                  align={"center"}
+                />
+                  </td>
+               </tr>
+              </tbody>
+            </table>
+            </div>
+
+            <div>
+              <p><br/><br/><br/></p>
+            </div>
           </div>
-          <div style={{ flex: 5 }}>
-            <OrganizationCalendar
-              embedUrl={
-                "https://calendar.google.com/calendar/embed?src=bitsofgood.stempower%40gmail.com&ctz=America%2FNew_York"
-              }
-              width={600}
-              height={400}
-              align={"center"}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+
+        ) 
+    }
+};
 
 export default Account;

@@ -1,0 +1,19 @@
+.modal.fade.in {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.modal-dialog {
+    position: fixed;
+    top: 30%;
+    left: 17%;
+    transform: translate(-50%, -50%) !important;
+}
+
+.modal {
+	width: 1000;
+}
+
+.modal-title {
+    margin: 0 auto;
+}
