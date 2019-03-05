@@ -1,5 +1,5 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
 import OrganizationOverview from './../components/account/OrganizationOverview';
 import OrganizationUpdates from './../components/account/OrganizationUpdates';
@@ -10,13 +10,13 @@ import OrganizationCalendar from './../components/account/OrganizationCalendar';
 import OrganizationPaypal from './../components/account/OrganizationPaypal';
 import './../assets/stylesheets/organization_styles.css';
 
- class Account extends React.Component{
 
-    constructor(props) {
-      super(props);       
-      this.state = {mentors: []}
-    }
-
+class Account extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { mentors: [] };
+  }
+  
     componentWillMount() {
         axios.get('/api/mentors').then(({ data }) => {
           var mentors = [];
