@@ -18,7 +18,7 @@ class OrganizationMentors extends React.Component{
 
     this.state = {
       show: false,
-      version: 0,
+      id: 0,
     };
   }
 
@@ -77,7 +77,7 @@ class OrganizationMentors extends React.Component{
                 Close
               </Button>
               <Button onClick={this.handleClose}>
-                Save Changes
+                Contact
               </Button>
             </Modal.Footer>
           </Modal>

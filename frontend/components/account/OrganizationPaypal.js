@@ -36,7 +36,7 @@ class OrganizationPaypal extends React.Component{
             <Modal.Header>
               <Modal.Title>Paypal Integration</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Body>Paypal Integration will be implemented soon!</Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>
                 Close

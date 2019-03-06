@@ -36,13 +36,13 @@ class OrganizationUpdates extends React.Component{
             <Modal.Header>
               <Modal.Title>Updates</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Body>
+              <h2>Important:</h2>
+              <p>{this.state.value}</p>
+            </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>
                 Close
-              </Button>
-              <Button onClick={this.handleClose}>
-                Save Changes
               </Button>
             </Modal.Footer>
           </Modal>
