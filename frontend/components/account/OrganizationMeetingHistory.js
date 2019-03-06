@@ -39,13 +39,28 @@ class OrganizationMeetingHistory extends React.Component{
             <Modal.Header>
               <Modal.Title>All Meetings</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Body>
+              <h4>1/1/2018</h4>
+              <a>
+                On this date, we discussed how to bake more cookies.
+                Tiff said that competition is increasing.
+              </a>
+              <p></p>
+              <h4>1/1/2017</h4>
+              <a>
+                No one showed up to this meeting unfortunately.
+                Hopefully they'll show up next year.
+              </a>
+              <h4>1/1/2018</h4>
+              <a>
+                This is some example text right here.
+                Hope it serves its purpose.
+              </a>
+
+            </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>
                 Close
-              </Button>
-              <Button onClick={this.handleClose}>
-                Save Changes
               </Button>
             </Modal.Footer>
           </Modal>

@@ -41,13 +41,21 @@ class OrganizationDocuments extends React.Component{
             <Modal.Header>
               <Modal.Title>All Documents</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Body>
+              <h4>Organization Application</h4>
+              <p><img src="https://meetingtom-meetingtomorrow.netdna-ssl.com/wp-content/uploads/2015/02/TextDocument.png?x37393" width='170' /></p>
+              <p></p>
+              <h4>Feedback</h4>
+              <p><img src="https://meetingtom-meetingtomorrow.netdna-ssl.com/wp-content/uploads/2015/02/TextDocument.png?x37393" width='170' /></p>
+              <p></p>
+
+            </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>
                 Close
               </Button>
               <Button onClick={this.handleClose}>
-                Save Changes
+                Upload Document
               </Button>
             </Modal.Footer>
           </Modal>

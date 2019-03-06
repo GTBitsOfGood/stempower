@@ -8,6 +8,8 @@ import OrganizationMeetingHistory from './../components/account/OrganizationMeet
 import OrganizationDocuments from './../components/account/OrganizationDocuments';
 import OrganizationCalendar from './../components/account/OrganizationCalendar';
 import OrganizationPaypal from './../components/account/OrganizationPaypal';
+import ProfileCard from './ProfileCard'
+import Profile from './Profile'
 import './../assets/stylesheets/organization_styles.css';
 
 class Account extends React.Component {
@@ -36,26 +38,15 @@ class Account extends React.Component {
             />
             <div>
 
-            <div className="clearfix">
-              {this.state.mentors[3] != undefined ? (
-                <ProfileCard id={this.state.mentors[3].id} isEditable={false} />
-              ) : (
-                console.log("undefined")
-              )}
-              {this.state.mentors[2] != undefined ? (
-                <ProfileCard id={this.state.mentors[2].id} isEditable={false} />
-              ) : (
-                console.log("undefined")
-              )}
-            </div>
-
             <table className = "table-bordered" width = "1200" >
               <tbody>
                <tr>
                   <td>
-                    <div className="d-flex justify-content-center"><OrganizationMeetingHistory
-                      meetingHistory={["1/1/2016", "1/1/2017", "1/1/2018"]}
-                    /></div>
+                    <div className="d-flex justify-content-center">
+                      <OrganizationMeetingHistory
+                        meetingHistory={["1/1/2016", "1/1/2017", "1/1/2018"]}
+                      />
+                    </div>
                   </td>
                   <td>
                     <div className="d-flex justify-content-center">
@@ -64,7 +55,7 @@ class Account extends React.Component {
                   </td>
                   <td>
                    <div className="d-flex justify-content-center">
-                      <OrganizationMentors />
+                      <OrganizationMentors mentors={this.state.mentors}/>
                     </div>
                   </td>
                     

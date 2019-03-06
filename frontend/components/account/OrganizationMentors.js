@@ -1,5 +1,9 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import ProfileCard from './../../containers/ProfileCard'
+import ProfilePanel from './../../containers/ProfilePanel'
+import Profile from './../../containers/Profile'
+
 import './../../assets/stylesheets/organization_styles.css';
 
 class OrganizationMentors extends React.Component{
@@ -9,9 +13,12 @@ class OrganizationMentors extends React.Component{
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleOne = this.handleOne.bind(this);
+    this.handleTwo = this.handleTwo.bind(this);
 
     this.state = {
       show: false,
+      version: 0,
     };
   }
 
@@ -23,22 +30,48 @@ class OrganizationMentors extends React.Component{
     this.setState({ show: true });
   }
 
+  handleOne() {
+    this.setState({ show: true, id: this.props.mentors[1].id });
+  }
+
+  handleTwo() {
+    this.setState({ show: true, id: this.props.mentors[0].id });
+  }
+
    render() {
        return (
         <div>
             <h2 className="text-center">Mentors</h2>
-            <div>
-            	<textarea className="border border-dark" cols='10' rows='5' value="  Jane Doe"/>
-            	<textarea className="border border-white" cols='1' />
-            	<textarea className="border border-dark" cols='10' rows='5' value="   Joe Doe" />
+            <div>  
+              <span onClick={this.handleOne}>
+                {this.props.mentors[3] != undefined ? (
+                  <ProfileCard condensed={true} id={this.props.mentors[1].id} isEditable={false} />
+                ) : (
+                  console.log("undefined")
+                )}
+              </span>
+              <span onClick={this.handleTwo}>
+                {this.props.mentors[2] != undefined ? (
+                  <ProfileCard condensed={true} id={this.props.mentors[0].id} isEditable={false} />
+                ) : (
+                  console.log("undefined")
+                )}
+              </span>
             </div>
+            <br></br>
             <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">Contact Your Mentors &raquo;</a></p>
 
             <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header>
-              <Modal.Title>Contact Mentors</Modal.Title>
+              <Modal.Title>Mentor</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Body>
+                {this.props.mentors[1] != undefined && this.props.mentors[0] != undefined ? (
+                  <ProfileCard id={this.state.id} isEditable={false} />
+                ) : (
+                  console.log("undefined")
+                )}
+            </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>
                 Close

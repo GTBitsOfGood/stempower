@@ -27,7 +27,7 @@ class Profile extends React.Component {
   //api call for mentor
   componentWillMount() {
     const id = this.props.match.params.id;
-
+    
     axios
       .get("/api/mentors/" + id)
       .then(({ data }) => {

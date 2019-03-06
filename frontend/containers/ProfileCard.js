@@ -6,6 +6,8 @@ class ProfileCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      width: "",
+      float: "",
       isEditing: false,
       mentor: {
         bios: [],
@@ -21,6 +23,7 @@ class ProfileCard extends React.Component {
 
   componentWillMount() {
     const id = this.props.id;
+
     axios
       .get("/api/mentors/" + id)
       .then(({ data }) => {
@@ -29,6 +32,12 @@ class ProfileCard extends React.Component {
       .catch(error => {
         console.log("No such person found");
       });
+
+      if(this.props.condensed) {
+        this.setState({ width: "50%", float: "left"})
+      } else {
+        this.setState({ width: "100%", float: "center"})
+      }
   }
 
   newSave() {
@@ -76,17 +85,33 @@ class ProfileCard extends React.Component {
         <div
           id="user-profile"
           style={{
-            width: "35%",
-            float: "left"
+            width: this.state.width,
+            float: this.state.float,
           }}
         >
           {this.toggleView()}
-          <ProfilePanel
-            isEditing={this.state.isEditing}
-            profile={this}
-            mentor={this.state.mentor}
-            onSave={this.handleSave}
-          />
+
+          {this.props.condensed ? 
+            (<ProfilePanel
+              condensed = {this.props.condensed}
+              isEditing={this.state.isEditing}
+              profile={this}
+              mentor={{
+                "firstName": this.state.mentor.firstName,
+                "lastName": this.state.mentor.lastName,
+                "profilePictureURL": "http://lorempixel.com/500/500/people/",
+                "bios": []
+              }}
+              onSave={this.handleSave}
+            />) :
+            (<ProfilePanel
+              condensed = {this.props.condensed}
+              isEditing={this.state.isEditing}
+              profile={this}
+              mentor={this.state.mentor}
+              onSave={this.handleSave}
+            />)
+        }
         </div>
       </div>
     );

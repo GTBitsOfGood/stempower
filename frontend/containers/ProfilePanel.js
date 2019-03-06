@@ -13,13 +13,27 @@ class ProfilePanel extends React.Component {
   render() {
     const { onSave } = this.props;
     var info = this.props.mentor;
+    const isCondensed = this.props.condensed;
     return (
       <div>
         <div className="top">
-          <Avatar image={info.profilePictureURL} width={100} height={100} />
-          <h2>
-            {info.firstName} {info.lastName}
-          </h2>
+          {isCondensed ?
+            (<div>
+              <Avatar image={info.profilePictureURL} width={50} height={50} />
+              <h3>
+                {info.firstName} {info.lastName}
+              </h3>
+             </div>
+            ) :
+            (<div>
+              <Avatar image={info.profilePictureURL} width={100} height={100} />
+              <h2>
+                {info.firstName} {info.lastName}
+              </h2>
+              </div>
+            ) 
+          }
+          
           {this.toggleView()}
           {/* <EditableLabel
             editing={false}
@@ -29,14 +43,18 @@ class ProfilePanel extends React.Component {
           /> */}
         </div>
 
-        <div className="bottom">
+        {isCondensed ? 
+            (<br></br>) :
+        (<div className="bottom">
           {/* <h3 style={{ marginBottom: 8 }}>Bios</h3> */}
-          <BioContainer
-            bioInfo={info.bios}
-            isEditing={this.props.isEditing}
-            profile={this.props.profile}
-          />
-        </div>
+          
+            <BioContainer
+              bioInfo={info.bios}
+              isEditing={this.props.isEditing}
+              profile={this.props.profile}
+            />
+          
+        </div>)}
       </div>
       // <div className="profile-about">
       //     <label className="flex-item profile-name">{this.props.mentor.firstName} {this.props.mentor.lastName}</label>
