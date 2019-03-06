@@ -44,14 +44,14 @@ class OrganizationMentors extends React.Component{
             <h2 className="text-center">Mentors</h2>
             <div>  
               <span onClick={this.handleOne}>
-                {this.props.mentors[3] != undefined ? (
+                {this.props.mentors[1] != undefined ? (
                   <ProfileCard condensed={true} id={this.props.mentors[1].id} isEditable={false} />
                 ) : (
                   console.log("undefined")
                 )}
               </span>
               <span onClick={this.handleTwo}>
-                {this.props.mentors[2] != undefined ? (
+                {this.props.mentors[0] != undefined ? (
                   <ProfileCard condensed={true} id={this.props.mentors[0].id} isEditable={false} />
                 ) : (
                   console.log("undefined")
