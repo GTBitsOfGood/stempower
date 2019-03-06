@@ -8,9 +8,7 @@ import OrganizationMeetingHistory from './../components/account/OrganizationMeet
 import OrganizationDocuments from './../components/account/OrganizationDocuments';
 import OrganizationCalendar from './../components/account/OrganizationCalendar';
 import OrganizationPaypal from './../components/account/OrganizationPaypal';
-import ProfileCard from './ProfileCard'
-import Profile from './Profile'
-import './../assets/stylesheets/organization_styles.css';
+import './../assets/stylesheets/organization_styles.scss';
 
 class Account extends React.Component {
   constructor(props) {

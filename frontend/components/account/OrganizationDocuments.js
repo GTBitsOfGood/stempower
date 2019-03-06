@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import './../../assets/stylesheets/organization_styles.css';
+import './../../assets/stylesheets/organization_styles.scss';
 
 class OrganizationDocuments extends React.Component{
 

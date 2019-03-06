@@ -1,10 +1,8 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import ProfileCard from './../../containers/ProfileCard'
-import ProfilePanel from './../../containers/ProfilePanel'
-import Profile from './../../containers/Profile'
 
-import './../../assets/stylesheets/organization_styles.css';
+import './../../assets/stylesheets/organization_styles.scss';
 
 class OrganizationMentors extends React.Component{
 
