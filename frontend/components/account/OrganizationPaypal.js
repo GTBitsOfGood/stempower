@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import './../../assets/stylesheets/organization_styles.css';
 
-class OrganizationUpdates extends React.Component{
+class OrganizationPaypal extends React.Component{
 
   constructor(props, context) {
     super(props, context);
@@ -12,7 +12,6 @@ class OrganizationUpdates extends React.Component{
 
     this.state = {
       show: false,
-      value: this.props.waiversNeeded + ' members still need to upload participation waivers!'
     };
   }
 
@@ -27,28 +26,30 @@ class OrganizationUpdates extends React.Component{
    render() {
        return (
         <div>
-            <h2 className="text-center">Updates!</h2>
-            <p> </p>
-            <textarea className="text-danger" cols='25' rows='4' value={this.state.value}/>
-            <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">View Updates &raquo;</a></p>
+            <h2 className="text-center">Payment</h2>
+            <p> 
+            </p>
+            <p><img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/PP_Acceptance_Marks_for_LogoCenter_266x142.png" width='170' /></p>
+            <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">Pay With PayPal &raquo;</a></p>
 
             <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header>
-              <Modal.Title>Updates</Modal.Title>
+              <Modal.Title>Paypal Integration</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-              <h2>Important:</h2>
-              <p>{this.state.value}</p>
-            </Modal.Body>
+            <Modal.Body>Paypal Integration will be implemented soon!</Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>
                 Close
+              </Button>
+              <Button onClick={this.handleClose}>
+                Save Changes
               </Button>
             </Modal.Footer>
           </Modal>
         </div>
    )};
+
 }
 
 
-export default OrganizationUpdates;
+export default OrganizationPaypal;

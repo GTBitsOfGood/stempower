@@ -10,7 +10,7 @@ class Dashboard extends React.Component{
             <div className="container-fluid">
               <div className="row">
                 <div className="col-sm-3 col-md-2 sidebar">
-                  <ul className="nav nav-sidebar">
+                  <ul className="nav-sidebar">
                     <li className="active"><a href="#">Overview <span className="sr-only">(current)</span></a></li>
                     <li><a href="#">Troop 29303</a></li>
                     <li><a href="#">Troop 29101</a></li>
