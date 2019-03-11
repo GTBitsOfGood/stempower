@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 
+import ProfileCard from "./ProfileCard.js";
 import ImageDisplay from "../components/ImageDisplay.js";
 import ProfilePanel from "./ProfilePanel.js";
 import BioItem from "../components/BioItem.js";
@@ -106,6 +107,13 @@ class Profile extends React.Component {
                 mentor={this.state.mentor}
                 onSave={this.handleSave}
               />
+            </div>
+            <div className="clearfix">
+              {" "}
+              <ProfileCard
+                id={this.props.match.params.id}
+                isEditable={true}
+              />{" "}
             </div>
           </div>
         </div>

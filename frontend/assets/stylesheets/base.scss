@@ -70,7 +70,6 @@ body {
   p {
     font-size: 14px;
   }
-
   .top,
   .bottom {
     padding: 30px;
@@ -282,4 +281,10 @@ body {
     padding-right: 0;
     padding-left: 0;
   }
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
