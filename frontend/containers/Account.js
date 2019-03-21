@@ -15,7 +15,7 @@ import './../assets/stylesheets/organization_styles.css';
 class Account extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { mentors: [] };
+    this.state = { mentors: [], elements: []};
   }
 
   componentWillMount() {
@@ -27,6 +27,39 @@ class Account extends React.Component {
       }
       this.setState({ mentors: mentors });
     });
+
+    this.setState({elements: ["Meetings", "Documents", "Mentors", "Updates","Payment","Calender"]});
+    if (this.props.view === "Organization")
+      this.setState({elements: ["Documents"]});
+    else if (this.props.view === "Parent")
+      this.setState({elements: ["Meetings", "Documents", "Mentors", "Updates","Payment","Calender"]});
+    else if (this.props.view === "Admin")
+      this.setState({elements: ["Documents"]});
+    else if (this.props.view === "Custom")
+      this.setState({elements: this.props.elements});
+
+  }
+
+  getElement(index) {
+    if (this.state.elements[index] === "Meetings")
+      return <OrganizationMeetingHistory meetingHistory={["1/1/2016", "1/1/2017", "1/1/2018"]} />
+    else if (this.state.elements[index] === "Documents")
+      return <OrganizationDocuments />
+    else if (this.state.elements[index] === "Mentors")
+      return <OrganizationMentors mentors={this.state.mentors}/>
+    else if (this.state.elements[index] === "Updates")
+      return <OrganizationUpdates waiversNeeded={42} />
+    else if (this.state.elements[index] === "Payment")
+      return <OrganizationPaypal />
+    else if (this.state.elements[index] === "Calender")
+      return <OrganizationCalendar 
+                embedUrl={"https://calendar.google.com/calendar/embed?src=bitsofgood.stempower%40gmail.com&ctz=America%2FNew_York"}
+                width={300}
+                height={200}
+                align={"center"}
+              />
+    else
+      return <div></div>
   }
 
     render() {
@@ -43,19 +76,17 @@ class Account extends React.Component {
                <tr>
                   <td>
                     <div className="d-flex justify-content-center">
-                      <OrganizationMeetingHistory
-                        meetingHistory={["1/1/2016", "1/1/2017", "1/1/2018"]}
-                      />
+                      {this.getElement(0)}
                     </div>
                   </td>
                   <td>
                     <div className="d-flex justify-content-center">
-                      <OrganizationDocuments />
+                      {this.getElement(1)}
                     </div>
                   </td>
                   <td>
                    <div className="d-flex justify-content-center">
-                      <OrganizationMentors mentors={this.state.mentors}/>
+                      {this.getElement(2)}
                     </div>
                   </td>
                     
@@ -63,24 +94,17 @@ class Account extends React.Component {
                <tr>
                   <td>
                     <div className="d-flex justify-content-center">
-                      <OrganizationUpdates
-                        waiversNeeded={42}
-                      />
+                      {this.getElement(3)}
                     </div>
                     
                   </td>
                   <td>
                     <div className="d-flex justify-content-center">
-                      <OrganizationPaypal/>
+                      {this.getElement(4)}
                     </div>
                   </td>
                   <td>
-                    <OrganizationCalendar 
-                  embedUrl={"https://calendar.google.com/calendar/embed?src=bitsofgood.stempower%40gmail.com&ctz=America%2FNew_York"}
-                  width={300}
-                  height={200}
-                  align={"center"}
-                />
+                    {this.getElement(5)}
                   </td>
                </tr>
               </tbody>
