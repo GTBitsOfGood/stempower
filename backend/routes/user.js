@@ -10,6 +10,8 @@ const bcrypt = require("bcrypt");
 //Local imports (currently just user)
 const User = require("mongoose").model("User");
 
+var User_sess = require('../models/user');
+
 router.use(bodyParser.json());
 router.use(cookieParser());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -50,7 +52,7 @@ router.post("/", (req, res) => {
           }
         });
       })
-      .catch(err => {
+      .catch(err => { 
         console.log(err);
       });
   });
@@ -72,7 +74,19 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-router.get("/:user_id", (req, res) => {
+
+router.get("/logged_in", (req, res) => {
+  User_sess.findById(req.session.userId, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Not logged In");
+    } else {
+      res.status(200).send("User is logged in");
+    }
+  });
+});
+
+router.get("/getUser/:user_id", (req, res) => {
   //DO NOT LEAK PASSWORDS
   let fields = "_id username email userType organization";
   User.findById(req.params.user_id, fields, (err, result) => {
@@ -84,6 +98,7 @@ router.get("/:user_id", (req, res) => {
     }
   });
 });
+
 
 //TODO(jeff) auto-invalidate tokens
 //TODO(jeff) prevent CSRF
@@ -98,12 +113,14 @@ router.post("/login", (req, res) => {
       bcrypt.compare(req.body.password, user.password, (err, success) => {
         if (success) {
           //set login cookie, response with userid
-          res.cookie("loggedin", user._id, { httpOnly: true, secure: true });
+          // res.cookie("loggedin", user._id, { httpOnly: true, secure: true });
+          req.session.userId = user._id;
+          console.log(req.session.userId)
           res.status(200).send(user._id);
         } else {
           res.status(401).send("Invalid credentials");
         }
-      });
+      }); 
     }
   });
 });

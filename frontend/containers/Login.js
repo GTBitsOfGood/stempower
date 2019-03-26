@@ -1,5 +1,6 @@
 import React from "react";
 import Register from "./Register.js";
+import axios from "axios";
 
 class Login extends React.Component {
   constructor(props) {
@@ -7,7 +8,6 @@ class Login extends React.Component {
     this.state = {
       username: "",
       password: "",
-      confirmPassword: "",
       register: false
     };
 
@@ -27,6 +27,14 @@ class Login extends React.Component {
   }
 
   toggleView() {
+    
+    axios.get("/api/user/logged_in").then((res) => {
+      console.log(res);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
     if (!this.state.register) {
       return (
         <div className="vertical-container-centered">
@@ -111,7 +119,15 @@ class Login extends React.Component {
      * Because of the mapDispatchToProps function below, "setCredentials" is availble
      * from the props of this component
      */
-    this.props.setCredentials({ username: username, password: password });
+    // this.props.setCredentials({ username: username, password: password });
+    axios
+      .post("api/user/login", {
+        username: username,
+        password: password
+      })
+      .then(res => console.log(res))
+      .catch(e => console.log(e.response.data));
+  
   }
 }
 

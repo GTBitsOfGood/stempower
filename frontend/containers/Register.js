@@ -1,4 +1,6 @@
 import React from "react";
+import ReactRadioButtonGroup from "react-radio-button-group";
+import axios from "axios";
 
 /* The flow should be WhatAreYou?, OrgTell/MentorTell, LandingPage */
 class Register extends React.Component {
@@ -32,13 +34,20 @@ class UserForm extends React.Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      confirmPassword: "",
+      email: "",
+      userType: ""
     };
 
     /* Bind the class function to the component object to that this
            method is in scope for the jsx */
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(
+      this
+    );
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleRBGSelect = this.handleRBGSelect.bind(this);
     this.setCredentials = this.setCredentials.bind(this);
     this.toggleRegister = this.toggleRegister.bind(this);
   }
@@ -61,6 +70,15 @@ class UserForm extends React.Component {
           </div>
           <div style={{ width: "100%" }}>
             <input
+              type="text"
+              className="text-input"
+              placeholder="email"
+              onChange={e => this.setState({ email: e.target.value })}
+              style={{ marginBottom: "10px" }}
+            />
+          </div>
+          <div style={{ width: "100%" }}>
+            <input
               type="password"
               className="text-input"
               placeholder="password"
@@ -78,6 +96,17 @@ class UserForm extends React.Component {
             />
           </div>
           {/* <WhatAreYou /> */}
+          <h5> I am a: </h5>
+          <ReactRadioButtonGroup
+            name="userTypeRBG"
+            options={[
+              { value: "parent", label: "Parent" },
+              { value: "mentor", label: "Mentor" },
+              { value: "organization", label: "Organization Leader" }
+            ]}
+            isStateful={true}
+            onChange={val => this.handleRBGSelect(val)}
+          />
           <div style={{ marginLeft: "10px" }}>
             Do you need to{" "}
             <a href="javascript:void(0);" onClick={this.toggleRegister}>
@@ -91,6 +120,10 @@ class UserForm extends React.Component {
         </div>
       </div>
     );
+  }
+
+  handleRBGSelect(value) {
+    this.setState({ userType: value });
   }
 
   handleUsernameChange(event) {
@@ -115,12 +148,23 @@ class UserForm extends React.Component {
     );
   }
 
+  handleConfirmPasswordChange(event) {
+    /**
+     * This will update the state with out new value of the input,
+     * which then gets passed to the input's value and causes the input to
+     * be re-rendered.
+     */
+    this.setState(
+      Object.assign({}, this.state, { confirmPassword: event.target.value })
+    );
+  }
+
   toggleRegister(event) {
     this.props.toggleRegister();
   }
 
   setCredentials() {
-    const { username, password } = this.state;
+    const { username, password, confirmPassword, email, userType } = this.state;
 
     if (username.length === 0) {
       alert("Please specify a valid username");
@@ -132,12 +176,29 @@ class UserForm extends React.Component {
       return;
     }
 
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
     /**
      * Because of the mapDispatchToProps function below, "setCredentials" is availble
      * from the props of this component
      */
     this.setState(Object.assign({}, this.state, { isMentor: true }));
-    this.props.setCredentials({ username: username, password: password });
+    axios
+      .post("api/user", {
+        username: username,
+        password: password,
+        email: email,
+        userType: userType
+      })
+      .then(res => {
+        alert("Account Created!");
+        toggleRegister();
+      })
+      .catch(e => alert(e.response.data));
+    // this.props.setCredentials({ username: username, password: password });
   }
 }
 
