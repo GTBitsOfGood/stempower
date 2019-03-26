@@ -40,7 +40,7 @@ router.post("/", (req, res) => {
           res.status(405).send(err);
           //abort abort
           throw err;
-        }
+        } 
       })
       .then(() => {
         User.create(user, (err, user) => {
@@ -76,12 +76,12 @@ if (process.env.NODE_ENV !== "production") {
 
 
 router.get("/logged_in", (req, res) => {
-  User_sess.findById(req.session.userId, (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Not logged In");
+  User.findById(req.session.userId, (err, result) => {
+    if (err || result == null) {
+      // console.log(err);
+      res.status(200).send("not_logged_in");
     } else {
-      res.status(200).send("User is logged in");
+      res.status(200).send("logged_in");
     }
   });
 });
@@ -128,6 +128,16 @@ router.post("/login", (req, res) => {
 router.post("/logout", (req, res) => {
   //this will just invalidate the user's cookie
   res.clearCookie("loggedin");
+  if (req.session) {
+    // delete session object
+    req.session.destroy(function(err) {
+      if(err) {
+        return next(err);
+      } else {
+        return res.redirect('/');
+      }
+    });
+  }
   res.status(200).send("Logged Out");
 });
 
