@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "an example for deploying a React + NodeJS app to Heroku",
   "main": "server.js",
+  "engines": {
+    "node": "10.3.0"
+  },
   "scripts": {
     "build": "webpack --config webpack.prod.config.js",
     "dev": "concurrently -k \"npm run frontend\" \"npm run backend\"",
