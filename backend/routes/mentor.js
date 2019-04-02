@@ -132,7 +132,6 @@ router.get('/', (req, res) => {
 
 // POSTs a new mentor
 router.post('/', (req,res) => {
-    console.log(req.body);
     Mentor.create(req.body, (err, mentor) => {
         if (err) {
             res.send("" + err);
