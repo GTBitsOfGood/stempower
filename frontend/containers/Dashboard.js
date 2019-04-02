@@ -78,7 +78,6 @@ class Dashboard extends React.Component{
         if (this.state.currentTab == "organizationView") {
             return(
                 <div className = "container-fluid">
-                    <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
                     <div className = "row">
                         <DashboardOrganizations id="tester" currentOrganization = {this.state.currentOrganization} organizations = {this.state.organizations} curOrganization={org => this.setState({currentOrganization: org})}/>    
@@ -90,7 +89,6 @@ class Dashboard extends React.Component{
         } else if (this.state.currentTab == "documentView") {
             return(
                 <div className = "container-fluid">
-                    <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
                     <div className = "row">
                         <DashboardOrganizations currentOrganization = {this.state.currentOrganization} organizations = {this.state.organizations} curOrganization={org => this.setState({currentOrganization: org})}/>
@@ -102,7 +100,6 @@ class Dashboard extends React.Component{
         } else if (this.state.currentTab == "mentorView") {
             return(
                 <div className = "container-fluid">
-                    <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
                     <div className = "row">
                         <DashboardAllMentors mentors = {this.state.allMentors}/>
