@@ -17,3 +17,12 @@
 .modal-title {
     margin: 0 auto;
 }
+
+ul {
+	margin: 0; 
+	padding: 0;
+}
+
+.scrollable {
+	overflow-y: auto; height:220px;
+}

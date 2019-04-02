@@ -27,10 +27,9 @@ class OrganizationUpdates extends React.Component{
    render() {
        return (
         <div>
-            <h2 className="text-center">Updates!</h2>
+            <h2 className="text-center">Updates</h2>
             <p> </p>
-            <textarea className="text-danger" cols='25' rows='4' value={this.state.value}/>
-            <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">View Updates &raquo;</a></p>
+            <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">View All Updates &raquo;</a></p>
 
             <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header>

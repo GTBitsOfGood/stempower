@@ -13,12 +13,12 @@ class OrganizationMentors extends React.Component{
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleOne = this.handleOne.bind(this);
-    this.handleTwo = this.handleTwo.bind(this);
+    this.handleCard = this.handleCard.bind(this);
+    this.displayMentors = this.displayMentors.bind(this);
 
     this.state = {
       show: false,
-      id: 0,
+      id: [],
     };
   }
 
@@ -30,36 +30,36 @@ class OrganizationMentors extends React.Component{
     this.setState({ show: true });
   }
 
-  handleOne() {
-    this.setState({ show: true, id: this.props.mentors[1].id });
+  handleCard(index) {
+    console.log(index);
+    var id;
+    id = this.props.mentors[index] != undefined ? this.props.mentors[index].id : this.props.mentors[0].id;
+    this.setState({ show: true, id: id});
   }
 
-  handleTwo() {
-    this.setState({ show: true, id: this.props.mentors[0].id });
+  displayMentors() {
+    var ret = [];
+    for(var i = 0; i < this.props.mentors.length; i++) {
+       ret.push(<span key={i} onClick={() => this.handleCard(i)}>
+                {this.props.mentors[i] != undefined ? (
+                  <ProfileCard condensed={true} id={this.props.mentors[i].id} isEditable={false} />
+                ) : (
+                  console.log("undefined")
+                )}
+                </span>)
+    }
+    return ret;
   }
 
    render() {
        return (
         <div>
             <h2 className="text-center">Mentors</h2>
-            <div>  
-              <span onClick={this.handleOne}>
-                {this.props.mentors[1] != undefined ? (
-                  <ProfileCard condensed={true} id={this.props.mentors[1].id} isEditable={false} />
-                ) : (
-                  console.log("undefined")
-                )}
-              </span>
-              <span onClick={this.handleTwo}>
-                {this.props.mentors[0] != undefined ? (
-                  <ProfileCard condensed={true} id={this.props.mentors[0].id} isEditable={false} />
-                ) : (
-                  console.log("undefined")
-                )}
-              </span>
+            <div className="scrollable">  
+              {this.displayMentors()}
             </div>
             <br></br>
-            <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">Contact Your Mentors &raquo;</a></p>
+            <p className="text-center"><a className="btn btn-primary text-white" onClick={this.handleShow} role="button">Contact Your Mentors &raquo;</a></p>
 
             <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header>

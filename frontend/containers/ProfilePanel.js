@@ -19,7 +19,7 @@ class ProfilePanel extends React.Component {
         <div className="top">
           {isCondensed ?
             (<div>
-              <Avatar image={info.profilePictureURL} width={50} height={50} />
+              <Avatar image={info.profilePictureURL} width={40} height={40} />
               <h3>
                 {info.firstName} {info.lastName}
               </h3>
@@ -34,7 +34,7 @@ class ProfilePanel extends React.Component {
             ) 
           }
           
-          {this.toggleView()}
+          {isCondensed ? <div></div> : this.toggleView()}
           {/* <EditableLabel
             editing={false}
             text={info.phoneNumber}
