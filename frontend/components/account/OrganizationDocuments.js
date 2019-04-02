@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import axios from "axios";
 import './../../assets/stylesheets/organization_styles.scss';
 
 class OrganizationDocuments extends React.Component{
@@ -10,8 +11,12 @@ class OrganizationDocuments extends React.Component{
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
 
+    this.onFileChange = this.onFileChange.bind(this);
+    this.onFileUpload = this.onFileUpload.bind(this);
+
     this.state = {
       show: false,
+      file: null
     };
   }
 
@@ -21,6 +26,33 @@ class OrganizationDocuments extends React.Component{
 
   handleShow() {
     this.setState({ show: true });
+  }
+
+  onFileChange(event) {
+    this.setState({file: event.target.files[0]});
+  }
+  
+  onFileUpload(event) {
+    event.preventDefault();
+    
+    //submit whatever is in the state
+    if (this.state.file === null) {
+      alert("Please upload a file");
+    }
+    console.log('submiting ' + this.state.file);
+    
+    const formData = new FormData();
+    formData.append('file', this.state.file);
+
+    axios
+    .post("api/documents/", formData, { headers: {'content-type': 'multipart/form-data'}})
+    .then(res => {
+      console.log(res);
+    })
+    .catch(e => console.log(e.response.data));
+
+    document.getElementById("documentForm").reset();
+    this.setState({file: null})
   }
 
    render() {
@@ -49,14 +81,21 @@ class OrganizationDocuments extends React.Component{
               <p><img src="https://meetingtom-meetingtomorrow.netdna-ssl.com/wp-content/uploads/2015/02/TextDocument.png?x37393" width='170' /></p>
               <p></p>
 
+
+            <form id = "documentForm" onSubmit={this.onFileUpload}>
+              <h3>Upload Documents</h3>
+              <input type="file" onChange={this.onFileChange} />
+              <button type="submit">Upload Document</button>
+            </form>
+
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>
                 Close
               </Button>
-              <Button onClick={this.handleClose}>
+              {/* <Button onClick={this.handleClose}>
                 Upload Document
-              </Button>
+              </Button> */}
             </Modal.Footer>
           </Modal>
 
