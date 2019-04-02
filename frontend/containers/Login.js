@@ -20,6 +20,7 @@ class Login extends React.Component {
       this
     );
     this.setCredentials = this.setCredentials.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
     this.toggleRegister = this.toggleRegister.bind(this);
     this.checkLoginStatus();
   }
@@ -64,7 +65,14 @@ class Login extends React.Component {
         </div>
       );
     } else if (this.state.logged_in) {
-      return <div> User is logged in, show logout button</div>;
+      return (
+        <div
+          className="vertical-container-centered"
+          style={{ marginTop: "10px" }}
+        >
+          <button onClick={this.handleLogout}>Logout</button>
+        </div>
+      );
     } else {
       return <Register toggleRegister={this.toggleRegister} />;
     }
@@ -83,6 +91,16 @@ class Login extends React.Component {
       .catch(error => {
         console.log(error);
       });
+  }
+
+  handleLogout() {
+    axios
+      .post("api/user/logout")
+      .then(res => {
+        console.log(res);
+        this.setState({ logged_in: false });
+      })
+      .catch(e => console.log(e.response.data));
   }
 
   handleUsernameChange(event) {
@@ -136,8 +154,10 @@ class Login extends React.Component {
         username: username,
         password: password
       })
-      .then(res => {console.log(res);     this.checkLoginStatus();
-              }        )
+      .then(res => {
+        console.log(res);
+        this.checkLoginStatus();
+      })
       .catch(e => console.log(e.response.data));
   }
 }
