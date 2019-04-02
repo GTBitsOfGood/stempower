@@ -9,7 +9,7 @@ class Navbar extends React.Component {
     render() {
     return (
             <div className="nav">
-                {/* <img src={logo} /> */}
+                <a id="nav-logo" target="_blank" href="https://www.stempowerinc.org/"><img src={logo} /></a>
                 <ul>
                     <li><a href="/">Welcome Screen</a></li>
                     <li><a href="/profile">Profile</a></li>
