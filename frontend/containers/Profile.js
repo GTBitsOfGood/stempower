@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 
+import ProfileCard from "./ProfileCard.js";
 import ImageDisplay from "../components/ImageDisplay.js";
 import ProfilePanel from "./ProfilePanel.js";
 import BioItem from "../components/BioItem.js";
@@ -21,7 +22,6 @@ class Profile extends React.Component {
         profilePictureURL: ""
       }
     };
-    this.handleSave = this.handleSave.bind(this);
   }
 
   //api call for mentor
@@ -55,23 +55,6 @@ class Profile extends React.Component {
           }
         });
       });
-  }
-
-  handleSave(id, value) {
-    var temp = this.state.mentor;
-
-    if (id == 1) temp.email = value;
-
-    if (id == 2) temp.phoneNumber = value;
-
-    this.setState({
-      mentor: temp
-    });
-
-    axios
-      .put("/api/mentors/" + this.props.match.params.id, temp)
-      .then(response => console.log(response))
-      .catch(error => console.log(error));
   }
 
   newSave() {
@@ -116,13 +99,22 @@ class Profile extends React.Component {
       <div className="container">
         <div className="jumbotron">
           <div className="profile-header">
-            {this.toggleView()}
-            <ProfilePanel
-              isEditing={this.state.isEditing}
-              profile={this}
-              mentor={this.state.mentor}
-              onSave={this.handleSave}
-            />
+            <div id="user-profile">
+              {this.toggleView()}
+              <ProfilePanel
+                isEditing={this.state.isEditing}
+                profile={this}
+                mentor={this.state.mentor}
+                onSave={this.handleSave}
+              />
+            </div>
+            <div className="clearfix">
+              {" "}
+              <ProfileCard
+                id={this.props.match.params.id}
+                isEditable={true}
+              />{" "}
+            </div>
           </div>
         </div>
       </div>
