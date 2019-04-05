@@ -13,24 +13,6 @@ class Dashboard extends React.Component{
         this.state = {organizations: null, currentOrganization: null}
     }
 
-<<<<<<< HEAD
-    render(){
-        return(
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-sm-3 col-md-2 sidebar">
-                  <ul className="nav-sidebar">
-                    <li className="active"><a href="#">Overview <span className="sr-only">(current)</span></a></li>
-                    <li><a href="#">Troop 29303</a></li>
-                    <li><a href="#">Troop 29101</a></li>
-                    <li><a href="#">Organization 3</a></li>
-                    <li><a href="">Example Org</a></li>
-                    <li><a href="">Organizatoin 4</a></li>
-                  </ul>
-                </div>
-                <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                  <h1 className="page-header"><br /> </h1>
-=======
     componentDidMount() {
         axios.get('/api/organizations').then((organization) => {
             let organizationsList = [];
@@ -54,7 +36,6 @@ class Dashboard extends React.Component{
             this.setState({currentOrganization: organizationsList[0]});
         });
     }
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
 
 
     render(){

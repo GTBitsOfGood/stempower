@@ -46,8 +46,4 @@ class EditableLabel extends Component {
   }
 }
 
-<<<<<<< HEAD
 export default EditableLabel;
-=======
-export default EditableLabel;
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba

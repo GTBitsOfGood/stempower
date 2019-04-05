@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
 import React from "react";
 import ProfilePanel from "./ProfilePanel.js";
 import axios from "axios";

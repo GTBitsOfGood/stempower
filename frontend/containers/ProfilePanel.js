@@ -1,12 +1,5 @@
 import React from "react";
-<<<<<<< HEAD
 import BioContainer from "./BioContainer";
-=======
-import { connect } from "react-redux";
-import { fetchMentor } from "../actions/mentorActions.js";
-import BioContainer from "./BioContainer";
-import EditableLabel from "../components/EditableLabel.js";
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
 
 class ProfilePanel extends React.Component {
   constructor(props) {
@@ -23,11 +16,7 @@ class ProfilePanel extends React.Component {
         <div className="top">
           {isCondensed ?
             (<div>
-<<<<<<< HEAD
-              <Avatar image={info.profilePictureURL} width={50} height={50} />
-=======
               <Avatar image={info.profilePictureURL} width={40} height={40} />
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
               <h3>
                 {info.firstName} {info.lastName}
               </h3>
@@ -42,11 +31,7 @@ class ProfilePanel extends React.Component {
             ) 
           }
           
-<<<<<<< HEAD
-          {this.toggleView()}
-=======
           {isCondensed ? <div></div> : this.toggleView()}
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
           {/* <EditableLabel
             editing={false}
             text={info.phoneNumber}
@@ -158,8 +143,4 @@ class Avatar extends React.Component {
       </div>
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba

@@ -8,22 +8,14 @@ import OrganizationMeetingHistory from './../components/account/OrganizationMeet
 import OrganizationDocuments from './../components/account/OrganizationDocuments';
 import OrganizationCalendar from './../components/account/OrganizationCalendar';
 import OrganizationPaypal from './../components/account/OrganizationPaypal';
-<<<<<<< HEAD
-import './../assets/stylesheets/organization_styles.scss';
-=======
 import ProfileCard from './ProfileCard'
 import Profile from './Profile'
 import './../assets/stylesheets/organization_styles.css';
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
 
 class Account extends React.Component {
   constructor(props) {
     super(props);
-<<<<<<< HEAD
-    this.state = { mentors: [] };
-=======
     this.state = { mentors: [], elements: []};
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
   }
 
   componentWillMount() {
@@ -35,8 +27,6 @@ class Account extends React.Component {
       }
       this.setState({ mentors: mentors });
     });
-<<<<<<< HEAD
-=======
 
     this.setState({elements: ["Meetings", "Documents", "Mentors", "Updates","Payment","Calender"]});
     if (this.props.view === "Organization")
@@ -70,7 +60,6 @@ class Account extends React.Component {
               />
     else
       return <div></div>
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
   }
 
     render() {
@@ -87,31 +76,17 @@ class Account extends React.Component {
                <tr>
                   <td>
                     <div className="d-flex justify-content-center">
-<<<<<<< HEAD
-                      <OrganizationMeetingHistory
-                        meetingHistory={["1/1/2016", "1/1/2017", "1/1/2018"]}
-                      />
-=======
                       {this.getElement(0)}
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
                     </div>
                   </td>
                   <td>
                     <div className="d-flex justify-content-center">
-<<<<<<< HEAD
-                      <OrganizationDocuments />
-=======
                       {this.getElement(1)}
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
                     </div>
                   </td>
                   <td>
                    <div className="d-flex justify-content-center">
-<<<<<<< HEAD
-                      <OrganizationMentors mentors={this.state.mentors}/>
-=======
                       {this.getElement(2)}
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
                     </div>
                   </td>
                     
@@ -119,36 +94,17 @@ class Account extends React.Component {
                <tr>
                   <td>
                     <div className="d-flex justify-content-center">
-<<<<<<< HEAD
-                      <OrganizationUpdates
-                        waiversNeeded={42}
-                      />
-=======
                       {this.getElement(3)}
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
                     </div>
                     
                   </td>
                   <td>
                     <div className="d-flex justify-content-center">
-<<<<<<< HEAD
-                      <OrganizationPaypal/>
-                    </div>
-                  </td>
-                  <td>
-                    <OrganizationCalendar 
-                  embedUrl={"https://calendar.google.com/calendar/embed?src=bitsofgood.stempower%40gmail.com&ctz=America%2FNew_York"}
-                  width={300}
-                  height={200}
-                  align={"center"}
-                />
-=======
                       {this.getElement(4)}
                     </div>
                   </td>
                   <td>
                     {this.getElement(5)}
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
                   </td>
                </tr>
               </tbody>
