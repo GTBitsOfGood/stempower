@@ -1,6 +1,10 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
+<<<<<<< HEAD
 import './../../assets/stylesheets/organization_styles.scss';
+=======
+import './../../assets/stylesheets/organization_styles.css';
+>>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
 
 class OrganizationPaypal extends React.Component{
 
@@ -52,4 +56,8 @@ class OrganizationPaypal extends React.Component{
 }
 
 
+<<<<<<< HEAD
 export default OrganizationPaypal;
+=======
+export default OrganizationPaypal;
+>>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba

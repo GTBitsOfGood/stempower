@@ -412,3 +412,9 @@ textarea {
 .modal-title {
     margin: 0 auto;
 }
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}

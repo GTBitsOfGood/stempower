@@ -1,6 +1,10 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
+<<<<<<< HEAD
 import './../../assets/stylesheets/organization_styles.scss';
+=======
+import './../../assets/stylesheets/organization_styles.css';
+>>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
 
 class OrganizationDocuments extends React.Component{
 
@@ -26,15 +30,26 @@ class OrganizationDocuments extends React.Component{
    render() {
        return (
         <div>
+<<<<<<< HEAD
             <h2 className="text-center">Documents</h2>
 
             <ul className="text-left">
                 <a href='#'><li>Organization Application</li></a>
+=======
+            <h2 className="text-left">Documents</h2>
+
+            <ul className="text-left">
+                <a href='#'><li>Application</li></a>
+>>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
                 <a href='#'><li>Feedback</li></a>
                 <a href='#'><li>Waiver</li></a>
                 <a href='#'><li>Upload Photos</li></a>
             </ul>
+<<<<<<< HEAD
             <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">View Documents &raquo;</a></p>
+=======
+            <p><a className="btn btn-primary text-white" onClick={this.handleShow} role="button">View Documents &raquo;</a></p>
+>>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
 
 
             <Modal show={this.state.show} onHide={this.handleClose}>

@@ -1,47 +1,28 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> a0b1ec6984a034f96e271cdfbdf7b5b0dd52daba
 import React from "react";
 import ProfilePanel from "./ProfilePanel.js";
+import InlineEdit from 'react-edit-inline';
 import axios from "axios";
 
-class ProfileCard extends React.Component {
+class MeetingCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       width: "",
       float: "",
       isEditing: false,
-      mentor: {
-        bios: [],
-        firstName: "",
-        lastName: "",
-        university: "",
-        email: "",
-        phoneNumber: "",
-        profilePictureURL: ""
-      }
+      meetings: []
     };
   }
 
   componentWillMount() {
-    const id = this.props.id;
-
     axios
-      .get("/api/mentors/" + id)
+      .get("/api/mentors/")
       .then(({ data }) => {
-        this.setState({ mentor: data });
+        this.setState({ meetings: data });
       })
       .catch(error => {
         console.log("No such person found");
       });
-
-      if(this.props.condensed) {
-        this.setState({ width: "50%", float: "left"})
-      } else {
-        this.setState({ width: "100%", float: "center"})
-      }
   }
 
   newSave() {
@@ -122,4 +103,4 @@ class ProfileCard extends React.Component {
   }
 }
 
-export default ProfileCard;
+export default MeetingCard;
