@@ -14,6 +14,8 @@ class OrganizationDocuments extends React.Component{
     this.onFileChange = this.onFileChange.bind(this);
     this.onFileUpload = this.onFileUpload.bind(this);
 
+    this.awsURL = 'https://elasticbeanstalk-us-west-2-547258468023.s3.amazonaws.com/';
+
     this.state = {
       show: false,
       file: null,
@@ -25,7 +27,7 @@ class OrganizationDocuments extends React.Component{
     this.setState({ show: false });
   }
 
-  handleShow() {   
+  handleShow() {
     axios
     .get("api/documents/get_documents")
     .then(res => {
@@ -104,11 +106,11 @@ class OrganizationDocuments extends React.Component{
                     <th>File Type</th>
                   </tr>
                     { this.state.documents.map((item, index) => (
-                        <tr key = {index}> 
-                          <td>{item.name}</td>
+                        <tr key = {index}>
+                          <td> <a href={this.awsURL+item.id}>{item.name}</a></td>
                           <td>{item.type}</td>
-                        </tr> 
-                      )) 
+                        </tr>
+                      ))
                     }
                     </tbody>
                   </table>

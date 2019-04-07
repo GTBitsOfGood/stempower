@@ -89,12 +89,13 @@ router.post("/", (req, res) => {
             Key: doc._id.toString(),
             Body: file.data
           };
+          // res.send(doc);
           s3.upload(params, function(err, data) {
             if (err) {
               res.send("" + err);
             } else {
               console.log("Succesfully uploaded document");
-              res.send(doc);
+              res.send(data);
             }
           });
         }
