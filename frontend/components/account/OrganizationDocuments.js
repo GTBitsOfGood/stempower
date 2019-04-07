@@ -16,7 +16,8 @@ class OrganizationDocuments extends React.Component{
 
     this.state = {
       show: false,
-      file: null
+      file: null,
+      documents: []
     };
   }
 
@@ -24,25 +25,40 @@ class OrganizationDocuments extends React.Component{
     this.setState({ show: false });
   }
 
-  handleShow() {
-    this.setState({ show: true });
+  handleShow() {   
+    axios
+    .get("api/documents/get_documents")
+    .then(res => {
+      var data = res.data;
+      var documents = [];
+      for (var i = 0; i < data.length; i++) {
+        var d = data[i];
+        documents.push({ name: d.fileName, id: d._id, type: d.documentType});
+      }
+      this.setState({ documents: documents });
+      this.setState({ show: true });
+    })
+    .catch(e => console.log(e.response.data));
   }
 
   onFileChange(event) {
     this.setState({file: event.target.files[0]});
   }
-  
+
   onFileUpload(event) {
     event.preventDefault();
-    
+
     //submit whatever is in the state
     if (this.state.file === null) {
       alert("Please upload a file");
     }
     console.log('submiting ' + this.state.file);
-    
+
     const formData = new FormData();
     formData.append('file', this.state.file);
+
+    var documentType = document.getElementById("documentForm").elements.namedItem("documentType").value;
+    formData.append('documentType', documentType);
 
     axios
     .post("api/documents/", formData, { headers: {'content-type': 'multipart/form-data'}})
@@ -74,20 +90,41 @@ class OrganizationDocuments extends React.Component{
               <Modal.Title>All Documents</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <h4>Organization Application</h4>
-              <p><img src="https://meetingtom-meetingtomorrow.netdna-ssl.com/wp-content/uploads/2015/02/TextDocument.png?x37393" width='170' /></p>
+              <h4>Your Documents</h4>
+              {/* <p><img src="https://meetingtom-meetingtomorrow.netdna-ssl.com/wp-content/uploads/2015/02/TextDocument.png?x37393" width='170' /></p>
               <p></p>
               <h4>Feedback</h4>
               <p><img src="https://meetingtom-meetingtomorrow.netdna-ssl.com/wp-content/uploads/2015/02/TextDocument.png?x37393" width='170' /></p>
-              <p></p>
-
-
+              <p></p> */}
+              <div>
+                <table >
+                  <tbody>
+                  <tr>
+                    <th>File Name</th>
+                    <th>File Type</th>
+                  </tr>
+                    { this.state.documents.map((item, index) => (
+                        <tr key = {index}> 
+                          <td>{item.name}</td>
+                          <td>{item.type}</td>
+                        </tr> 
+                      )) 
+                    }
+                    </tbody>
+                  </table>
+                  <br/>
+              </div>
             <form id = "documentForm" onSubmit={this.onFileUpload}>
               <h3>Upload Documents</h3>
               <input type="file" onChange={this.onFileChange} />
               <button type="submit">Upload Document</button>
             </form>
-
+            <select name="documentType" form="documentForm">
+              <option value="org_feedback">Organization Feedback</option>
+              <option value="member_feedback">Member Feedback</option>
+              <option value="member_waiver">Waiver</option>
+              <option value="org_app">Organizatoin Application</option>
+            </select>
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>
