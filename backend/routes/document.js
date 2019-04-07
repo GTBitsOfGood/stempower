@@ -35,8 +35,11 @@ router.get("/get_doc_by_id/:document_id", (req, res) => {
   Document.findById(req.params.document_id)
     .then(function(Document) {
       const bucket = "elasticbeanstalk-us-west-2-547258468023";
-      const key = Document.fileName;
-      const params = { Bucket: bucket, Key: key };
+      const params = 
+      { Bucket: bucket, 
+        Key: req.params.document_id , 
+        ResponseContentDisposition: 'attachment; filename ="' + Document.fileName + '"'
+      };
       s3.getSignedUrl("getObject", params, function(err, data) {
         res.send(data);
       });
