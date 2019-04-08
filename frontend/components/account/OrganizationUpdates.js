@@ -28,7 +28,11 @@ class OrganizationUpdates extends React.Component{
        return (
         <div>
             <h2 className="text-center">Updates</h2>
-            <p> </p>
+            <div className = "updates-scrollable text-danger">
+              <p>Make sure you complete all your forms </p>
+              <p>Troop 174 still needs to register </p>
+              <p>Example Text Right Here </p>
+            </div>
             <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">View All Updates &raquo;</a></p>
 
             <Modal show={this.state.show} onHide={this.handleClose}>
@@ -36,8 +40,9 @@ class OrganizationUpdates extends React.Component{
               <Modal.Title>Updates</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <h2>Important:</h2>
-              <p>{this.state.value}</p>
+              <p>Make sure you complete all your forms</p>
+              <p>Troop 174 still needs to register</p>
+              <p>Example Text Right Here</p>
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>

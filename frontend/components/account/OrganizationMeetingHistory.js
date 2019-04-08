@@ -71,7 +71,7 @@ class OrganizationMeetingHistory extends React.Component{
               <ul>{history}</ul>
               <p><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">View All Meetings &raquo;</a></p>
           </div>
-          
+
           <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header>
               <Modal.Title>All Meetings</Modal.Title>
