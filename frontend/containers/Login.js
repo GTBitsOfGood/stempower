@@ -6,7 +6,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: "",
       register: false,
       logged_in: false
@@ -41,7 +41,7 @@ class Login extends React.Component {
               <input
                 type="text"
                 className="text-input"
-                placeholder="username"
+                placeholder="email"
                 onChange={this.handleUsernameChange}
               />
             </div>
@@ -109,9 +109,7 @@ class Login extends React.Component {
      * which then gets passed to the input's value and causes the input to
      * be re-rendered.
      */
-    this.setState(
-      Object.assign({}, this.state, { username: event.target.value })
-    );
+    this.setState(Object.assign({}, this.state, { email: event.target.value }));
   }
 
   handlePasswordChange(event) {
@@ -132,9 +130,9 @@ class Login extends React.Component {
   }
 
   setCredentials() {
-    const { username, password } = this.state;
-    if (username.length === 0) {
-      alert("Please specify a valid username");
+    const { email, password } = this.state;
+    if (email.length === 0) {
+      alert("Please specify a valid email");
       return;
     }
 
@@ -151,7 +149,7 @@ class Login extends React.Component {
     // this.props.setCredentials({ username: username, password: password });
     axios
       .post("api/user/login", {
-        username: username,
+        email: email,
         password: password
       })
       .then(res => {
