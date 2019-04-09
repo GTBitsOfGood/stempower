@@ -16,11 +16,11 @@ let MentorSchema = new Schema({
   },
   phoneNumber: {
     type: String,
-    required: true
+    required: false
   },
   university: {
     type: String,
-    required: true
+    required: false
   },
   major: {
     type: String,
@@ -39,9 +39,9 @@ let MentorSchema = new Schema({
     required: false
   },
   organization: {
-    type: String,
-    required: true
-  }
+    type: { type: mongoose.Schema.Types.ObjectId, ref: "Organization" },
+    required: false
+  },
 });
 
 module.exports = mongoose.model('Mentor', MentorSchema);

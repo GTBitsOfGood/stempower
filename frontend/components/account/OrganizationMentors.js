@@ -55,19 +55,18 @@ class OrganizationMentors extends React.Component{
        return (
         <div>
             <h2 className="text-center">Mentors</h2>
-            <div className="scrollable">  
+            <div className="scrollable-box">  
               {this.displayMentors()}
             </div>
-            <br></br>
             <p className="text-center"><a className="btn btn-primary text-white" onClick={this.handleShow} role="button">Contact Your Mentors &raquo;</a></p>
 
-            <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal show={this.state.show}>
             <Modal.Header>
-              <Modal.Title>Mentor</Modal.Title>
+              <Modal.Title>Mentors</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {this.props.mentors[1] != undefined && this.props.mentors[0] != undefined ? (
-                  <ProfileCard id={this.state.id} isEditable={false} />
+                  <ProfileCard id={this.state.id} isEditable={this.props.mentorId == this.state.id} />
                 ) : (
                   console.log("undefined")
                 )}
@@ -75,9 +74,6 @@ class OrganizationMentors extends React.Component{
             <Modal.Footer>
               <Button onClick={this.handleClose}>
                 Close
-              </Button>
-              <Button onClick={this.handleClose}>
-                Contact
               </Button>
             </Modal.Footer>
           </Modal>

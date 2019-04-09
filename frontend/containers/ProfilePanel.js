@@ -13,7 +13,7 @@ class ProfilePanel extends React.Component {
     const isCondensed = this.props.condensed;
     return (
       <div>
-        <div className="top">
+        <div className="card">
           {isCondensed ?
             (<div>
               <Avatar image={info.profilePictureURL} width={40} height={40} />
@@ -41,7 +41,7 @@ class ProfilePanel extends React.Component {
         </div>
 
         {isCondensed ? 
-            (<br></br>) :
+            (null) :
         (<div className="bottom">
           {/* <h3 style={{ marginBottom: 8 }}>Bios</h3> */}
           
@@ -53,14 +53,6 @@ class ProfilePanel extends React.Component {
           
         </div>)}
       </div>
-      // <div className="profile-about">
-      //     <label className="flex-item profile-name">{this.props.mentor.firstName} {this.props.mentor.lastName}</label>
-      //     <div className="display-flex">
-      //         <div className="flex-item">{this.props.mentor.university}</div>
-      //     </div>
-      //     <div className="flex-item">{this.props.mentor.email}</div>
-      //     <div className="flex-item">{this.props.mentor.phoneNumber}</div>
-      // </div>
     );
   }
 

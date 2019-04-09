@@ -5,6 +5,7 @@ const router = express.Router();
 
 // Local imports
 const Organization = require('mongoose').model('Organization');
+const Mentor = require('mongoose').model('Mentor');
 
 router.get('/test', (req, res) => {
     res.send('test successful');
@@ -34,6 +35,7 @@ router.get('/', (req, res) => {
 
 //For specific organization
 router.get('/:organization_id', (req, res) => {
+    console.log("Get organization");
     Organization.findById(req.params.organization_id).then((organization) => res.send(organization))
       .catch((err) => res.send("" + err));
 });
@@ -138,7 +140,15 @@ router.delete('/:organization_id/members/:member_id', (req, res) => {
 router.get('/:organization_id/mentors', (req, res) => {
     Organization.findById({
         _id: req.params.organization_id
-    }).then((organization) => res.send(organization.mentors))
+    }).then((organization) => {
+        ms = [];
+        for (var i = 0; i < organization.mentors.length; i++) {
+            ms.push({_id: organization.mentors[i]});
+        }
+        Mentor.find({
+            $or: ms
+          }).then(mentors => res.send(mentors));
+    })
       .catch((err) => res.send("" + err));
 });
 

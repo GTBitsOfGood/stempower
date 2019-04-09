@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+import { Redirect } from 'react-router-dom'
+
 import OrganizationOverview from './../components/account/OrganizationOverview';
 import OrganizationUpdates from './../components/account/OrganizationUpdates';
 import OrganizationMentors from './../components/account/OrganizationMentors';
@@ -19,34 +21,50 @@ class Account extends React.Component {
   }
 
   componentWillMount() {
-    axios.get("/api/mentors").then(({ data }) => {
-      var mentors = [];
-      for (var i = 0; i < data.length; i++) {
-        var d = data[i];
-        mentors.push({ name: d.firstName + " " + d.lastName, id: d._id });
-      }
-      this.setState({ mentors: mentors });
-    });
+    if (this.props.mentorId == null && this.props.orgId == null) {
+      return;
+    }
+    
+    if (this.props.orgId != null) {
+      axios.get("/api/organizations/" + this.props.orgId).then(({ data }) => {
+        this.setState({organizationName: data.name})
+      });
+    } else if (this.props.mentorId != null) {
+      axios.get("/api/mentors/" + this.props.mentorId).then(({ data }) => {
+        axios.get("/api/organizations/" + data.organization).then(({ data }) => {
+          this.setState({organizationName: data.name});
+          axios.get("/api/organizations/" + data._id + "/mentors").then(({data}) => {
+            var mentors = [];
+            for (var i = 0; i < data.length; i++) {
+              var d = data[i];
+              mentors.push({ name: d.firstName + " " + d.lastName, id: d._id });
+            }
+            this.setState({ mentors: mentors });
+          });
+        });
+      });
+    }
+    if (this.props.userType == "organization") {
+      this.setState({elements: ["Updates", "Documents", "Mentors", "Calender",  "Meetings", "Payment"]});
+    } else if (this.props.userType == "parent") {
+      this.setState({elements: ["Meetings", "Documents", "Calender"]});
+    } else if (this.props.userType == "admin") {
+      this.setState({elements: ["Updates", "Documents", "Mentors", "Calender",  "Meetings", "Payment"]});
+    } else if (this.props.userType == "mentor") {
+      this.setState({elements: ["Updates", "Documents", "Mentors", "Calender", "Meetings"]});
+    } else if (this.props.userType == "Custom") {
+      this.setState({elements: this.state.elements});
+    }
+}
 
-    this.setState({elements: ["Meetings", "Documents", "Mentors", "Updates","Payment","Calender"]});
-    if (this.props.view === "Organization")
-      this.setState({elements: ["Documents"]});
-    else if (this.props.view === "Parent")
-      this.setState({elements: ["Meetings", "Documents", "Mentors", "Updates","Payment","Calender"]});
-    else if (this.props.view === "Admin")
-      this.setState({elements: ["Documents"]});
-    else if (this.props.view === "Custom")
-      this.setState({elements: this.props.elements});
-
-  }
 
   getElement(index) {
     if (this.state.elements[index] === "Meetings")
-      return <OrganizationMeetingHistory meetingHistory={["1/1/2016", "1/1/2017", "1/1/2018"]} />
+      return <OrganizationMeetingHistory meetingHistory={["1/26/2017", "1/26/2018", "1/26/2019"]} />
     else if (this.state.elements[index] === "Documents")
       return <OrganizationDocuments />
     else if (this.state.elements[index] === "Mentors")
-      return <OrganizationMentors mentors={this.state.mentors}/>
+      return <OrganizationMentors mentors={this.state.mentors} mentorId={this.state.mentorId}/>
     else if (this.state.elements[index] === "Updates")
       return <OrganizationUpdates waiversNeeded={42} />
     else if (this.state.elements[index] === "Payment")
@@ -63,15 +81,20 @@ class Account extends React.Component {
   }
 
     render() {
+      if (!this.props.logged_in) {
+        return (
+          <Redirect to='/' />
+        );
+      }
         return (
           <div className="container">
             <OrganizationOverview
               mentors={this.state.mentors}
-              organizationName={"Troop 1234"}
+              organizationName={this.state.organizationName}
             />
             <div>
 
-            <table className = "table-bordered" width = "1200" >
+            <table className = "table-bordered" width = "1100" >
               <tbody>
                <tr>
                   <td>

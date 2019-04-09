@@ -81,7 +81,7 @@ class ProfileCard extends React.Component {
 
   render() {
     return (
-      <div style={{ marginBottom: "20px", marginTop: "20px" }}>
+      <div>
         <div
           id="user-profile"
           style={{
@@ -99,7 +99,7 @@ class ProfileCard extends React.Component {
               mentor={{
                 "firstName": this.state.mentor.firstName,
                 "lastName": this.state.mentor.lastName,
-                "profilePictureURL": "http://lorempixel.com/500/500/people/",
+                "profilePictureURL": "profilePictureURL" in this.state.mentor ? this.state.mentor.profilePictureURL : "http://lorempixel.com/500/500/people/",
                 "bios": []
               }}
               onSave={this.handleSave}

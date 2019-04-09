@@ -72,7 +72,7 @@ class MeetingCard extends React.Component {
   }
 
   getInlineElement(index) {
-    return <div>
+    return (<div>
                     <h2>{this.state.meetings[index].date}</h2>
                     <InlineEdit
                       activeClassName="editing"
@@ -88,7 +88,15 @@ class MeetingCard extends React.Component {
                         border: 33
                       }}
                     />
-            </div>
+            </div>);
+  }
+
+  getInlineElements() {
+    var divs = [];
+    for (var i = 0; i < this.state.meetings.length; i++) {
+      divs.push(this.getInlineElement(i));
+    }
+    return divs;
   }
 
   render() {
@@ -101,9 +109,7 @@ class MeetingCard extends React.Component {
             float: this.state.float,
           }}
         >
-          {this.getInlineElement(0)}
-          {this.getInlineElement(1)}
-          {this.getInlineElement(2)}
+          {this.getInlineElements()}
         </div>
       </div>
     );
