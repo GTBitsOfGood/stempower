@@ -31,7 +31,7 @@ class OrganizationMentors extends React.Component{
   }
 
   handleCard(index) {
-    console.log(index);
+    console.log("INDEX: " + index);
     var id;
     id = this.props.mentors[index] != undefined ? this.props.mentors[index].id : this.props.mentors[0].id;
     this.setState({ show: true, id: id});
@@ -40,9 +40,10 @@ class OrganizationMentors extends React.Component{
   displayMentors() {
     var ret = [];
     for(var i = 0; i < this.props.mentors.length; i++) {
-       ret.push(<span key={i} onClick={() => this.handleCard(i)}>
-                {this.props.mentors[i] != undefined ? (
-                  <ProfileCard condensed={true} id={this.props.mentors[i].id} isEditable={false} />
+      const j = i;
+       ret.push(<span key={j} onClick={() => this.handleCard(j)}>
+                {this.props.mentors[j] != undefined ? (
+                  <ProfileCard condensed={true} id={this.props.mentors[j].id} isEditable={false} />
                 ) : (
                   console.log("undefined")
                 )}

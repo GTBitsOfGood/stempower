@@ -129,8 +129,8 @@ router.get("/getUser/:user_id", (req, res) => {
 //TODO(jeff) prevent CSRF
 //http://scottksmith.com/blog/2014/09/04/simple-steps-to-secure-your-express-node-application/
 router.post("/login", (req, res) => {
-  console.log("Auth user: " + req.body.username);
-  User.find({ username: req.body.username }, (err, result) => {
+  console.log("Auth user: " + req.body.email);
+  User.find({ email: req.body.email }, (err, result) => {
     if (!result.length) {
       res.status(404).send("User not found!");
     } else {

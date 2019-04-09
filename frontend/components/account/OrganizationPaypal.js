@@ -51,5 +51,4 @@ class OrganizationPaypal extends React.Component{
 
 }
 
-
 export default OrganizationPaypal;
