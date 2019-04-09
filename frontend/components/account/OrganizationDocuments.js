@@ -86,6 +86,7 @@ class OrganizationDocuments extends React.Component {
       })
       .then(res => {
         console.log(res);
+        this.handleShow();
       })
       .catch(e => console.log(e.response.data));
 
