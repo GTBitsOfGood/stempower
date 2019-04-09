@@ -6,6 +6,7 @@ const url = 'mongodb://127.0.0.1:27017/stempower';
 const fileUpload = require('express-fileupload');
 const user = require('./routes/user');
 const mentor = require('./routes/mentor');
+const meeting = require('./routes/meeting');
 const organization = require('./routes/organization');
 const doc = require('./routes/document');
 const upload = require('./routes/upload');
@@ -17,6 +18,7 @@ router.use(fileUpload());
 
 router.use('/user', user)
 router.use('/mentors', mentor);
+router.use('/meetings', meeting);
 router.use('/organizations', organization);
 router.use('/documents', doc);
 router.use('/files', files);
