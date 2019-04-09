@@ -1,19 +1,36 @@
 .modal.fade.in {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.75);
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.75);
 }
 
 .modal-dialog {
-    position: absolute;
-    top: 50%;
-    left: 17%;
-    transform: translate(-50%, -50%) !important;
+  position: absolute;
+  top: 50%;
+  left: 17%;
+  transform: translate(-50%, -50%) !important;
 }
 
 .modal {
-	width: 1000;
+  width: 1000;
 }
 
 .modal-title {
-    margin: 0 auto;
+  margin: 0 auto;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }

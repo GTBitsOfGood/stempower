@@ -10,8 +10,6 @@ const bcrypt = require("bcrypt");
 //Local imports (currently just user)
 const User = require("mongoose").model("User");
 
-var User_sess = require('../models/user');
-
 router.use(bodyParser.json());
 router.use(cookieParser());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -40,7 +38,7 @@ router.post("/", (req, res) => {
           res.status(405).send(err);
           //abort abort
           throw err;
-        } 
+        }
       })
       .then(() => {
         User.create(user, (err, user) => {
@@ -53,7 +51,7 @@ router.post("/", (req, res) => {
           }
         });
       })
-      .catch(err => { 
+      .catch(err => {
         console.log(err);
       });
   });
@@ -124,7 +122,6 @@ router.get("/getUser/:user_id", (req, res) => {
   });
 });
 
-
 //TODO(jeff) auto-invalidate tokens
 //TODO(jeff) prevent CSRF
 //http://scottksmith.com/blog/2014/09/04/simple-steps-to-secure-your-express-node-application/
@@ -144,7 +141,7 @@ router.post("/login", (req, res) => {
         } else {
           res.status(401).send("Invalid credentials");
         }
-      }); 
+      });
     }
   });
 });
@@ -155,10 +152,10 @@ router.post("/logout", (req, res) => {
   if (req.session) {
     // delete session object
     req.session.destroy(function(err) {
-      if(err) {
+      if (err) {
         return next(err);
       } else {
-        return res.redirect('/');
+        return res.redirect("/");
       }
     });
   }

@@ -4,7 +4,16 @@ let Schema = mongoose.Schema;
 let DocumentSchema = new Schema({
 	fileName: {
 		type: String,
-		required: false
+		required: true
+	},
+	owner: {
+		type: String,
+		required: true
+	},
+	documentType: {
+		type: String,
+		enum: ["org_feedback", "member_feedback", "member_waiver", "org_app"],
+		required: true
 	}
 });
 
