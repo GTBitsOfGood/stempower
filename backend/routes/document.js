@@ -46,16 +46,42 @@ router.post('/', (req, res) => {
     const key = file.name;
     const params = {Bucket: bucket, Key: key, Body: file.data};
     s3.upload(params, function(err, data) {
-        console.log(err, data);
-        Document.create({fileName: key}, (err, doc) => {
-            if (err) {
-                res.send("" + err);
-            } else {
-                console.log("Succesfully uploaded document");
-                res.send(doc);
-            };
-        });
+        if (err) {
+            res.send("" + err)
+        } else {
+            Document.create({fileName: key}, (err, doc) => {
+                if (err) {
+                    res.send("" + err);
+                } else {
+                    console.log("Succesfully uploaded document");
+                    res.send(doc);
+                };
+            });
+        }
     });
+});
+
+router.post('/documentTest', (req, res) => {
+    Document.create(req.body, (err, document) => {
+        if (err) {
+            res.send("" + err);
+        } else {
+            console.log("Created Document");
+            res.send(document);
+        }
+    });
+}); 
+
+router.get('/documentTests/organizations/:organization_id', (req, res) => {
+    Document.find({orgId: req.params.organization_id}).then((documents) => {
+        res.send(documents);
+    }).catch((err) => res.send("" + err));
+});
+
+router.get('/documentTests/mentors/:mentor_id', (req, res) => {
+    Document.find({mentorId: req.params.mentor_id}).then((documents) => {
+        res.send(documents);
+    }).catch((err) => res.send("" + err));
 });
 
 module.exports = router;

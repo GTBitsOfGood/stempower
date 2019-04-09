@@ -15,7 +15,7 @@ let OrganizationSchema = new Schema({
         required: true
     },
     members: {
-        type: [String],
+        type: [{member: String}],
         required: false
     },
     mentors: {
