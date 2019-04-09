@@ -1,7 +1,49 @@
 import React from 'react';
 import ReactTable from 'react-table';
+import axios from 'axios';
 
 class DashboardAllMentors extends React.Component{
+
+	reassign(mentor) {
+		let reassignArray = document.getElementById("reassignArray")
+		reassignArray.innerHTML = ""
+		let orgs = this.props.organizations;
+
+		for (let x = 0; x < orgs.length; x++) {
+
+			let dv = document.createElement("div");
+			let btn = document.createElement("button");
+			self = this;
+			btn.onclick = function() {
+				if (mentor.organization != "") {
+					orgs.find((org) => {
+						if (org.name == mentor.organization) {
+							let oldOrg = org.mentors.find((orgMentor) => orgMentor._id == mentor._id)
+							if (oldOrg) {
+								org.mentors.splice(org.mentors.indexOf(oldOrg), 1)
+								axios.delete('/api/organizations/' + org._id + "/mentors/" + mentor._id)
+								return true
+							}
+						}
+					})	
+				}
+				mentor.organization = orgs[x].name
+				axios.put('/api/mentors/' + mentor._id, mentor)
+				orgs[x].mentors.push(mentor)
+				let mentors = []
+				axios.post('/api/organizations/' + orgs[x]._id + '/mentors', {mentor: mentor._id})
+				self.props.allOrgs(orgs)
+				if (self.props.currentOrganization._id == orgs[x]._id) {
+					self.props.curOrganization(orgs[x])
+				}
+				document.getElementById("reassignArray").innerHTML = ""
+			}
+			let t = document.createTextNode(orgs[x].name);
+			btn.append(t);
+			dv.append(btn);
+			reassignArray.appendChild(dv);
+		}
+	}
 
 	render() {
 
@@ -34,7 +76,7 @@ class DashboardAllMentors extends React.Component{
 			}, {
 				Header: "Organization",
 				Cell: ({original}) => {
-					if (original.organization) {
+					if (original.organization != "") {
 						return(<div>{original.organization}</div>)
 					} else {
 						return(<div>None</div>)
@@ -42,12 +84,34 @@ class DashboardAllMentors extends React.Component{
 				}
 			}, {
 				Header: "Reassign Mentor",
-				Cell: ({original}) => ( <button onClick={() => {
-					//currentOrg[original.orgNumber].mentors.splice(currentOrg[original.orgNumber].mentors.indexOf(original), 1)
-					this.forceUpdate();
-				}}>
+				Cell: ({original}) => ( <button onClick={() => {this.reassign(original)}}>
 				Reassign Mentor
 				</button> )
+			}, {
+				Header: "Change Account Type",
+				Cell: ({original}) => {
+					if (!original.type || original.type == "default") {
+						return (<div>
+							<button onClick={() => {
+							original.type = "admin"
+							this.props.mentors.find((mentor) => mentor._id == original._id).type = "admin"
+							this.props.allMentors(this.props.mentors)
+						}}>
+						Change to admin
+						</button>
+						Default</div>)
+					} else {
+						return (<div>
+							<button onClick={() => {
+							original.type = "default"
+							this.props.mentors.find((mentor) => mentor._id == original._id).type = "default"
+							this.props.allMentors(this.props.mentors)
+						}}>
+						Change to default
+						</button>
+						Admin</div>)
+					}
+				}
 			}]
 		}
 		return(
@@ -57,6 +121,7 @@ class DashboardAllMentors extends React.Component{
 				data = {data}
 				columns = {columns}
 				/>
+				<div id="reassignArray"/>
 			</div>
 		)
 	};

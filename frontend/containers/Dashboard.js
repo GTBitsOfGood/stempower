@@ -10,6 +10,7 @@ import DashboardMentorDocuments from "./../components/dashboard/DashboardMentorD
 import DashboardMemberDocuments from "./../components/dashboard/DashboardMemberDocuments";
 import DashboardAllMentors from "./../components/dashboard/DashboardAllMentors";
 import DashboardTests from "./../components/dashboard/DashboardTests";
+import UploadDocument from "./../components/UploadDocument";
 
 class Dashboard extends React.Component{
     constructor(props){
@@ -23,17 +24,19 @@ class Dashboard extends React.Component{
     //Possibly include dropwdown for choosing organization
     //https://www.w3schools.com/howto/howto_js_filter_dropdown.asp
     //https://www.w3schools.com/bootstrap/bootstrap_dropdowns.asp
-    //Need to be able to delete organization as well
 
-    //View all organizaitons and mentors
-    //Delete any account
+//    //Need to be able to delete organization as well
+//    //If Admin logged in, admin should be able to turn a mentor into an admin, have an extra column where it says what the current role of the mentor is
+//    //,wether they are a mentor or an admin called status, then have a button next to that mentor that changes that mentor from admin to mentor. 
+//    //View all organizaitons and mentors
+//    //Delete any account
     //Set a organization or mentor as active or inactive
     //Export all organizations/mentors/members to google sheets or excel
-    //For organzations, must be able to view all members as well
-    //Should be able to assign/reassign a mentor to an organzation
-    //Should be able to see for every organization a list of documents that have been uploaded
+//    //For organzations, must be able to view all members as well
+//    //Should be able to assign/reassign a mentor to an organzation
+//    //Should be able to see for every organization a list of documents that have been uploaded
     //Should be able to see who has paid, organization or memeber
-    //Should be able to add or delete a member(just a name)
+//    //Should be able to add or delete a member(just a name)
 
     componentDidMount() {
         axios.get('/api/organizations').then((organization) => {
@@ -78,10 +81,12 @@ class Dashboard extends React.Component{
         if (this.state.currentTab == "organizationView") {
             return(
                 <div className = "container-fluid">
+                    <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
                     <div className = "row">
-                        <DashboardOrganizations id="tester" currentOrganization = {this.state.currentOrganization} organizations = {this.state.organizations} curOrganization={org => this.setState({currentOrganization: org})}/>    
-                        <DashboardMentors currentOrganization = {this.state.currentOrganization}/>
+                        <DashboardOrganizations states={this.state} organizations={orgs => this.setState({organizations: orgs})} 
+                                                curOrganization={org => this.setState({currentOrganization: org})} allMentors={mentors =>this.setState({allMentors: mentors})}/>    
+                        <DashboardMentors currentOrganization = {this.state.currentOrganization} mentors = {this.state.allMentors} allMentors={mentors => this.setState({allMentors: mentors})}/>
                         <DashboardMembers currentOrganization = {this.state.currentOrganization}/>
                     </div> 
                 </div>
@@ -89,10 +94,12 @@ class Dashboard extends React.Component{
         } else if (this.state.currentTab == "documentView") {
             return(
                 <div className = "container-fluid">
+                    <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
                     <div className = "row">
-                        <DashboardOrganizations currentOrganization = {this.state.currentOrganization} organizations = {this.state.organizations} curOrganization={org => this.setState({currentOrganization: org})}/>
-                        <DashboardMentorDocuments currentOrganization = {this.state.currentOrganization}/>
+                        <DashboardOrganizations states={this.state} organizations={orgs => this.setState({organizations:org})} 
+                                                curOrganization={org => this.setState({currentOrganization: org})} allMentors={mentors => this.setState({allMentors: mentors})}/> 
+                        <DashboardMentorDocuments currentOrganization = {this.state.currentOrganization} mentors = {this.state.allMentors}/>
                         <DashboardMemberDocuments currentOrganization = {this.state.currentOrganization}/>
                     </div>
                 </div>
@@ -100,9 +107,11 @@ class Dashboard extends React.Component{
         } else if (this.state.currentTab == "mentorView") {
             return(
                 <div className = "container-fluid">
+                    <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
                     <div className = "row">
-                        <DashboardAllMentors mentors = {this.state.allMentors}/>
+                        <DashboardAllMentors mentors={this.state.allMentors} organizations={this.state.organizations} currentOrganization={this.state.currentOrganization}
+                                             allOrgs={orgs => this.setState({organizations: orgs})} curOrganization={org => this.setState({currentOrganization: org})} allMentors={mentors => this.setState({allMentors: mentors})}/>
                     </div>
                 </div>
             )

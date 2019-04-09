@@ -9,7 +9,7 @@ class DashboardTests extends React.Component{
 			leaders: [{"leader": "leader6"}, {"leader": "dueader2"}],
 			address: "penn ave",
 			members: [{"member": "member1"}, {"member": "Member2"}],
-			mentors: ["5c9a9ccac896b9282cc1ab53"]
+			mentors: []
 		}
 		axios.post('/api/organizations', newOrg);
 	}
@@ -44,6 +44,7 @@ class DashboardTests extends React.Component{
 				<button onClick = {this.makeOrganizations}>Make dummy organization</button>
 				<button onClick = {this.makeDocuments}>Make dummy document</button>
 				<button onClick = {this.makeMentors}>Make dummy mentor</button>
+				
 			</div>
 	)};
 
