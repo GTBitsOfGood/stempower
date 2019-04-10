@@ -9,9 +9,7 @@ class DashboardMembers extends React.Component{
 		var columns = []
 		if (this.props.currentOrganization != null) {
 			var currentOrg = this.props.currentOrganization
-			console.log(currentOrg)
 			data = currentOrg.members
-			console.log(data)
 			columns = [{
 				Header: "Members Name",
 				accessor: "member"

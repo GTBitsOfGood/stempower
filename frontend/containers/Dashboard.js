@@ -25,6 +25,12 @@ class Dashboard extends React.Component{
     //https://www.w3schools.com/howto/howto_js_filter_dropdown.asp
     //https://www.w3schools.com/bootstrap/bootstrap_dropdowns.asp
 
+    //Need to be able to view all leaders in an organization
+    //View and do updates for organizations
+    //Delete mentor from existance
+    //Build system for adding and deleting documents types  
+    //Change calendar link
+
 //    //Need to be able to delete organization as well
 //    //If Admin logged in, admin should be able to turn a mentor into an admin, have an extra column where it says what the current role of the mentor is
 //    //,wether they are a mentor or an admin called status, then have a button next to that mentor that changes that mentor from admin to mentor. 

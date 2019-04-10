@@ -5,9 +5,7 @@ import axios from 'axios';
 class DashboardOrganizations extends React.Component{
 
 	makeOrgList() {
-		let outerdv = document.createElement("div");
-		if (this.props.states.organizations != null && document.getElementById("dashboardOrganizationArray")) {
-			document.getElementById("dashboardOrganizationArray").innerHTML = ""
+		if (this.props.states.organizations != null) {
 			let data = this.props.states.organizations;
 
 			let allOrgs = {
@@ -17,37 +15,21 @@ class DashboardOrganizations extends React.Component{
 				"mentors": []
 			};
 
+			let children = []
+
 			for (let x = 0; x < data.length; x++) {
 
 				allOrgs.leaders = allOrgs.leaders.concat(data[x].leaders);
 				allOrgs.members = allOrgs.members.concat(data[x].members);
 				allOrgs.mentors = allOrgs.mentors.concat(data[x].mentors);
 				
-				let dv = document.createElement("div");
-				let btn = document.createElement("button");
-				self = this;
-				btn.onclick = function() {
-					self.props.curOrganization(data[x]);
-				}
-				let t = document.createTextNode(data[x].name);
-				btn.append(t);
-				dv.append(btn);
-				outerdv.appendChild(dv);
+				let btn = React.createElement("button", {key: data[x]._id, onClick: () => this.props.curOrganization(data[x])}, data[x].name)
+				children.push(React.createElement("div", {key: data[x]._id}, btn));
 			}
 			
-			let dv = document.createElement("div");
-			let btn = document.createElement("button");
-			self = this;
-			btn.onclick = function() {
-				self.props.curOrganization(allOrgs);
-			}
-			let t = document.createTextNode(allOrgs.name);
-			btn.append(t);
-			dv.append(btn);
-			outerdv.insertBefore(dv, outerdv.firstChild);	
-			document.getElementById("dashboardOrganizationArray").append(outerdv);
-		} else if (this.props.states.currentOrganization) {
-			this.props.curOrganization(this.props.states.currentOrganization);
+			let btn = React.createElement("button", {key: allOrgs.name, onClick: () => this.props.curOrganization(allOrgs)}, allOrgs.name)
+			children.unshift(React.createElement("div", {key: allOrgs.name}, btn))
+			return(React.createElement("div", {}, children))
 		}
 	}
 
@@ -96,7 +78,7 @@ class DashboardOrganizations extends React.Component{
 				</div>
 
 				<div>Organizations</div>
-				<div id="dashboardOrganizationArray" onClick={this.makeOrgList()}/>
+				{this.makeOrgList()}
 			</div>
 	)};
 
