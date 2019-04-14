@@ -82,8 +82,7 @@ class MeetingCard extends React.Component {
               isEditing={this.state.isEditing}
               profile={this}
               mentor={{
-                "firstName": this.state.mentor.firstName,
-                "lastName": this.state.mentor.lastName,
+                "name": this.state.mentor.name,
                 "profilePictureURL": "http://lorempixel.com/500/500/people/",
                 "bios": []
               }}

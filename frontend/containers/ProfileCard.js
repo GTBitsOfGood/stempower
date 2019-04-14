@@ -11,8 +11,7 @@ class ProfileCard extends React.Component {
       isEditing: false,
       mentor: {
         bios: [],
-        firstName: "",
-        lastName: "",
+        name: "",
         university: "",
         email: "",
         phoneNumber: "",
@@ -97,8 +96,7 @@ class ProfileCard extends React.Component {
               isEditing={this.state.isEditing}
               profile={this}
               mentor={{
-                "firstName": this.state.mentor.firstName,
-                "lastName": this.state.mentor.lastName,
+                "name": this.state.mentor.name,
                 "profilePictureURL": "profilePictureURL" in this.state.mentor ? this.state.mentor.profilePictureURL : "http://lorempixel.com/500/500/people/",
                 "bios": []
               }}

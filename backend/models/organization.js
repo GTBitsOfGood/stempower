@@ -8,7 +8,7 @@ let OrganizationSchema = new Schema({
     },
     leaders: {
         type: [String],
-        required: true
+        required: false
     },
     address: {
         type: String,

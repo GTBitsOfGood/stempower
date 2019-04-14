@@ -20,7 +20,7 @@ router.post("/", (req, res) => {
 
   //TODO(jeff): verify the user's email is whitelisted from the
   //google sheet
-  bcrypt.hash(req.body.password, 10, function(err, hash) {
+  bcrypt.hash(req.body.password, 10, function (err, hash) {
     if (err) {
       res.send(err);
     }
@@ -48,6 +48,7 @@ router.post("/", (req, res) => {
           } else {
             console.log("User " + user._id + " registered");
             res.send(user._id);
+            return res.redirect("/");
           }
         });
       })
@@ -58,22 +59,22 @@ router.post("/", (req, res) => {
 });
 
 router.put('/:user_id', (req, res) => {
-  User.findByIdAndUpdate(req.params.user_id, req.body, {upsert: true, new: true},function(err, response) {
-      if (err) {
-          res.json("" + err);
-      } else {
-          res.json(response);
-      }
+  User.findByIdAndUpdate(req.params.user_id, req.body, { upsert: true, new: true }, function (err, response) {
+    if (err) {
+      res.json("" + err);
+    } else {
+      res.json(response);
+    }
   });
 });
 
 router.delete('/:user_id', (req, res) => {
-  User.findByIdAndRemove(req.params.user_id, function(err, response) {
-      if (err) {
-          res.json("" + err);
-      } else {
-          res.json({message: "User with id " + req.params.user_id + " removed"});
-      };
+  User.findByIdAndRemove(req.params.user_id, function (err, response) {
+    if (err) {
+      res.json("" + err);
+    } else {
+      res.json({ message: "User with id " + req.params.user_id + " removed" });
+    };
   })
 });
 
@@ -97,7 +98,7 @@ router.get("/logged_in", (req, res) => {
   User.findById(req.session.userId, (err, result) => {
     if (err || result == null) {
       // console.log(err);
-      res.status(200).send({status: "not_logged_in"});
+      res.status(200).send({ status: "not_logged_in" });
     } else {
       res.status(200).send({
         loggedIn: "logged_in",
@@ -151,7 +152,7 @@ router.post("/logout", (req, res) => {
   res.clearCookie("loggedin");
   if (req.session) {
     // delete session object
-    req.session.destroy(function(err) {
+    req.session.destroy(function (err) {
       if (err) {
         return next(err);
       } else {

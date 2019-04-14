@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTable from 'react-table';
 import axios from 'axios';
 
-class DashboardMentors extends React.Component{
+class DashboardMentors extends React.Component {
 
 	render() {
 		var columns = []
@@ -12,20 +12,20 @@ class DashboardMentors extends React.Component{
 			data = currentOrg[1]
 			columns = [{
 				Header: "Mentors Name",
-				accessor: "firstName"
+				accessor: "name"
 			}]
 		}
-		return(
-			<div className = "container">
+		return (
+			<div className="container">
 				<ReactTable
-				defaultPageSize={10}
-				data = {data}
-				columns = {columns}
+					defaultPageSize={10}
+					data={data}
+					columns={columns}
 				/>
 			</div>
 		)
 	};
-		
+
 }
 
 
