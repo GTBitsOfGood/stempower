@@ -223,7 +223,7 @@ class UserForm extends React.Component {
     this.props.toggleRegister();
   }
 
-  setCredentials(org) {
+  setCredentials(org, mentor = "") {
     const { username, password, confirmPassword, email, userType } = this.state;
 
     var user = {
@@ -231,7 +231,8 @@ class UserForm extends React.Component {
       password: password,
       email: email,
       userType: userType,
-      organization: org
+      organization: org,
+      mentor: mentor
     }
 
     console.log(user)
@@ -264,6 +265,28 @@ class UserForm extends React.Component {
         .catch(e => console.log(e));
     }
 
+    if (userType == "parent") {
+      this.setCredentials(userTypeObject['organization'])
+    }
+    if (userType == "mentor") {
+      axios
+        .post("api/mentors", {
+          name: username,
+          email: email,
+          phoneNumber: userTypeObject['phoneNumber'],
+          university: userTypeObject['university'],
+          organization: userTypeObject['organization']
+        })
+        .then(res => {
+          axios.post("api/organizations/" + userTypeObject['organization'] + "/mentors",
+            {
+              mentor: res.data._id
+            }
+          ).then().catch(e => console.log(e));
+          this.setCredentials(userTypeObject['organization'], res.data._id);
+        })
+        .catch(e => console.log(e));
+    }
   }
 
   validateForm() {
@@ -288,6 +311,10 @@ class UserForm extends React.Component {
       alert("Please select a user type");
       return false;
     } else {
+      if (userTypeObject['organization'] == null) {
+        alert("Please specify choose org");
+        return false;
+      }
       if (userType == 'parent') {
 
       }

@@ -35,7 +35,8 @@ let MentorSchema = new Schema({
     required: false
   },
   organization: {
-    type: { type: mongoose.Schema.Types.ObjectId, ref: "Organization" },
+    type: Schema.ObjectId,
+    ref: 'Organization',
     required: false
   },
 });

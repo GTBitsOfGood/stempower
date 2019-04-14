@@ -30,7 +30,8 @@ let UserSchema = new Schema({
     required: true
   },
   mentor: {
-    type: { type: mongoose.Schema.Types.ObjectId, ref: "Mentor" },
+    type: Schema.ObjectId,
+    ref: 'Mentor',
     required: false
   }
 });
