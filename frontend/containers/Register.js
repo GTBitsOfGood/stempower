@@ -131,11 +131,19 @@ class UserForm extends React.Component {
             handleOrganizationSelected={(event) => this.handleUserTypeObjectChange(event, "organization")}
           >
           </OrganizationList>
+          <br />
           <input
             type="text"
             className="text-input"
             placeholder="Phone Number"
             onChange={evt => this.handleUserTypeObjectChange(evt, "phoneNumber")}
+            style={{ marginBottom: "10px" }}
+          />
+          <input
+            type="text"
+            className="text-input"
+            placeholder="University"
+            onChange={evt => this.handleUserTypeObjectChange(evt, "university")}
             style={{ marginBottom: "10px" }}
           />
         </div>
@@ -215,35 +223,34 @@ class UserForm extends React.Component {
     this.props.toggleRegister();
   }
 
-  setCredentials() {
+  setCredentials(org) {
     const { username, password, confirmPassword, email, userType } = this.state;
 
-    if (this.validateForm() == false) {
-      return;
+    var user = {
+      username: username,
+      password: password,
+      email: email,
+      userType: userType,
+      organization: org
     }
 
-    /**
-     * Because of the mapDispatchToProps function below, "setCredentials" is availble
-     * from the props of this component
-     */
-    this.setState(Object.assign({}, this.state, { isMentor: true }));
+    console.log(user)
     axios
-      .post("api/user", {
-        username: username,
-        password: password,
-        email: email,
-        userType: userType
-      })
+      .post("api/user", user)
       .then(res => {
         alert("Account Created!");
-        toggleRegister();
+        this.toggleRegister();
       })
-      .catch(e => alert(e.response.data));
+      .catch(e => console.log(e));
     // this.props.setCredentials({ username: username, password: password });
   }
 
   createUserTypeObj() {
     const { username, email, userType, userTypeObject } = this.state;
+
+    if (this.validateForm() == false) {
+      return;
+    }
 
     if (userType == "organization") {
       axios
@@ -252,9 +259,9 @@ class UserForm extends React.Component {
           address: userTypeObject['address']
         })
         .then(res => {
-          this.setCredentials();
+          this.setCredentials(res.data._id);
         })
-        .catch(e => alert(e.response.data));
+        .catch(e => console.log(e));
     }
 
   }
@@ -300,6 +307,7 @@ class UserForm extends React.Component {
     }
   }
 }
+
 
 class OrganizationList extends React.Component {
   constructor(props) {

@@ -28,7 +28,8 @@ router.post("/", (req, res) => {
       username: req.body.username,
       password: hash,
       email: req.body.email,
-      userType: req.body.userType
+      userType: req.body.userType,
+      organization: req.body.organization
     };
     User.find({ username: req.body.username })
       .exec()
@@ -47,8 +48,8 @@ router.post("/", (req, res) => {
             throw err;
           } else {
             console.log("User " + user._id + " registered");
+            console.log("with organization: " + user.organization + " registered");
             res.send(user._id);
-            return res.redirect("/");
           }
         });
       })
