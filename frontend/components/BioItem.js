@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+
 
 class BioItem extends React.Component {
   constructor(props) {
@@ -62,10 +62,4 @@ class BioItem extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-// 	return {
-//         bioInfo: state.bioInfo
-//     };
-// }
-
-export default BioItem; //connect(mapStateToProps)(BioItem);
+export default (BioItem);

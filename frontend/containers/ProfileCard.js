@@ -1,4 +1,3 @@
-
 import React from "react";
 import ProfilePanel from "./ProfilePanel.js";
 import axios from "axios";
@@ -12,8 +11,7 @@ class ProfileCard extends React.Component {
       isEditing: false,
       mentor: {
         bios: [],
-        firstName: "",
-        lastName: "",
+        name: "",
         university: "",
         email: "",
         phoneNumber: "",
@@ -82,7 +80,7 @@ class ProfileCard extends React.Component {
 
   render() {
     return (
-      <div style={{ marginBottom: "20px", marginTop: "20px" }}>
+      <div>
         <div
           id="user-profile"
           style={{
@@ -98,9 +96,8 @@ class ProfileCard extends React.Component {
               isEditing={this.state.isEditing}
               profile={this}
               mentor={{
-                "firstName": this.state.mentor.firstName,
-                "lastName": this.state.mentor.lastName,
-                "profilePictureURL": "http://lorempixel.com/500/500/people/",
+                "name": this.state.mentor.name,
+                "profilePictureURL": "profilePictureURL" in this.state.mentor ? this.state.mentor.profilePictureURL : "http://lorempixel.com/500/500/people/",
                 "bios": []
               }}
               onSave={this.handleSave}

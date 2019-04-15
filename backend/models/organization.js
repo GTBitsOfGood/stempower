@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-const Mentor = require('mongoose').model('Mentor');
 
 let OrganizationSchema = new Schema({
     name: {
@@ -8,19 +7,17 @@ let OrganizationSchema = new Schema({
         required: true
     },
     leaders: {
-        type: [{leader: String}],
-        required: true
+        type: [String],
+        required: false
     },
     address: {
         type: String,
         required: true
     },
-
     members: {
-        type: [{member: String}],
+        type: [String],
         required: false
     },
-
     mentors: {
         type: [{type: mongoose.Schema.Types.ObjectId, ref: "Mentor"}], required: false
     }

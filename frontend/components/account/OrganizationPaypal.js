@@ -29,7 +29,7 @@ class OrganizationPaypal extends React.Component{
             <h2 className="text-center">Payment</h2>
             <p> 
             </p>
-            <p><img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/PP_Acceptance_Marks_for_LogoCenter_266x142.png" width='170' /></p>
+            <p className="text-center"><img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/PP_Acceptance_Marks_for_LogoCenter_266x142.png" width='170' /></p>
             <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">Pay With PayPal &raquo;</a></p>
 
             <Modal show={this.state.show} onHide={this.handleClose}>
@@ -50,6 +50,5 @@ class OrganizationPaypal extends React.Component{
    )};
 
 }
-
 
 export default OrganizationPaypal;

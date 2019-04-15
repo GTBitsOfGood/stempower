@@ -1,61 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import logo from './../assets/images/stempower_logo-3.png';
+import axios from 'axios';
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogout() {
+    axios
+      .post("api/user/logout")
+      .then(res => {
+        this.setState({ logged_in: false });
+      })
+      .catch(e => console.log(e.response.data));
   }
 
   render() {
-    return (
-      <div className="nav-banner">
-        <div className="nav-item">
-          <Link className="nav-link" to="/">
-            Welcome Screen
-          </Link>
-        </div>
-        <div className="nav-item">
-          <Link to="/profile">Profile</Link>
-        </div>
-        <div className="nav-item">
-          <Link to="/account">Organization</Link>
-        </div>
-        <div className="nav-item">
-          <Link to="/dashboard">Dashboard</Link>
-        </div>
-      </div>
-    );
-  }
+      if (this.props.logged_in) {
+        return (
+            <div className="nav">
+                <a id="nav-logo" target="_blank" href="https://www.stempowerinc.org/"><img src={logo} /></a>
+                <ul>
+                    <li><a href="/account">Organization</a></li>
+                    {this.props.userType=="admin" ? <li><a href="/dashboard">Dashboard</a></li> : null}
+                    <li><a href="/" onClick={this.handleLogout}>Logout</a></li>
+                </ul>
+            </div>
+            );
+        } else {
+            return (
+                <div className="nav">
+                    <a id="nav-logo" target="_blank" href="https://www.stempowerinc.org/"><img src={logo} /></a>
+                </div>
+                );
+            }
 
-  // render() {
-  //     return (
-  //         <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-  //           <a className="navbar-brand" href="#">Top navbar</a>
-  //           <button   className="navbar-toggler"
-  //                     type="button"
-  //                     data-toggle="collapse"
-  //                     data-target="#navbarCollapse"
-  //                     aria-controls="navbarCollapse"
-  //                     aria-expanded="false"
-  //                     aria-label="Toggle navigation">
-  //             <span className="navbar-toggler-icon"></span>
-  //           </button>
-  //           <div className="collapse navbar-collapse" id="navbarCollapse">
-  //             <ul className="navbar-nav mr-auto">
-  //               <li className="nav-item active">
-  //                 <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-  //               </li>
-  //               <li className="nav-item">
-  //                 <a className="nav-link" href="#">Link</a>
-  //               </li>
-  //               <li className="nav-item">
-  //                 <a className="nav-link disabled" href="#">Disabled</a>
-  //               </li>
-  //             </ul>
-  //           </div>
-  //         </nav>
-  //     )
-  // }
+      }
+    
 }
 
 export default Navbar;

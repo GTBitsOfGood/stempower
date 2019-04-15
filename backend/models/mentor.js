@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
 let MentorSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
+  name: {
     type: String,
     required: true
   },
@@ -16,11 +12,11 @@ let MentorSchema = new Schema({
   },
   phoneNumber: {
     type: String,
-    required: true
+    required: false
   },
   university: {
     type: String,
-    required: true
+    required: false
   },
   major: {
     type: String,
@@ -39,9 +35,10 @@ let MentorSchema = new Schema({
     required: false
   },
   organization: {
-    type: String,
-    required: true
-  }
+    type: Schema.ObjectId,
+    ref: 'Organization',
+    required: false
+  },
 });
 
-module.exports = mongoose.model("Mentor", MentorSchema);
+module.exports = mongoose.model('Mentor', MentorSchema);

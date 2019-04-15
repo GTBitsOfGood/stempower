@@ -19,6 +19,7 @@ module.exports = {
             },
             { test: /\.js?$/, loader: 'babel-loader', exclude: /node_modules/ },
             { test: /\.s?css$/, loader: 'style-loader!css-loader!sass-loader' },
+            { test: /\.(gif|svg|jpg|png)$/, loader: "file-loader" }
         ],
     },
     resolve: {

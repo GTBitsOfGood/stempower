@@ -1,6 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
-import BioItem from "../components/BioItem.js";
+import React from 'react';
+import BioItem from '../components/BioItem.js'
+
 
 class BioContainer extends React.Component {
   render() {

@@ -14,8 +14,7 @@ class Profile extends React.Component {
       isEditing: false,
       mentor: {
         bios: [],
-        firstName: "",
-        lastName: "",
+        name: "",
         university: "",
         email: "",
         phoneNumber: "",
@@ -27,7 +26,7 @@ class Profile extends React.Component {
   //api call for mentor
   componentWillMount() {
     const id = this.props.match.params.id;
-    
+
     axios
       .get("/api/mentors/" + id)
       .then(({ data }) => {
@@ -46,8 +45,7 @@ class Profile extends React.Component {
                 bio: "I am a person, and I am capable of eating and sleeping. "
               }
             ],
-            firstName: "Dummy",
-            lastName: "Lname",
+            name: "Dummy Name",
             university: "GECH University",
             email: "gpburdell@gatech.edu",
             phoneNumber: "1234567",

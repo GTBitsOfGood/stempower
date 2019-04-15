@@ -1,8 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
-import { fetchMentor } from "../actions/mentorActions.js";
 import BioContainer from "./BioContainer";
-import EditableLabel from "../components/EditableLabel.js";
 
 class ProfilePanel extends React.Component {
   constructor(props) {
@@ -16,24 +13,24 @@ class ProfilePanel extends React.Component {
     const isCondensed = this.props.condensed;
     return (
       <div>
-        <div className="top">
+        <div className="card">
           {isCondensed ?
             (<div>
               <Avatar image={info.profilePictureURL} width={40} height={40} />
               <h3>
-                {info.firstName} {info.lastName}
+                {info.name}
               </h3>
-             </div>
+            </div>
             ) :
             (<div>
               <Avatar image={info.profilePictureURL} width={100} height={100} />
               <h2>
-                {info.firstName} {info.lastName}
+                {info.name}
               </h2>
-              </div>
-            ) 
+            </div>
+            )
           }
-          
+
           {isCondensed ? <div></div> : this.toggleView()}
           {/* <EditableLabel
             editing={false}
@@ -43,27 +40,19 @@ class ProfilePanel extends React.Component {
           /> */}
         </div>
 
-        {isCondensed ? 
-            (<br></br>) :
-        (<div className="bottom">
-          {/* <h3 style={{ marginBottom: 8 }}>Bios</h3> */}
-          
+        {isCondensed ?
+          (null) :
+          (<div className="bottom">
+            {/* <h3 style={{ marginBottom: 8 }}>Bios</h3> */}
+
             <BioContainer
               bioInfo={info.bios}
               isEditing={this.props.isEditing}
               profile={this.props.profile}
             />
-          
-        </div>)}
+
+          </div>)}
       </div>
-      // <div className="profile-about">
-      //     <label className="flex-item profile-name">{this.props.mentor.firstName} {this.props.mentor.lastName}</label>
-      //     <div className="display-flex">
-      //         <div className="flex-item">{this.props.mentor.university}</div>
-      //     </div>
-      //     <div className="flex-item">{this.props.mentor.email}</div>
-      //     <div className="flex-item">{this.props.mentor.phoneNumber}</div>
-      // </div>
     );
   }
 
