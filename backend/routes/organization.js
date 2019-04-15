@@ -2,9 +2,11 @@
 const express = require('express');;
 const bodyParser = require('body-parser');
 const router = express.Router();
+const nodemailer = require('nodemailer');
 
 // Local imports
 const Organization = require('mongoose').model('Organization');
+const Mentor = require('mongoose').model('Mentor');
 
 router.get('/test', (req, res) => {
     res.send('test successful');
@@ -56,6 +58,50 @@ router.delete('/:organization_id', (req, res) => {
             res.json({message: "Organization with id " + req.params.organization_id + " removed"});
         };
     })
+});
+
+router.post('/:organization_id/email', function (req, res) {
+    Organization.findById(req.params.organization_id).then(function(organization) {
+        if (organization.mentors == null) {
+            organization.mentors = [];
+        }
+        var mentors = organization.mentors;
+        for (var i = 0; i < mentors.length; i++) {
+            var m = mentors[i];
+            Mentor.findById(m._id).then(function(thisMentor) {
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail.com', 
+                    auth: {
+                        user: 'email',
+                        pass: 'password'
+                    }
+                });
+                var mailOptions = {
+                    from: 'Test',
+                    to: 'alex.kelso@gatech.edu',
+                    //thisMentor.email,
+                    subject: req.body.subject,
+                    text: req.body.content,
+                    attachments: [
+                        {
+                            filename: 'test file',
+                            path: 'https://imgur.com/to4pSUZ'
+                        }
+                    ]
+                };
+                transporter.sendMail(mailOptions, function (error, info) {
+                    console.log(info)
+                    if (error) {
+                        console.log(error);
+                    }
+                    console.log('Message %s sent: %s', info.messageId, info.response);
+                    res.send(info.responseCode)
+                });
+            });
+        }
+    }).catch(function () {
+        console.log("oh no")
+    });
 });
 
 //For all members in organization

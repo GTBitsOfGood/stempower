@@ -12,6 +12,7 @@ mongoose.connect(url);
 
 //include db models to register Mongoose schemas
 require('./backend/models/mentor');
+require('./backend/models/meeting');
 require('./backend/models/organization');
 require('./backend/models/user');
 require('./backend/models/document');
