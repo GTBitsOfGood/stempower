@@ -18,19 +18,19 @@ class ProfilePanel extends React.Component {
             (<div>
               <Avatar image={info.profilePictureURL} width={40} height={40} />
               <h3>
-                {info.firstName} {info.lastName}
+                {info.name}
               </h3>
-             </div>
+            </div>
             ) :
             (<div>
               <Avatar image={info.profilePictureURL} width={100} height={100} />
               <h2>
-                {info.firstName} {info.lastName}
+                {info.name}
               </h2>
-              </div>
-            ) 
+            </div>
+            )
           }
-          
+
           {isCondensed ? <div></div> : this.toggleView()}
           {/* <EditableLabel
             editing={false}
@@ -40,18 +40,18 @@ class ProfilePanel extends React.Component {
           /> */}
         </div>
 
-        {isCondensed ? 
-            (null) :
-        (<div className="bottom">
-          {/* <h3 style={{ marginBottom: 8 }}>Bios</h3> */}
-          
+        {isCondensed ?
+          (null) :
+          (<div className="bottom">
+            {/* <h3 style={{ marginBottom: 8 }}>Bios</h3> */}
+
             <BioContainer
               bioInfo={info.bios}
               isEditing={this.props.isEditing}
               profile={this.props.profile}
             />
-          
-        </div>)}
+
+          </div>)}
       </div>
     );
   }

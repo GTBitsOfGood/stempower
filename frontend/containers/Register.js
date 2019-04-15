@@ -1,4 +1,5 @@
 import React from "react";
+import { Router } from 'react-router';
 import ReactRadioButtonGroup from "react-radio-button-group";
 import axios from "axios";
 
@@ -31,7 +32,8 @@ class UserForm extends React.Component {
       password: "",
       confirmPassword: "",
       email: "",
-      userType: ""
+      userType: "",
+      userTypeObject: {}
     };
 
     /* Bind the class function to the component object to that this
@@ -42,66 +44,141 @@ class UserForm extends React.Component {
     );
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleRBGSelect = this.handleRBGSelect.bind(this);
-    this.setCredentials = this.setCredentials.bind(this);
+    this.createUserTypeObj = this.createUserTypeObj.bind(this);
     this.toggleRegister = this.toggleRegister.bind(this);
+    this.handleUserTypeObjectChange = this.handleUserTypeObjectChange.bind(this);
   }
 
   render() {
     return (
       <div className="vertical-container-centered">
-          <h1>
-            Register an <span className="primary-color">Account</span>
-          </h1>
-          <input
-            type="text"
-            className="text-input"
-            placeholder="username"
-            onChange={this.handleUsernameChange}
-            style={{ marginBottom: "10px" }}
+        <h1>
+          Register an <span className="primary-color">Account</span>
+        </h1>
+        <input
+          type="text"
+          className="text-input"
+          placeholder="username"
+          onChange={this.handleUsernameChange}
+          style={{ marginBottom: "10px" }}
+        />
+        <input
+          type="text"
+          className="text-input"
+          placeholder="email"
+          onChange={e => this.setState({ email: e.target.value })}
+          style={{ marginBottom: "10px" }}
+        />
+        <input
+          type="password"
+          className="text-input"
+          placeholder="password"
+          onChange={this.handlePasswordChange}
+          style={{ marginBottom: "10px" }}
+        />
+        <input
+          type="password"
+          className="text-input"
+          placeholder="confirm password"
+          onChange={this.handleConfirmPasswordChange}
+          style={{ marginBottom: "10px" }}
+        />
+        <div style={{ width: "100%" }}><h5> I am a: </h5></div>
+        <div style={{ width: "100%" }}>
+          <ReactRadioButtonGroup
+            name="userTypeRBG"
+            options={[
+              { value: "parent", label: "Parent" },
+              { value: "mentor", label: "Mentor" },
+              { value: "organization", label: "Organization Leader" }
+            ]}
+            isStateful={true}
+            onChange={val => this.handleRBGSelect(val)}
+            labelClassName="radio-label"
           />
-          <input
-            type="text"
-            className="text-input"
-            placeholder="email"
-            onChange={e => this.setState({ email: e.target.value })}
-            style={{ marginBottom: "10px" }}
-          />
-          <input
-            type="password"
-            className="text-input"
-            placeholder="password"
-            onChange={this.handlePasswordChange}
-            style={{ marginBottom: "10px" }}
-          />
-          <input
-            type="password"
-            className="text-input"
-            placeholder="confirm password"
-            onChange={this.handleConfirmPasswordChange}
-            style={{ marginBottom: "10px" }}
-          />
-          <div style={{ width: "100%" }}><h5> I am a: </h5></div>
-          <div style={{ width: "100%" }}>
-            <ReactRadioButtonGroup
-              name="userTypeRBG"
-              options={[
-                { value: "parent", label: "Parent" },
-                { value: "mentor", label: "Mentor" },
-                { value: "organization", label: "Organization Leader" }
-              ]}
-              isStateful={true}
-              onChange={val => this.handleRBGSelect(val)}
-              labelClassName="radio-label"
-            />
-          </div>
-          <p>
-            Do you need to{" "}
-            <a href="javascript:void(0);" onClick={this.toggleRegister}>
-              login?
+          {this.renderAdditionalInfo()}
+        </div>
+        <p>
+          Do you need to{" "}
+          <a href="javascript:void(0);" onClick={this.toggleRegister}>
+            login?
             </a>
-          </p>
-          <button onClick={this.setCredentials}>Register</button>
+        </p>
+        <button onClick={this.createUserTypeObj}>Register</button>
       </div>
+    );
+  }
+
+  renderAdditionalInfo() {
+    var result = null;
+    if (this.state.userType == "parent") {
+      result = (
+        <div>
+          Select Organization:
+          <OrganizationList
+            handleOrganizationSelected={(event) => this.handleUserTypeObjectChange(event, "organization")}
+          >
+          </OrganizationList>
+        </div>
+      );
+    }
+
+    if (this.state.userType == "mentor") {
+      result = (
+        <div>
+          Select Organization:
+          <OrganizationList
+            handleOrganizationSelected={(event) => this.handleUserTypeObjectChange(event, "organization")}
+          >
+          </OrganizationList>
+          <br />
+          <input
+            type="text"
+            className="text-input"
+            placeholder="Phone Number"
+            onChange={evt => this.handleUserTypeObjectChange(evt, "phoneNumber")}
+            style={{ marginBottom: "10px" }}
+          />
+          <input
+            type="text"
+            className="text-input"
+            placeholder="University"
+            onChange={evt => this.handleUserTypeObjectChange(evt, "university")}
+            style={{ marginBottom: "10px" }}
+          />
+        </div>
+      );
+    }
+
+    if (this.state.userType == "organization") {
+      result = (
+        <div>
+          <input
+            type="text"
+            className="text-input"
+            placeholder="Organization Name"
+            onChange={evt => this.handleUserTypeObjectChange(evt, "name")}
+            style={{ marginBottom: "10px" }}
+          />
+          <input
+            type="text"
+            className="text-input"
+            placeholder="Address"
+            onChange={evt => this.handleUserTypeObjectChange(evt, "address")}
+            style={{ marginBottom: "10px" }}
+          />
+        </div>
+      );
+    }
+
+    return result;
+  }
+
+  handleUserTypeObjectChange(event, field) {
+    var newUserObject = this.state.userTypeObject
+    newUserObject[field] = event.target.value
+    this.setState(
+      Object.assign({}, this.state, { userTypeObject: newUserObject })
     );
   }
 
@@ -146,42 +223,154 @@ class UserForm extends React.Component {
     this.props.toggleRegister();
   }
 
-  setCredentials() {
+  setCredentials(org, mentor = "") {
     const { username, password, confirmPassword, email, userType } = this.state;
 
-    if (username.length === 0) {
-      alert("Please specify a valid username");
-      return;
+    var user = {
+      username: username,
+      password: password,
+      email: email,
+      userType: userType,
+      organization: org,
+      mentor: mentor
     }
 
-    if (password.length < 6) {
-      alert("Please specify a valid password");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
-
-    /**
-     * Because of the mapDispatchToProps function below, "setCredentials" is availble
-     * from the props of this component
-     */
-    this.setState(Object.assign({}, this.state, { isMentor: true }));
+    console.log(user)
     axios
-      .post("api/user", {
-        username: username,
-        password: password,
-        email: email,
-        userType: userType
-      })
+      .post("api/user", user)
       .then(res => {
         alert("Account Created!");
-        toggleRegister();
+        this.toggleRegister();
       })
-      .catch(e => alert(e.response.data));
+      .catch(e => console.log(e));
     // this.props.setCredentials({ username: username, password: password });
+  }
+
+  createUserTypeObj() {
+    const { username, email, userType, userTypeObject } = this.state;
+
+    if (this.validateForm() == false) {
+      return;
+    }
+
+    if (userType == "organization") {
+      axios
+        .post("api/organizations", {
+          name: userTypeObject['name'],
+          address: userTypeObject['address']
+        })
+        .then(res => {
+          this.setCredentials(res.data._id);
+        })
+        .catch(e => console.log(e));
+    }
+
+    if (userType == "parent") {
+      this.setCredentials(userTypeObject['organization'])
+    }
+    if (userType == "mentor") {
+      axios
+        .post("api/mentors", {
+          name: username,
+          email: email,
+          phoneNumber: userTypeObject['phoneNumber'],
+          university: userTypeObject['university'],
+          organization: userTypeObject['organization']
+        })
+        .then(res => {
+          axios.post("api/organizations/" + userTypeObject['organization'] + "/mentors",
+            {
+              mentor: res.data._id
+            }
+          ).then().catch(e => console.log(e));
+          this.setCredentials(userTypeObject['organization'], res.data._id);
+        })
+        .catch(e => console.log(e));
+    }
+  }
+
+  validateForm() {
+    const { username, password, confirmPassword, email, userType, userTypeObject } = this.state;
+    if (username.length === 0) {
+      alert("Please specify a valid username");
+      return false;
+    }
+    if (password.length < 6) {
+      alert("Password is too short");
+      return false;
+    }
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return false;
+    }
+    if (email.length === 0) {
+      alert("Please specify a valid email address");
+      return false;
+    }
+    if (userType == null) {
+      alert("Please select a user type");
+      return false;
+    } else {
+      if (userTypeObject['organization'] == null) {
+        alert("Please specify choose org");
+        return false;
+      }
+      if (userType == 'parent') {
+
+      }
+      if (userType == 'organization') {
+        if (userTypeObject['name'] == null) {
+          alert("Please specify organization name");
+          return false;
+        }
+        if (userTypeObject['address'] == null) {
+          alert("Please specify organization address");
+          return false;
+        }
+      }
+      if (userType == 'mentor') {
+
+      }
+    }
+  }
+}
+
+
+class OrganizationList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      organizations: []
+    }
+  }
+
+  componentWillMount() {
+    axios
+      .get("api/organizations/")
+      .then(res => {
+        var data = res.data;
+        var organizations = [];
+        for (var i = 0; i < data.length; i++) {
+          var d = data[i];
+          organizations.push({ id: d._id, name: d.name });
+        }
+        this.setState({ organizations: organizations });
+      })
+      .catch(e => console.log(e));
+  }
+
+  render() {
+    return (
+      <div>
+        <select onChange={this.props.handleOrganizationSelected}>
+          {this.state.organizations.map((item, index) => (
+            <option key={index} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
   }
 }
 
@@ -249,6 +438,6 @@ class RegisterMentor extends React.Component {
     );
   }
 }
-class RegisterOrganization extends React.Component {}
+class RegisterOrganization extends React.Component { }
 
 export default Register;

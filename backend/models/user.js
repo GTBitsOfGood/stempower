@@ -11,7 +11,8 @@ let UserSchema = new Schema({
 
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
 
   password: {
@@ -24,11 +25,13 @@ let UserSchema = new Schema({
     required: true
   },
   organization: {
-    type: { type: mongoose.Schema.Types.ObjectId, ref: "Organization" },
-    required: false
+    type: Schema.ObjectId,
+    ref: 'Organization',
+    required: true
   },
   mentor: {
-    type: { type: mongoose.Schema.Types.ObjectId, ref: "Mentor" },
+    type: Schema.ObjectId,
+    ref: 'Mentor',
     required: false
   }
 });

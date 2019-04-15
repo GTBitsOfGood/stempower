@@ -37,7 +37,7 @@ class Account extends React.Component {
             var mentors = [];
             for (var i = 0; i < data.length; i++) {
               var d = data[i];
-              mentors.push({ name: d.firstName + " " + d.lastName, id: d._id });
+              mentors.push({ name: d.name, id: d._id });
             }
             this.setState({ mentors: mentors });
           });

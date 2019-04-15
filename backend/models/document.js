@@ -4,27 +4,16 @@ let Schema = mongoose.Schema;
 let DocumentSchema = new Schema({
 	fileName: {
 		type: String,
-		required: false
+		required: true
 	},
-
-	fileType: {
+	owner: {
 		type: String,
-		required: false
+		required: true
 	},
-
-	orgId: {
+	documentType: {
 		type: String,
-		required: false
-	},
-
-	member: {
-		type: String,
-		rquired: false
-	},
-
-	mentorId: {
-		type: String,
-		required: false
+		enum: ["org_feedback", "member_feedback", "member_waiver", "org_app"],
+		required: true
 	}
 
 });

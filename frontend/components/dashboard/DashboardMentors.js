@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTable from 'react-table';
 import axios from 'axios';
 
-class DashboardMentors extends React.Component{
+class DashboardMentors extends React.Component {
 
 	render() {
 		var columns = []
@@ -29,7 +29,6 @@ class DashboardMentors extends React.Component{
 					original.organization = "";
 					this.props.mentors[this.props.mentors.indexOf(this.props.mentors.find((mentor) => mentor._id == original._id))].organization = "";
 					axios.put('/api/organizations/' + currentOrg._id, currentOrg)
-					console.log(original)
 					axios.put('/api/mentors/' + original._id, original)
 					this.props.allMentors(this.props.mentors);
 				}}>
@@ -47,7 +46,7 @@ class DashboardMentors extends React.Component{
 			</div>
 		)
 	};
-		
+
 }
 
 

@@ -7,7 +7,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: "",
       register: false,
       logged_in: false
@@ -34,30 +34,32 @@ class Login extends React.Component {
     if (!this.state.register && !this.state.logged_in) {
       return (
         <div className="vertical-container-centered full-center">
-          <h1>
-            Welcome to <span className="primary-color">Stempower</span>
-          </h1>
-          <input
-            style={{marginBottom: "10px" }}
-            type="text"
-            className="text-input"
-            placeholder="username"
-            onChange={this.handleUsernameChange}
-            />
-          <input
-            type="password"
-            className="text-input"
-            placeholder="password"
-            onChange={this.handlePasswordChange}
-            />
-          <div style={{ marginLeft: "10px" }}>
-            Do you need to{" "}
-            <a href="javascript:void(0);" onClick={this.toggleRegister}>
-              register?
-            </a>
-          </div>
-          <br />
-          <button onClick={this.setCredentials}>Login</button>
+            <h1>
+              Welcome to <span className="primary-color">Stempower</span>
+            </h1>
+            <div style={{ width: "100%", marginBottom: "10px" }}>
+              <input
+                type="text"
+                className="text-input"
+                placeholder="email"
+                onChange={this.handleUsernameChange}
+              />
+            </div>
+            <div style={{ width: "100%" }}>
+              <input
+                type="password"
+                className="text-input"
+                placeholder="password"
+                onChange={this.handlePasswordChange}
+              />
+            </div>
+            <div style={{ marginLeft: "10px" }}>
+              Do you need to{" "}
+              <a href="javascript:void(0);" onClick={this.toggleRegister}>
+                register?
+              </a>
+            </div>
+            <button onClick={this.setCredentials}>Login</button>
         </div>
       );
     } else if (this.state.logged_in) {
@@ -99,9 +101,7 @@ class Login extends React.Component {
      * which then gets passed to the input's value and causes the input to
      * be re-rendered.
      */
-    this.setState(
-      Object.assign({}, this.state, { username: event.target.value })
-    );
+    this.setState(Object.assign({}, this.state, { email: event.target.value }));
   }
 
   handlePasswordChange(event) {
@@ -122,9 +122,9 @@ class Login extends React.Component {
   }
 
   setCredentials() {
-    const { username, password } = this.state;
-    if (username.length === 0) {
-      alert("Please specify a valid username");
+    const { email, password } = this.state;
+    if (email.length === 0) {
+      alert("Please specify a valid email");
       return;
     }
 
@@ -135,7 +135,7 @@ class Login extends React.Component {
     
     axios
       .post("api/user/login", {
-        username: username,
+        email: email,
         password: password
       })
       .then(res => {

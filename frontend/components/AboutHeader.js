@@ -6,7 +6,7 @@ class AboutHeader extends React.Component {
     render() {
         return (
             <div className="profile-about">
-                <label className="flex-item profile-name">{this.props.mentor.firstName} {this.props.mentor.lastName}</label>
+                <label className="flex-item profile-name">{this.props.mentor.name}</label>
                 <div className="display-flex">
                     <div className="flex-item">{this.props.mentor.university}</div>
                 </div>
