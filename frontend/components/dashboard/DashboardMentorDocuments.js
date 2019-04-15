@@ -5,7 +5,6 @@ class DashboardMentorDocuments extends React.Component{
 
 	render() {
 
-		//Documents can be searched by organizatio or mentor 
 		var columns = []
 		var data = []
 		if (this.props.currentOrganization != null) {
@@ -14,25 +13,22 @@ class DashboardMentorDocuments extends React.Component{
 			columns = [{
 				Header: "Mentor Name",
 				Cell: ({original}) => React.createElement("a", {href: "/profile/" + original._id}, original.firstName + " " + original.lastName)
-			}, {
-				Header: "Pre Survey",
-				Cell: ({original}) => {
-					if (original.presurvey) {
-						return(<button onClick={function() {console.log(original._id)}}>{original.presurvey.fileName}</button>)
-					} else {
-						return(<div>None</div>)
-					}
+			}] 
+			for (let documentType in this.props.documentTypes) {
+				documentType = this.props.documentTypes[documentType]
+				if (documentType.ownerType == "mentor") {
+					columns.push({
+						Header: documentType.type,
+						Cell: ({original}) => {
+							if (original[documentType.type]) {
+								return(<a href={original[documentType.type]}>{documentType.type}</a>)
+							} else {
+								return(<div>None</div>)
+							}
+						}
+					})
 				}
-			}, {
-				Header: "Organization Feedback",
-				Cell: ({original}) => {
-					if (original.organizationfeedback) {
-						return(<button onClick={function() {console.log(original._id)}}>{original.organizationfeedback.fileName}</button>)
-					} else {
-						return(<div>None</div>)
-					}
-				}
-			}]
+			}
 		}
 		return(
 			<div className = "col">

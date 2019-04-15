@@ -8,6 +8,7 @@ import DashboardOrganizations from "./../components/dashboard/DashboardOrganizat
 import DashboardMembers from "./../components/dashboard/DashboardMembers";
 import DashboardMentors from "./../components/dashboard/DashboardMentors";
 import DashboardLeaders from "./../components/dashboard/DashboardLeaders";
+import DashboardModifyDocumentTypes from "./../components/dashboard/DashboardModifyDocumentTypes";
 import DashboardMentorDocuments from "./../components/dashboard/DashboardMentorDocuments";
 import DashboardMemberDocuments from "./../components/dashboard/DashboardMemberDocuments";
 import DashboardLeaderDocuments from "./../components/dashboard/DashboardLeaderDocuments";
@@ -19,7 +20,7 @@ import UploadDocument from "./../components/UploadDocument";
 class Dashboard extends React.Component{
     constructor(props){
         super(props);
-        this.state = {organizations: null, currentOrganization: null, allMentors: null, currentTab: "organizationView", currentMemberType: "mentor"}
+        this.state = {organizations: null, currentOrganization: null, allMentors: null, documentTypes: [], currentTab: "organizationView", currentMemberType: "mentor"}
     }
 
     //Build a plcaeholder for many things, for the things other people would have done. 
@@ -56,37 +57,75 @@ class Dashboard extends React.Component{
                 let mentors = [];
                 for (let i = 0; i < currentOrg.mentors.length; i++) {
                     let mentorStri = '/api/mentors/' + currentOrg.mentors[i];
-                    let documentStri = '/api/documents/documentTests/mentors/' + currentOrg.mentors[i];
-                    axios.all([axios.get(mentorStri), axios.get(documentStri)]).then(axios.spread((mentorInfo, documentInfo) => {
-                        for (let x = 0; x < documentInfo.data.length; x++) {
-                            mentorInfo.data[documentInfo.data[x].fileType] = documentInfo.data[x];
-                        }
-                        mentors.push(mentorInfo.data)
-                    }));
+                    axios.get(mentorStri).then((mentor) => {
+                        mentor = mentor.data
+                        mentor.organization = currentOrg.name
+                        axios.get('/api/documents/get_documents_test/' + mentor._id).then((docs) => {
+                            docs = docs.data
+                            for (let doc in docs) {
+                                axios.get('/api/documents/get_doc_by_id/' + docs[doc]._id).then((file) => {
+                                    mentor[docs[doc].documentType] = file.data
+                                })
+                            }
+                        })
+                        mentors.push(mentor)
+                    });
                 }
 
-                currentOrg.mentors = mentors
-
-                let memberStri = '/api/documents/documentTests/organizations/' + currentOrg._id;
-                axios.get(memberStri).then((memberDocuments) => {
-                    for (let i = 0; i < memberDocuments.data.length; i++) {
-                        let currentMember = currentOrg.members.find((element) => element.member == memberDocuments.data[i].member);
-                        if (currentMember) {
-                            currentMember[memberDocuments.data[i].fileType] = memberDocuments.data[i]
+                currentOrg.mentors = mentors;
+                for (let member in currentOrg.members) {
+                    axios.get('api/documents/get_documents_test/' + currentOrg.members[member]._id).then((docs) => {
+                        docs = docs.data
+                        for (let doc in docs) {
+                            axios.get('/api/documents/get_doc_by_id/' + docs[doc]._id).then((file) => {
+                                currentOrg.members[member][docs[doc].documentType] = file.data
+                            })
                         }
-                    }
-                })
+                    })
+                }
+
+                for (let leader in currentOrg.leaders) {
+                    axios.get('api/documents/get_documents_test/' + currentOrg.leaders[leader]._id).then((docs) => {
+                        docs = docs.data
+                        for (let doc in docs) {
+                            axios.get('/api/documents/get_doc_by_id/' + docs[doc]._id).then((file) => {
+                                currentOrg.leaders[leader][docs[doc].documentType] = file.data
+                            })
+                        }
+                    })
+                }
+
                 organizationsList.push(currentOrg);
             }
             this.setState({organizations: organizationsList});
             this.setState({currentOrganization: organizationsList[0]});
         });
         axios.get('/api/mentors').then((mentors) => {
-            this.setState({allMentors: mentors.data});
+            mentors = mentors.data
+            for (let mentor in mentors) {
+                if (mentors[mentor].organization) {
+                    axios.get('/api/organizations/' + mentors[mentor].organization).then((org) => {
+                        mentors[mentor].organization = org.data.name
+                    })
+                }
+                axios.get('/api/documents/get_documents_test/' + mentors[mentor]._id).then((docs) => {
+                    docs = docs.data
+                    for (let doc in docs) {
+                        axios.get('/api/documents/get_doc_by_id/' + docs[doc]._id).then((file) => {
+                            mentors[mentor][docs[doc].documentType] = file.data
+                        })
+                    }
+                })
+            }
+            this.setState({allMentors: mentors});
+        })
+        axios.get('/api/documentTypes').then((documentTypes) => {
+            this.setState({documentTypes: documentTypes.data})
         })
     }
 
     render() {
+
         if (this.state.currentTab == "organizationView") {
             let table = <DashboardMentors currentOrganization = {this.state.currentOrganization} mentors = {this.state.allMentors} allMentors={mentors => this.setState({allMentors: mentors})}/>
             if (this.state.currentMemberType == "leader") {
@@ -96,6 +135,7 @@ class Dashboard extends React.Component{
             }
             return(
                 <div className = "container-fluid">
+                    <UploadDocument/>
                     <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
                     <DashboardMemberType currentMemberType = {memberType => this.setState({currentMemberType: memberType})}/> 
@@ -107,11 +147,11 @@ class Dashboard extends React.Component{
                 </div>
             )
         } else if (this.state.currentTab == "documentView") {
-            let table = <DashboardMentorDocuments currentOrganization = {this.state.currentOrganization} mentors = {this.state.allMentors}/>
+            let table = <DashboardMentorDocuments documentTypes={this.state.documentTypes} currentOrganization = {this.state.currentOrganization} mentors = {this.state.allMentors}/>
             if (this.state.currentMemberType == "leader") {
-                table = <DashboardLeaderDocuments currentOrganization = {this.state.currentOrganization}/>
+                table = <DashboardLeaderDocuments documentTypes={this.state.documentTypes} currentOrganization = {this.state.currentOrganization}/>
             } else if (this.state.currentMemberType == "member") {
-                table = <DashboardMemberDocuments currentOrganization = {this.state.currentOrganization}/>
+                table = <DashboardMemberDocuments documentTypes={this.state.documentTypes} currentOrganization = {this.state.currentOrganization}/>
             }
             return(
                 <div className = "container-fluid">
@@ -123,6 +163,7 @@ class Dashboard extends React.Component{
                                                 curOrganization={org => this.setState({currentOrganization: org})} allMentors={mentors => this.setState({allMentors: mentors})}/> 
                         {table}                        
                     </div>
+                    <DashboardModifyDocumentTypes currentDocumentTypes={this.state.documentTypes} documentTypes={types => this.setState({documentTypes: types})}/>
                 </div>
             )
         } else if (this.state.currentTab == "mentorView") {
@@ -131,7 +172,7 @@ class Dashboard extends React.Component{
                     <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
                     <div className = "row">
-                        <DashboardAllMentors mentors={this.state.allMentors} organizations={this.state.organizations} currentOrganization={this.state.currentOrganization}
+                        <DashboardAllMentors mentors={this.state.allMentors} organizations={this.state.organizations} currentOrganization={this.state.currentOrganization} documentTypes={this.state.documentTypes}
                                              allOrgs={orgs => this.setState({organizations: orgs})} curOrganization={org => this.setState({currentOrganization: org})} allMentors={mentors => this.setState({allMentors: mentors})}/>
                     </div>
                 </div>

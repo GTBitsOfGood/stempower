@@ -18,7 +18,7 @@ class DashboardMembers extends React.Component{
 				Header: "",
 				Cell: ({original}) => ( <button onClick={() => {
 					currentOrg.members.splice(currentOrg.members.indexOf(original), 1)
-					axios.delete('/api/organizations/' + currentOrg._id + "/leaders/" + original._id)
+					axios.delete('/api/organizations/' + currentOrg._id + "/members/" + original._id)
 					this.forceUpdate();
 				}}>
 				X

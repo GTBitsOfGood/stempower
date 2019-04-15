@@ -16,6 +16,7 @@ require('./backend/models/mentor');
 require('./backend/models/meeting');
 require('./backend/models/organization');
 require('./backend/models/user');
+require('./backend/models/documentType');
 require('./backend/models/document');
 
 const api = require("./backend/routes");

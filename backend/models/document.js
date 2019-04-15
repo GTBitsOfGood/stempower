@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
+const documentTypes = require('mongoose').model('DocumentType')
 
 let DocumentSchema = new Schema({
 	fileName: {
@@ -12,7 +13,6 @@ let DocumentSchema = new Schema({
 	},
 	documentType: {
 		type: String,
-		enum: ["org_feedback", "member_feedback", "member_waiver", "org_app"],
 		required: true
 	}
 

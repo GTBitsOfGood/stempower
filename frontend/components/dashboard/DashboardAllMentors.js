@@ -27,14 +27,16 @@ class DashboardAllMentors extends React.Component{
 						}
 					})	
 				}
-				mentor.organization = orgs[x].name
-				axios.put('/api/mentors/' + mentor._id, mentor)
-				orgs[x].mentors.push(mentor)
+				mentor.organization = orgs[x]._id
+				axios.put('/api/mentors/' + mentor._id, mentor).then(() => {
+					mentor.organization = orgs[x].name ;
+					orgs[x].mentors.push(mentor)
+					self.props.allOrgs(orgs)
+					if (self.props.currentOrganization._id == orgs[x]._id) {
+						self.props.curOrganization(orgs[x])
+					}	
+				})
 				axios.post('/api/organizations/' + orgs[x]._id + '/mentors', {mentor: mentor._id})
-				self.props.allOrgs(orgs)
-				if (self.props.currentOrganization._id == orgs[x]._id) {
-					self.props.curOrganization(orgs[x])
-				}
 				document.getElementById("reassignArray").innerHTML = ""
 			}
 			let t = document.createTextNode(orgs[x].name);
@@ -55,27 +57,9 @@ class DashboardAllMentors extends React.Component{
 				Header: "Mentor Name",
 				Cell: ({original}) => React.createElement("a", {href: "/profile/" + original._id}, original.firstName + " " + original.lastName)
 			}, {
-				Header: "Pre Survey",
-				Cell: ({original}) => {
-					if (original.presurvey) {
-						return(<button onClick={function() {console.log(original._id)}}>{original.presurvey.fileName}</button>)
-					} else {
-						return(<div>None</div>)
-					}
-				}
-			}, {
-				Header: "Organization Feedback",
-				Cell: ({original}) => {
-					if (original.organizationfeedback) {
-						return(<button onClick={function() {console.log(original._id)}}>{original.organizationfeedback.fileName}</button>)
-					} else {
-						return(<div>None</div>)
-					}
-				}
-			}, {
 				Header: "Organization",
 				Cell: ({original}) => {
-					if (original.organization) {
+					if (original.organization != "") {
 						return(<div>{original.organization}</div>)
 					} else {
 						return(<div>None</div>)
@@ -129,6 +113,24 @@ class DashboardAllMentors extends React.Component{
 				X
 				</button> )
 			}]
+
+			let index = 1;
+			for (let documentType in this.props.documentTypes) {
+				documentType = this.props.documentTypes[documentType]
+				if (documentType.ownerType == "mentor") {
+					columns.splice(index, 0, {
+						Header: documentType.type,
+						Cell: ({original}) => {
+							if (original[documentType.type]) {
+								return(<a href={original[documentType.type]}>{documentType.type}</a>)
+							} else {
+								return(<div>None</div>)
+							}
+						}
+					})
+					index++;
+				}
+			}
 		}
 		return(
 			<div className = "col">

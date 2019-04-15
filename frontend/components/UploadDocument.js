@@ -14,7 +14,7 @@ class UploadDocument extends React.Component {
     			for (var i = 0; i < listOfFiles.files.length; i++) {
     				var formData = new FormData();
 	                var file = listOfFiles.files[i];
-	                formData.append("image", file);
+	                formData.append("file", file);
 	                axios.post('/api/documents', formData, { headers: {'Content-Type': 'multipart/form-data' }
     				});
                 }

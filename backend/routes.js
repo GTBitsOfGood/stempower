@@ -8,6 +8,7 @@ const user = require('./routes/user');
 const mentor = require('./routes/mentor');
 const meeting = require('./routes/meeting');
 const organization = require('./routes/organization');
+const documentType = require('./routes/documentType');
 const doc = require('./routes/document');
 const upload = require('./routes/upload');
 const files = require('./routes/files');
@@ -20,6 +21,7 @@ router.use('/user', user)
 router.use('/mentors', mentor);
 router.use('/meetings', meeting);
 router.use('/organizations', organization);
+router.use('/documentTypes', documentType);
 router.use('/documents', doc);
 router.use('/files', files);
 router.use('/upload', upload);
