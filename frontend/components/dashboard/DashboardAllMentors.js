@@ -59,7 +59,7 @@ class DashboardAllMentors extends React.Component{
 			}, {
 				Header: "Organization",
 				Cell: ({original}) => {
-					if (original.organization != "") {
+					if (original.organization) {
 						return(<div>{original.organization}</div>)
 					} else {
 						return(<div>None</div>)

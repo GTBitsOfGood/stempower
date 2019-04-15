@@ -14,7 +14,7 @@ import DashboardMemberDocuments from "./../components/dashboard/DashboardMemberD
 import DashboardLeaderDocuments from "./../components/dashboard/DashboardLeaderDocuments";
 import DashboardAllMentors from "./../components/dashboard/DashboardAllMentors";
 import DashboardTests from "./../components/dashboard/DashboardTests";
-import UploadDocument from "./../components/UploadDocument";
+//import UploadDocument from "./../components/UploadDocument";
 
 
 class Dashboard extends React.Component{
@@ -74,7 +74,7 @@ class Dashboard extends React.Component{
 
                 currentOrg.mentors = mentors;
                 for (let member in currentOrg.members) {
-                    axios.get('api/documents/get_documents_test/' + currentOrg.members[member]._id).then((docs) => {
+                    axios.get('/api/documents/get_documents_test/' + currentOrg.members[member]._id).then((docs) => {
                         docs = docs.data
                         for (let doc in docs) {
                             axios.get('/api/documents/get_doc_by_id/' + docs[doc]._id).then((file) => {
@@ -85,7 +85,7 @@ class Dashboard extends React.Component{
                 }
 
                 for (let leader in currentOrg.leaders) {
-                    axios.get('api/documents/get_documents_test/' + currentOrg.leaders[leader]._id).then((docs) => {
+                    axios.get('/api/documents/get_documents_test/' + currentOrg.leaders[leader]._id).then((docs) => {
                         docs = docs.data
                         for (let doc in docs) {
                             axios.get('/api/documents/get_doc_by_id/' + docs[doc]._id).then((file) => {
@@ -135,8 +135,6 @@ class Dashboard extends React.Component{
             }
             return(
                 <div className = "container-fluid">
-                    <UploadDocument/>
-                    <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
                     <DashboardMemberType currentMemberType = {memberType => this.setState({currentMemberType: memberType})}/> 
                     <div className = "row">
@@ -155,7 +153,6 @@ class Dashboard extends React.Component{
             }
             return(
                 <div className = "container-fluid">
-                    <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
                     <DashboardMemberType currentMemberType = {memberType => this.setState({currentMemberType: memberType})}/> 
                     <div className = "row">
@@ -169,7 +166,6 @@ class Dashboard extends React.Component{
         } else if (this.state.currentTab == "mentorView") {
             return(
                 <div className = "container-fluid">
-                    <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
                     <div className = "row">
                         <DashboardAllMentors mentors={this.state.allMentors} organizations={this.state.organizations} currentOrganization={this.state.currentOrganization} documentTypes={this.state.documentTypes}
