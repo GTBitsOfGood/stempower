@@ -31,7 +31,7 @@ class OrganizationMentors extends React.Component{
   }
 
   handleCard(index) {
-    console.log(index);
+    console.log("INDEX: " + index);
     var id;
     id = this.props.mentors[index] != undefined ? this.props.mentors[index].id : this.props.mentors[0].id;
     this.setState({ show: true, id: id});
@@ -40,9 +40,10 @@ class OrganizationMentors extends React.Component{
   displayMentors() {
     var ret = [];
     for(var i = 0; i < this.props.mentors.length; i++) {
-       ret.push(<span key={i} onClick={() => this.handleCard(i)}>
-                {this.props.mentors[i] != undefined ? (
-                  <ProfileCard condensed={true} id={this.props.mentors[i].id} isEditable={false} />
+      const j = i;
+       ret.push(<span key={j} onClick={() => this.handleCard(j)}>
+                {this.props.mentors[j] != undefined ? (
+                  <ProfileCard condensed={true} id={this.props.mentors[j].id} isEditable={false} />
                 ) : (
                   console.log("undefined")
                 )}
@@ -55,19 +56,18 @@ class OrganizationMentors extends React.Component{
        return (
         <div>
             <h2 className="text-center">Mentors</h2>
-            <div className="scrollable">  
+            <div className="scrollable-box">  
               {this.displayMentors()}
             </div>
-            <br></br>
             <p className="text-center"><a className="btn btn-primary text-white" onClick={this.handleShow} role="button">Contact Your Mentors &raquo;</a></p>
 
-            <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal show={this.state.show}>
             <Modal.Header>
-              <Modal.Title>Mentor</Modal.Title>
+              <Modal.Title>Mentors</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {this.props.mentors[1] != undefined && this.props.mentors[0] != undefined ? (
-                  <ProfileCard id={this.state.id} isEditable={false} />
+                  <ProfileCard id={this.state.id} isEditable={this.props.mentorId == this.state.id} />
                 ) : (
                   console.log("undefined")
                 )}
@@ -75,9 +75,6 @@ class OrganizationMentors extends React.Component{
             <Modal.Footer>
               <Button onClick={this.handleClose}>
                 Close
-              </Button>
-              <Button onClick={this.handleClose}>
-                Contact
               </Button>
             </Modal.Footer>
           </Modal>

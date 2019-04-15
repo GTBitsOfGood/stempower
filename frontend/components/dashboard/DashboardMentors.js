@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTable from 'react-table';
 import axios from 'axios';
 
-class DashboardMentors extends React.Component{
+class DashboardMentors extends React.Component {
 
 	render() {
 		var columns = []
@@ -44,7 +44,7 @@ class DashboardMentors extends React.Component{
 			</div>
 		)
 	};
-		
+
 }
 
 

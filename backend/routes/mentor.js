@@ -136,7 +136,6 @@ router.post('/', (req,res) => {
         if (err) {
             res.send("" + err);
         } else {
-            console.log("Created Mentor");
             res.send(mentor);
         }
     });

@@ -23,7 +23,7 @@ class OrganizationMeetingHistory extends React.Component{
 
   componentWillMount() {
     axios
-      .get("/api/mentors/")
+      .get("/api/meetings/")
       .then(({ data }) => {
         this.setState({ meetings: data});
       })
@@ -87,8 +87,5 @@ class OrganizationMeetingHistory extends React.Component{
           </Modal>
         </div>
    )};
-
 }
-
-
 export default OrganizationMeetingHistory;
