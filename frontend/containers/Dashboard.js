@@ -3,19 +3,23 @@ import axios from 'axios';
 import 'react-table/react-table.css';
 
 import DashboardTabs from "./../components/dashboard/DashboardTabs";
+import DashboardMemberType from "./../components/dashboard/DashboardMemberType"
 import DashboardOrganizations from "./../components/dashboard/DashboardOrganizations";
 import DashboardMembers from "./../components/dashboard/DashboardMembers";
 import DashboardMentors from "./../components/dashboard/DashboardMentors";
+import DashboardLeaders from "./../components/dashboard/DashboardLeaders";
 import DashboardMentorDocuments from "./../components/dashboard/DashboardMentorDocuments";
 import DashboardMemberDocuments from "./../components/dashboard/DashboardMemberDocuments";
+import DashboardLeaderDocuments from "./../components/dashboard/DashboardLeaderDocuments";
 import DashboardAllMentors from "./../components/dashboard/DashboardAllMentors";
 import DashboardTests from "./../components/dashboard/DashboardTests";
 import UploadDocument from "./../components/UploadDocument";
 
+
 class Dashboard extends React.Component{
     constructor(props){
         super(props);
-        this.state = {organizations: null, currentOrganization: null, allMentors: null, currentTab: "organizationView"}
+        this.state = {organizations: null, currentOrganization: null, allMentors: null, currentTab: "organizationView", currentMemberType: "mentor"}
     }
 
     //Build a plcaeholder for many things, for the things other people would have done. 
@@ -25,10 +29,10 @@ class Dashboard extends React.Component{
     //https://www.w3schools.com/howto/howto_js_filter_dropdown.asp
     //https://www.w3schools.com/bootstrap/bootstrap_dropdowns.asp
 
-    //Need to be able to view all leaders in an organization
+//    //Need to be able to view all leaders in an organization
     //View and do updates for organizations
-    //Delete mentor from existance
-    //Build system for adding and deleting documents types  
+////    //Delete mentor from existance
+//    //Build system for adding and deleting documents types  
     //Change calendar link
 
 //    //Need to be able to delete organization as well
@@ -72,7 +76,6 @@ class Dashboard extends React.Component{
                         }
                     }
                 })
-
                 organizationsList.push(currentOrg);
             }
             this.setState({organizations: organizationsList});
@@ -85,28 +88,40 @@ class Dashboard extends React.Component{
 
     render() {
         if (this.state.currentTab == "organizationView") {
+            let table = <DashboardMentors currentOrganization = {this.state.currentOrganization} mentors = {this.state.allMentors} allMentors={mentors => this.setState({allMentors: mentors})}/>
+            if (this.state.currentMemberType == "leader") {
+                table = <DashboardLeaders currentOrganization = {this.state.currentOrganization}/>
+            } else if (this.state.currentMemberType == "member") {
+                table = <DashboardMembers currentOrganization = {this.state.currentOrganization}/>
+            }
             return(
                 <div className = "container-fluid">
                     <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
+                    <DashboardMemberType currentMemberType = {memberType => this.setState({currentMemberType: memberType})}/> 
                     <div className = "row">
                         <DashboardOrganizations states={this.state} organizations={orgs => this.setState({organizations: orgs})} 
                                                 curOrganization={org => this.setState({currentOrganization: org})} allMentors={mentors =>this.setState({allMentors: mentors})}/>    
-                        <DashboardMentors currentOrganization = {this.state.currentOrganization} mentors = {this.state.allMentors} allMentors={mentors => this.setState({allMentors: mentors})}/>
-                        <DashboardMembers currentOrganization = {this.state.currentOrganization}/>
+                        {table}
                     </div> 
                 </div>
             )
         } else if (this.state.currentTab == "documentView") {
+            let table = <DashboardMentorDocuments currentOrganization = {this.state.currentOrganization} mentors = {this.state.allMentors}/>
+            if (this.state.currentMemberType == "leader") {
+                table = <DashboardLeaderDocuments currentOrganization = {this.state.currentOrganization}/>
+            } else if (this.state.currentMemberType == "member") {
+                table = <DashboardMemberDocuments currentOrganization = {this.state.currentOrganization}/>
+            }
             return(
                 <div className = "container-fluid">
                     <DashboardTests/>
                     <DashboardTabs currentTab = {tab => this.setState({currentTab: tab})}/>
+                    <DashboardMemberType currentMemberType = {memberType => this.setState({currentMemberType: memberType})}/> 
                     <div className = "row">
                         <DashboardOrganizations states={this.state} organizations={orgs => this.setState({organizations:org})} 
                                                 curOrganization={org => this.setState({currentOrganization: org})} allMentors={mentors => this.setState({allMentors: mentors})}/> 
-                        <DashboardMentorDocuments currentOrganization = {this.state.currentOrganization} mentors = {this.state.allMentors}/>
-                        <DashboardMemberDocuments currentOrganization = {this.state.currentOrganization}/>
+                        {table}                        
                     </div>
                 </div>
             )

@@ -15,7 +15,7 @@ class DashboardAllMentors extends React.Component{
 			let btn = document.createElement("button");
 			self = this;
 			btn.onclick = function() {
-				if (mentor.organization != "") {
+				if (mentor.organization) {
 					orgs.find((org) => {
 						if (org.name == mentor.organization) {
 							let oldOrg = org.mentors.find((orgMentor) => orgMentor._id == mentor._id)
@@ -30,7 +30,6 @@ class DashboardAllMentors extends React.Component{
 				mentor.organization = orgs[x].name
 				axios.put('/api/mentors/' + mentor._id, mentor)
 				orgs[x].mentors.push(mentor)
-				let mentors = []
 				axios.post('/api/organizations/' + orgs[x]._id + '/mentors', {mentor: mentor._id})
 				self.props.allOrgs(orgs)
 				if (self.props.currentOrganization._id == orgs[x]._id) {
@@ -76,7 +75,7 @@ class DashboardAllMentors extends React.Component{
 			}, {
 				Header: "Organization",
 				Cell: ({original}) => {
-					if (original.organization != "") {
+					if (original.organization) {
 						return(<div>{original.organization}</div>)
 					} else {
 						return(<div>None</div>)
@@ -112,6 +111,23 @@ class DashboardAllMentors extends React.Component{
 						Admin</div>)
 					}
 				}
+			}, {
+				Header: "Delete Mentor",
+				Cell: ({original}) => ( <button onClick={() => {
+					if (original.organization) {
+						let mentorOrg = this.props.organizations.find((org) => org.name == original.organization && org.mentors.find((mentor) => mentor._id == original._id))
+						let indx = this.props.organizations.indexOf(mentorOrg)
+						mentorOrg.mentors.splice(mentorOrg.mentors.indexOf(original), 1);
+						this.props.organizations[indx] = mentorOrg 
+						this.props.allOrgs(this.props.organizations)
+						axios.put('/api/organizations/' + mentorOrg._id, mentorOrg)	
+					}
+					this.props.mentors.splice(this.props.mentors.indexOf(this.props.mentors.find((mentor) => mentor._id == original._id)), 1);
+					this.props.allMentors(this.props.mentors);
+					axios.delete('/api/mentors/' + original._id)
+				}}>
+				X
+				</button> )
 			}]
 		}
 		return(

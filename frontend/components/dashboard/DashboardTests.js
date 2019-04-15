@@ -5,7 +5,7 @@ class DashboardTests extends React.Component{
 
 	makeOrganizations() {
 		var newOrg = {
-			name: "someOrgName",
+			name: "fakeName",
 			leaders: [{"leader": "leader6"}, {"leader": "dueader2"}],
 			address: "penn ave",
 			members: [{"member": "member1"}, {"member": "Member2"}],
@@ -16,14 +16,15 @@ class DashboardTests extends React.Component{
 
 
 	makeDocuments() {
-		var newDocument = {
+/*		var newDocument = {
 			fileName: "randomMemberFile",
 			fileType: "waiver",
 			orgId: "5c7ef65774956b27e0bd8008",
 			member: "fakeMember1"
 			//mentorId: "5bb3c0d3da2944b054ca39bf"
 		}
-		axios.post('/api/documents/documentTest', newDocument);
+		axios.post('/api/documents/documentTest', newDocument);*/
+		axios.get('/api/organizations').then((orgs) => console.log(orgs))
 	}
 
 	makeMentors() {
@@ -32,8 +33,7 @@ class DashboardTests extends React.Component{
     		lastName: "lastName",
     		email: "randomEmail",
     		phoneNumber: "91231231",
-    		university: "Georgia Tech",
-    		organization: "BitsOfGood"
+    		university: "Georgia Tech"
 		}
 		axios.post('/api/mentors', newMentor);
 	}

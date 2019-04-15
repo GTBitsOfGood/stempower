@@ -23,13 +23,13 @@ class DashboardMentors extends React.Component{
 				Header: "Organization",
 				accessor: "organization"
 			}, {
-				width: 50,
-				Header: "",
+				Header: "Unassign Mentor",
 				Cell: ({original}) => ( <button onClick={() => {
-					currentOrg.mentors.splice(currentOrg.mentors.indexOf(original), 1);
+					currentOrg.mentors.splice(currentOrg.mentors.indexOf(currentOrg.mentors.find((mentor) => mentor._id == original._id)), 1);
 					original.organization = "";
 					this.props.mentors[this.props.mentors.indexOf(this.props.mentors.find((mentor) => mentor._id == original._id))].organization = "";
-					axios.delete('/api/organizations/' + currentOrg._id + "/mentors/" + original._id)
+					axios.put('/api/organizations/' + currentOrg._id, currentOrg)
+					console.log(original)
 					axios.put('/api/mentors/' + original._id, original)
 					this.props.allMentors(this.props.mentors);
 				}}>

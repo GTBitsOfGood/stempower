@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTable from 'react-table';
 
-class DashboardMemberDocuments extends React.Component{
+class DashboardLeaderDocuments extends React.Component{
 
 	render() {
 
@@ -9,10 +9,10 @@ class DashboardMemberDocuments extends React.Component{
 		var data = []
 		if (this.props.currentOrganization != null) {
 			var currentOrg = this.props.currentOrganization
-			data = currentOrg.members
+			data = currentOrg.leaders
 			columns = [{
-				Header: "Member Name",
-				accessor: "member"
+				Header: "Leader Name",
+				accessor: "leader"
 			}, {
 				Header: "Pre Survey",
 				Cell: ({original}) => {
@@ -65,4 +65,4 @@ class DashboardMemberDocuments extends React.Component{
 }
 
 
-export default DashboardMemberDocuments;
+export default DashboardLeaderDocuments;
