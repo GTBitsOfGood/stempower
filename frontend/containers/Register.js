@@ -311,8 +311,8 @@ class UserForm extends React.Component {
       alert("Please select a user type");
       return false;
     } else {
-      if (userTypeObject['organization'] == null) {
-        alert("Please specify choose org");
+      if (userTypeObject['organization'] == null && userType != 'organization') {
+        alert("Please choose an organization");
         return false;
       }
       if (userType == 'parent') {
@@ -363,6 +363,7 @@ class OrganizationList extends React.Component {
     return (
       <div>
         <select onChange={this.props.handleOrganizationSelected}>
+          <option disabled selected value> -- select an option -- </option>
           {this.state.organizations.map((item, index) => (
             <option key={index} value={item.id}>
               {item.name}
