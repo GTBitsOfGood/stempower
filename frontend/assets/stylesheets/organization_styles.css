@@ -26,3 +26,8 @@ ul {
 .scrollable {
 	overflow-y: auto; height:220px;
 }
+
+.updates-scrollable {
+	overflow-y: auto; height:70px;
+	border: 2px;
+}
