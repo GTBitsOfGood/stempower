@@ -14,7 +14,7 @@ class DashboardMentors extends React.Component {
 				Header: "Mentor Name",
 				Cell: ({original}) => {
 					if (original) {
-						return (<a href={"/profile/" + original._id}>{original.firstName + " " + original.lastName}</a>) 
+						return (<a href={"/profile/" + original._id}>{original.name}</a>) 
 					} else {
 						return (<div>Undefined</div>)
 					}

@@ -12,7 +12,7 @@ class DashboardAllMentors extends React.Component{
 			data = mentors;
 			columns = [{
 				Header: "Mentor Name",
-				Cell: ({original}) => React.createElement("a", {href: "/profile/" + original._id}, original.firstName + " " + original.lastName)
+				Cell: ({original}) => React.createElement("a", {href: "/profile/" + original._id}, original.name)
 			}, {
 				Header: "Pre Survey",
 				Cell: ({original}) => {

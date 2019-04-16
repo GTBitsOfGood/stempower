@@ -55,7 +55,7 @@ class OrganizationMentors extends React.Component{
        return (
         <div>
             <h2 className="text-center">Mentors</h2>
-            <div className="scrollable">  
+            <div className="scrollable-box">  
               {this.displayMentors()}
             </div>
             <p className="text-center"><a className="btn btn-primary text-white" onClick={this.handleShow} role="button">Contact Your Mentors &raquo;</a></p>

@@ -68,7 +68,6 @@ class MeetingCard extends React.Component {
     return (
       <div style={{ marginBottom: "20px", marginTop: "20px" }}>
         <div
-          id="user-profile"
           style={{
             width: this.state.width,
             float: this.state.float,

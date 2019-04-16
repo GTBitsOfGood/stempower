@@ -26,17 +26,20 @@ class OrganizationDocuments extends React.Component {
   }
 
   handleShow() {
+    console.log("handling show");
     axios
       .get("api/documents/get_documents")
       .then(res => {
+        console.log("Documents");
+        console.log(res.data);
         var data = res.data;
         var documents = [];
         for (var i = 0; i < data.length; i++) {
           var d = data[i];
           documents.push({ name: d.fileName, id: d._id, type: d.documentType });
-          this.setState({ documents: documents });
           this.getAwsURL(d._id);
         }
+        this.setState({ documents: documents });
       })
       .catch(e => console.log(e));
 
@@ -64,6 +67,7 @@ class OrganizationDocuments extends React.Component {
   }
 
   onFileUpload(event) {
+    console.log("Hit event")
     event.preventDefault();
 
     //submit whatever is in the state
@@ -85,6 +89,7 @@ class OrganizationDocuments extends React.Component {
         headers: { "content-type": "multipart/form-data" }
       })
       .then(res => {
+        console.log("Response");
         console.log(res);
         this.handleShow();
       })

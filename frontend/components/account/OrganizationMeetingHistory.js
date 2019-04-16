@@ -76,7 +76,7 @@ class OrganizationMeetingHistory extends React.Component{
         <div>
           <div>
               <h2>Meeting History</h2>
-              <div className="meetings-scrollable">
+              <div className="scrollable-box">
                 <ul>{history}</ul>
               </div>
               <p><a className="btn btn-primary text-white" onClick={this.handleShow} role="button">View All Meetings &raquo;</a></p>

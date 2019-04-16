@@ -58,7 +58,7 @@ class OrganizationUpdates extends React.Component{
        return (
         <div>
             <h2 className="text-center">Updates</h2>
-            <div className = "updates-scrollable text-danger">
+            <div className = "scrollable-box text-danger">
               {this.showUpdates()}
             </div>
             <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">View All Updates &raquo;</a></p>

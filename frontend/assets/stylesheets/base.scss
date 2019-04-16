@@ -424,3 +424,10 @@ textarea {
 tr:nth-child(even) {
   background-color: #ffffff;
 }
+
+.dash {
+  display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
