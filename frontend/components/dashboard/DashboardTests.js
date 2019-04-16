@@ -38,13 +38,26 @@ class DashboardTests extends React.Component{
 		axios.post('/api/mentors', newMentor);
 	}
 
+	makeUser() {
+		var newUser = {
+			username: "ASDFASDFASFA",
+			email: "adslfkjashglasghal@gmail.com",
+			password: "sdfadsgldfjh",
+			userType: "mentor",
+			organization: "5bb3fc7030e8a720b9bb99a6",
+			mentor: "5bbfd107b756a81700bcf9a0"
+		}
+		//axios.put('/api/user/' + "5cb52c889228fe14a0bb25a2", newUser).then((thing) => console.log(thing.data))
+		//axios.post('/api/user', newUser).then((thing) => console.log(thing.data));
+	}
+
 	render() {
 		return(
 			<div>
 				<button onClick = {this.makeOrganizations}>Make dummy organization</button>
 				<button onClick = {this.makeDocuments}>Make dummy document</button>
 				<button onClick = {this.makeMentors}>Make dummy mentor</button>
-				
+				<button onClick = {this.makeUser}>Make dummy user</button>
 			</div>
 	)};
 

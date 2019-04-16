@@ -103,6 +103,9 @@ class Dashboard extends React.Component{
         axios.get('/api/mentors').then((mentors) => {
             mentors = mentors.data
             for (let mentor in mentors) {
+                axios.get('/api/user/mentor/' + mentors[mentor]._id).then((info) => {
+                    mentors[mentor].userType = info.data.userType
+                })
                 if (mentors[mentor].organization) {
                     axios.get('/api/organizations/' + mentors[mentor].organization).then((org) => {
                         mentors[mentor].organization = org.data.name

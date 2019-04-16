@@ -180,4 +180,25 @@ router.put("/:user_id", (req, res) => {
   );
 });
 
+//Find and get mentor by mentor id
+router.get("/mentor/:mentor_id", (req, res) => {
+  User.findOne({mentor: req.params.mentor_id}, (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  }).catch((err) => {res.send("" + err)});
+})
+
+router.put("/mentor/:mentor_id", (req, res) => {
+  User.findOneAndUpdate({mentor: req.params.mentor_id}, {userType: req.body.userType}, {new: true}, (err, result) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.send(result)
+    }
+  })
+})
+
 module.exports = router;

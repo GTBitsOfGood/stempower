@@ -73,24 +73,26 @@ class DashboardAllMentors extends React.Component{
 			}, {
 				Header: "Change Account Type",
 				Cell: ({original}) => {
-					if (!original.type || original.type == "default") {
+					if (original.userType == "mentor") {
 						return (<div>
 							<button onClick={() => {
-							original.type = "admin"
-							this.props.mentors.find((mentor) => mentor._id == original._id).type = "admin"
+							original.userType = "admin"
+							this.props.mentors.find((mentor) => mentor._id == original._id).userType = "admin"
 							this.props.allMentors(this.props.mentors)
+							axios.put('/api/user/mentor/' + original._id, {userType: "admin"})
 						}}>
 						Change to admin
 						</button>
-						Default</div>)
+						Mentor</div>)
 					} else {
 						return (<div>
 							<button onClick={() => {
-							original.type = "default"
-							this.props.mentors.find((mentor) => mentor._id == original._id).type = "default"
+							original.userType = "mentor"
+							this.props.mentors.find((mentor) => mentor._id == original._id).userType = "mentor"
 							this.props.allMentors(this.props.mentors)
+							axios.put('/api/user/mentor/' + original._id, {userType: "mentor"})
 						}}>
-						Change to default
+						Change to mentor
 						</button>
 						Admin</div>)
 					}
