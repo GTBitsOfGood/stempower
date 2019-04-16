@@ -17,7 +17,8 @@ require('./backend/models/meeting');
 require('./backend/models/organization');
 require('./backend/models/update');
 require('./backend/models/user');
-require('./backend/models/document'); 
+require('./backend/models/documentType');
+require('./backend/models/document');
 
 const api = require("./backend/routes");
 var app = express();

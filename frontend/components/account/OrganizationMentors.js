@@ -58,7 +58,7 @@ class OrganizationMentors extends React.Component{
             <div className="scrollable-box">  
               {this.displayMentors()}
             </div>
-            <p className="text-center"><a className="btn btn-primary text-white" onClick={this.handleShow} role="button">Contact Your Mentors &raquo;</a></p>
+            <p className="text-center"><a className="btn btn-primary text-white" role="button">Contact Your Mentors &raquo;</a></p>
             
             <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header>

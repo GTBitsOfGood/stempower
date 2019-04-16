@@ -45,7 +45,7 @@
     }
     .top,
     .bottom {
-      padding: 30px;
+      padding: 10px;
     }
   
     .bottom {
@@ -426,8 +426,10 @@ tr:nth-child(even) {
 }
 
 .dash {
-  display:flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  padding: 10px;
+}
+
+a:not([href]):not([tabindex]) {
+  color: #007bff;
+  text-decoration: none;
 }

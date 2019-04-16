@@ -105,17 +105,17 @@ class OrganizationDocuments extends React.Component {
         <h2 className="text-center">Documents</h2>
 
         <ul className="text-left">
-          <a href="#">
-            <li>Organization Application</li>
+          <a href="http://www.orimi.com/pdf-test.pdf" target="_blank">
+            <li>Organization Feedback</li>
           </a>
-          <a href="#">
-            <li>Feedback</li>
+          <a href="http://www.orimi.com/pdf-test.pdf" target="_blank">
+            <li>Member Feedback</li>
           </a>
-          <a href="#">
+          <a href="http://www.orimi.com/pdf-test.pdf" target="_blank">
             <li>Waiver</li>
           </a>
-          <a href="#">
-            <li>Upload Photos</li>
+          <a href="http://www.orimi.com/pdf-test.pdf" target="_blank">
+            <li>Organization Application</li>
           </a>
         </ul>
         <p className="text-center">

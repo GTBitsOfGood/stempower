@@ -7,15 +7,15 @@ let OrganizationSchema = new Schema({
         required: true
     },
     leaders: {
-        type: [String],
-        required: false
+        type: [{leader: String}],
+        required: true
     },
     address: {
         type: String,
         required: true
     },
     members: {
-        type: [String],
+        type: [{member: String}],
         required: false
     },
     mentors: {

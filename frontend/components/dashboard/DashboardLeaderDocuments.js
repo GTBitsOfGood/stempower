@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTable from 'react-table';
 
-class DashboardMentorDocuments extends React.Component{
+class DashboardLeaderDocuments extends React.Component{
 
 	render() {
 
@@ -9,14 +9,14 @@ class DashboardMentorDocuments extends React.Component{
 		var data = []
 		if (this.props.currentOrganization != null) {
 			var currentOrg = this.props.currentOrganization
-			data = currentOrg.mentors
+			data = currentOrg.leaders
 			columns = [{
-				Header: "Mentor Name",
-				Cell: ({original}) => React.createElement("a", {href: "/profile/" + original._id}, original.name)
-			}] 
+				Header: "Leader Name",
+				accessor: "leader"
+			}]
 			for (let documentType in this.props.documentTypes) {
 				documentType = this.props.documentTypes[documentType]
-				if (documentType.ownerType == "mentor") {
+				if (documentType.ownerType == "leader") {
 					columns.push({
 						Header: documentType.type,
 						Cell: ({original}) => {
@@ -44,4 +44,4 @@ class DashboardMentorDocuments extends React.Component{
 }
 
 
-export default DashboardMentorDocuments;
+export default DashboardLeaderDocuments;
