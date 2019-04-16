@@ -155,7 +155,7 @@ router.post("/logout", (req, res) => {
     // delete session object
     req.session.destroy(function (err) {
       if (err) {
-        return next(err);
+        RTCRtpSender.status(500).send(err);
       } else {
         return res.redirect("/");
       }

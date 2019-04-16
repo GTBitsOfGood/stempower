@@ -11,12 +11,12 @@
     box-shadow: 2px 2px 5px #000;
     border: 1px solid #000;
   
-    // hr {
-    //   margin: 20px auto;
-    //   width: 50px;
-    //   border: 1px solid #6b0a3a;
-    //   background-color: transparent;
-    // }
+    hr {
+      margin: 20px auto;
+      width: 50px;
+      border: 1px solid #6b0a3a;
+      background-color: transparent;
+    }
   
     h1,
     h2,
@@ -106,9 +106,7 @@
     background-color: #563d7c;
     justify-content: center;
   }
-  /* "Welcome screen" styles */
-  /* Move down content because we have a fixed navbar that is 50px tall */
-  
+
   .background-colored {
     background-color: rgb(84, 72, 98);
   }
@@ -421,4 +419,8 @@ textarea {
 
 .radio-label {
   margin-left: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #ffffff;
 }

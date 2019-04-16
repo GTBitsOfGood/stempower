@@ -12,7 +12,7 @@ import OrganizationCalendar from './../components/account/OrganizationCalendar';
 import OrganizationPaypal from './../components/account/OrganizationPaypal';
 import ProfileCard from './ProfileCard'
 import Profile from './Profile'
-import './../assets/stylesheets/organization_styles.css';
+// import './../assets/stylesheets/organization_styles.css';
 
 class Account extends React.Component {
   constructor(props) {
@@ -24,12 +24,7 @@ class Account extends React.Component {
     if (this.props.mentorId == null && this.props.orgId == null) {
       return;
     }
-    
-    if (this.props.orgId != null) {
-      axios.get("/api/organizations/" + this.props.orgId).then(({ data }) => {
-        this.setState({organizationName: data.name})
-      });
-    } else if (this.props.mentorId != null) {
+    if (this.props.mentorId) {
       axios.get("/api/mentors/" + this.props.mentorId).then(({ data }) => {
         axios.get("/api/organizations/" + data.organization).then(({ data }) => {
           this.setState({organizationName: data.name});
@@ -41,6 +36,18 @@ class Account extends React.Component {
             }
             this.setState({ mentors: mentors });
           });
+        });
+      });
+    } else if (this.props.orgId != null) {
+      axios.get("/api/organizations/" + this.props.orgId).then(({ data }) => {
+        this.setState({organizationName: data.name});
+        axios.get("/api/organizations/" + data._id + "/mentors").then(({data}) => {
+          var mentors = [];
+          for (var i = 0; i < data.length; i++) {
+            var d = data[i];
+            mentors.push({ name: d.name, id: d._id });
+          }
+          this.setState({ mentors: mentors });
         });
       });
     }
@@ -112,7 +119,6 @@ class Account extends React.Component {
                       {this.getElement(2)}
                     </div>
                   </td>
-                    
                </tr>
                <tr>
                   <td>
