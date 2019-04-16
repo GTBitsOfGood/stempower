@@ -31,7 +31,6 @@ class OrganizationMentors extends React.Component{
   }
 
   handleCard(index) {
-    console.log("INDEX: " + index);
     var id;
     id = this.props.mentors[index] != undefined ? this.props.mentors[index].id : this.props.mentors[0].id;
     this.setState({ show: true, id: id});
@@ -40,10 +39,10 @@ class OrganizationMentors extends React.Component{
   displayMentors() {
     var ret = [];
     for(var i = 0; i < this.props.mentors.length; i++) {
-      const j = i;
-       ret.push(<span key={j} onClick={() => this.handleCard(j)}>
-                {this.props.mentors[j] != undefined ? (
-                  <ProfileCard condensed={true} id={this.props.mentors[j].id} isEditable={false} />
+      const index = i
+       ret.push(<span key={i} onClick={() => this.handleCard(index)}>
+                {this.props.mentors[index] != undefined ? (
+                  <ProfileCard condensed={true} id={this.props.mentors[index].id} isEditable={false} />
                 ) : (
                   console.log("undefined")
                 )}
@@ -56,12 +55,12 @@ class OrganizationMentors extends React.Component{
        return (
         <div>
             <h2 className="text-center">Mentors</h2>
-            <div className="scrollable-box">  
+            <div className="scrollable">  
               {this.displayMentors()}
             </div>
             <p className="text-center"><a className="btn btn-primary text-white" onClick={this.handleShow} role="button">Contact Your Mentors &raquo;</a></p>
-
-            <Modal show={this.state.show}>
+            
+            <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header>
               <Modal.Title>Mentors</Modal.Title>
             </Modal.Header>

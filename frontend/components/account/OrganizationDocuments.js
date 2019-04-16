@@ -129,11 +129,6 @@ class OrganizationDocuments extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <h4>Your Documents</h4>
-            {/* <p><img src="https://meetingtom-meetingtomorrow.netdna-ssl.com/wp-content/uploads/2015/02/TextDocument.png?x37393" width='170' /></p>
-              <p></p>
-              <h4>Feedback</h4>
-              <p><img src="https://meetingtom-meetingtomorrow.netdna-ssl.com/wp-content/uploads/2015/02/TextDocument.png?x37393" width='170' /></p>
-              <p></p> */}
             <div>
               <table>
                 <tbody>
@@ -168,9 +163,6 @@ class OrganizationDocuments extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.handleClose}>Close</Button>
-            {/* <Button onClick={this.handleClose}>
-                Upload Document
-              </Button> */}
           </Modal.Footer>
         </Modal>
       </div>

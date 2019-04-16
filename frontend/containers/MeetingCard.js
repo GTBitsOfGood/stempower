@@ -2,11 +2,12 @@ import React from "react";
 import ProfilePanel from "./ProfilePanel.js";
 import axios from "axios";
 import InlineEdit from 'react-edit-inline';
+import MeetingBlock from "./MeetingBlock.js"
 
 class MeetingCard extends React.Component {
   constructor(props) {
     super(props);
-    this.getInlineElement = this.getInlineElement.bind(this);
+    this.showMeetings = this.showMeetings.bind(this);
 
     this.state = {
       width: "",
@@ -24,17 +25,13 @@ class MeetingCard extends React.Component {
         this.setState({ meetings: data});
       })
       .catch(error => {
-        console.log("No such person found");
+        console.log("No such meetings found");
       });
-
-        this.setState({ meetings: [{date: "11/13/1998", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}, 
-                                    {date: "11/13/2001", description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-                                    {date: "11/13/2006", description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}]});
   }
 
   newSave() {
     axios
-      .put("/api/meetings/" + this.props.id, this.state.mentor)
+      .put("/api/meetings/" + this.props.id, this.state.meeting)
       .then(response => console.log(response))
       .catch(error => console.log(error));
   }
@@ -71,32 +68,13 @@ class MeetingCard extends React.Component {
     );
   }
 
-  getInlineElement(index) {
-    return (<div>
-                    <h2>{this.state.meetings[index].date}</h2>
-                    <InlineEdit
-                      activeClassName="editing"
-                      text={this.state.meetings[index].description}
-                      paramName="message"
-                      style={{
-                        minWidth: 150,
-                        display: 'inline-block',
-                        margin: 0,
-                        padding: 0,
-                        fontSize: 15,
-                        outline: 0,
-                        border: 33
-                      }}
-                    />
-            </div>);
-  }
-
-  getInlineElements() {
-    var divs = [];
-    for (var i = 0; i < this.state.meetings.length; i++) {
-      divs.push(this.getInlineElement(i));
+  showMeetings() {
+    var ret = [];
+    for (var i = 0; i < this.props.meetings.length; i++) {
+          const index = i;
+          ret.push(<div><MeetingBlock meeting={this.props.meetings[index]} isEditing={false}/></div>);
     }
-    return divs;
+    return ret;
   }
 
   render() {
@@ -109,7 +87,7 @@ class MeetingCard extends React.Component {
             float: this.state.float,
           }}
         >
-          {this.getInlineElements()}
+          {this.showMeetings()}
         </div>
       </div>
     );

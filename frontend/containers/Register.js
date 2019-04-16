@@ -58,7 +58,7 @@ class UserForm extends React.Component {
         <input
           type="text"
           className="text-input"
-          placeholder="username"
+          placeholder="full name"
           onChange={this.handleUsernameChange}
           style={{ marginBottom: "10px" }}
         />

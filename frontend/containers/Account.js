@@ -92,6 +92,10 @@ class Account extends React.Component {
         return (
           <Redirect to='/' />
         );
+      } else if (this.props.userType == "admin") {
+        return (
+          <Redirect to='/dashboard' />
+        )
       }
         return (
           <div className="container">

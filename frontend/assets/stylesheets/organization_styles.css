@@ -31,3 +31,12 @@ ul {
 	overflow-y: auto; height:70px;
 	border: 2px;
 }
+
+.meetings-scrollable {
+    overflow-y: auto; height:90px;
+    border: 2px;
+}
+
+.editing {
+    border: 50px;
+}
