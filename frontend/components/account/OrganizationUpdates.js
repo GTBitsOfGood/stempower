@@ -1,5 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import axios from "axios";
+
 import './../../assets/stylesheets/organization_styles.css';
 
 class OrganizationUpdates extends React.Component{
@@ -9,11 +11,31 @@ class OrganizationUpdates extends React.Component{
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.showUpdates = this.showUpdates.bind(this);
 
     this.state = {
       show: false,
+      updates: [],
       value: this.props.waiversNeeded + ' members still need to upload participation waivers!'
     };
+  }
+
+  componentWillMount() {
+    axios
+      .get("/api/updates/")
+      .then(({ data }) => {
+        console.log("Reached then")
+        // console.log(data);
+        this.setState({updates: data});
+      })
+      .catch(error => {
+        // console.log(error);
+        console.log(this.state.updates);
+        console.log("No such update found");
+      });
+
+      // this.setState({ updates: [{description: "This is an example update.", organization: "Troop 1234"}]});
+
   }
 
   handleClose() {
@@ -24,14 +46,20 @@ class OrganizationUpdates extends React.Component{
     this.setState({ show: true });
   }
 
+  showUpdates() {
+    var ret = [];
+    for(var i = 0; i < this.state.updates.length; i++) {
+      ret.push(<p>{this.state.updates[i].description}</p>);
+    }
+    return ret;
+  }
+
    render() {
        return (
         <div>
             <h2 className="text-center">Updates</h2>
             <div className = "updates-scrollable text-danger">
-              <p>Make sure you complete all your forms </p>
-              <p>Troop 174 still needs to register </p>
-              <p>Example Text Right Here </p>
+              {this.showUpdates()}
             </div>
             <p className="text-center"><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">View All Updates &raquo;</a></p>
 
@@ -40,9 +68,7 @@ class OrganizationUpdates extends React.Component{
               <Modal.Title>Updates</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <p>Make sure you complete all your forms</p>
-              <p>Troop 174 still needs to register</p>
-              <p>Example Text Right Here</p>
+              {this.showUpdates()}
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>

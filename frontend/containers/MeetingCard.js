@@ -6,7 +6,7 @@ import InlineEdit from 'react-edit-inline';
 class MeetingCard extends React.Component {
   constructor(props) {
     super(props);
-    this.getInlineElement = this.getInlineElement.bind(this);
+    this.showMeetings = this.showMeetings.bind(this);
 
     this.state = {
       width: "",
@@ -24,17 +24,17 @@ class MeetingCard extends React.Component {
         this.setState({ meetings: data});
       })
       .catch(error => {
-        console.log("No such person found");
+        console.log("No such meetings found");
       });
 
-        this.setState({ meetings: [{date: "11/13/1998", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}, 
-                                    {date: "11/13/2001", description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-                                    {date: "11/13/2006", description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}]});
+      // this.setState({ meetings: [{date: "11/13/1998", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}, 
+      //                               {date: "11/13/2001", description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+      //                               {date: "11/13/2006", description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}]});
   }
 
   newSave() {
     axios
-      .put("/api/meetings/" + this.props.id, this.state.mentor)
+      .put("/api/meetings/" + this.props.id, this.state.meeting)
       .then(response => console.log(response))
       .catch(error => console.log(error));
   }
@@ -71,12 +71,15 @@ class MeetingCard extends React.Component {
     );
   }
 
-  getInlineElement(index) {
-    return <div>
-                    <h2>{this.state.meetings[index].date}</h2>
+  showMeetings() {
+    var ret = [];
+    for (var i = 0; i < this.props.meetings.length; i++) {
+          const index = i;
+          ret.push(<div>
+                    <h2>{this.props.meetings[index].date}</h2>
                     <InlineEdit
                       activeClassName="editing"
-                      text={this.state.meetings[index].description}
+                      text={this.props.meetings[index].description}
                       paramName="message"
                       style={{
                         minWidth: 150,
@@ -88,7 +91,9 @@ class MeetingCard extends React.Component {
                         border: 33
                       }}
                     />
-            </div>
+                </div>)
+    }
+    return ret;
   }
 
   render() {
@@ -101,9 +106,7 @@ class MeetingCard extends React.Component {
             float: this.state.float,
           }}
         >
-          {this.getInlineElement(0)}
-          {this.getInlineElement(1)}
-          {this.getInlineElement(2)}
+          {this.showMeetings()}
         </div>
       </div>
     );

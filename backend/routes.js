@@ -11,6 +11,7 @@ const organization = require('./routes/organization');
 const doc = require('./routes/document');
 const upload = require('./routes/upload');
 const files = require('./routes/files');
+const update = require('./routes/update');
 
 const router = express.Router();
 router.use(bodyParser.json());
@@ -20,6 +21,7 @@ router.use('/user', user)
 router.use('/mentors', mentor);
 router.use('/meetings', meeting);
 router.use('/organizations', organization);
+router.use('/updates', update);
 router.use('/documents', doc);
 router.use('/files', files);
 router.use('/upload', upload);

@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
-let MeetingSchema = new Schema({
-  date: {
-    type: String,
-    required: true
-  },
+let UpdateSchema = new Schema({
   description: {
     type: String,
     required: true
@@ -16,4 +12,4 @@ let MeetingSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("Meeting", MeetingSchema);
+module.exports = mongoose.model("Update", UpdateSchema);

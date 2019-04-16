@@ -23,13 +23,19 @@ class OrganizationMeetingHistory extends React.Component{
 
   componentWillMount() {
     axios
-      .get("/api/mentors/")
+      .get("/api/meetings/")
       .then(({ data }) => {
         this.setState({ meetings: data});
       })
       .catch(error => {
-        console.log("No such meeting found");
+        console.log("No such meeting found in root");
       });
+
+      console.log(this.state.meetings);
+
+      this.setState({ meetings: [{date: "11/13/1998", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}, 
+                                    {date: "11/13/2001", description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+                                    {date: "11/13/2006", description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}]});
   }
 
   handleClose() {
@@ -61,15 +67,17 @@ class OrganizationMeetingHistory extends React.Component{
   }
 
    render() {
-       var history = this.props.meetingHistory.map(function(date) {
-           return <a href='#'><li key={date}>{date}</li></a>
+      // console.log(this.state.meetings);
+      var meetingDates = this.state.meetings;
+       var history = meetingDates.map(function(meeting) {
+           return <li key={meeting.date}>{meeting.date}</li>
        });
        return (
         <div>
           <div>
               <h2>Meeting History</h2>
               <ul>{history}</ul>
-              <p><a  className="btn btn-primary text-white" onClick={this.handleShow} role="button">View All Meetings &raquo;</a></p>
+              <p><a className="btn btn-primary text-white" onClick={this.handleShow} role="button">View All Meetings &raquo;</a></p>
           </div>
 
           <Modal show={this.state.show} onHide={this.handleClose}>
@@ -77,9 +85,12 @@ class OrganizationMeetingHistory extends React.Component{
               <Modal.Title>All Meetings</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <MeetingCard condensed={true} id={123333} isEditable={true}/>
+              <MeetingCard condensed={true} id={123333} isEditable={true} meetings={this.state.meetings}/>
             </Modal.Body>
             <Modal.Footer>
+              <Button onClick={this.handleClose}>
+                Save
+              </Button>
               <Button onClick={this.handleClose}>
                 Close
               </Button>
